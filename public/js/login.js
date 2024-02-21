@@ -1,5 +1,6 @@
 import { decrypt, encrypt } from "./encryption.js";
 
+// This allows the use of a 'user' type in this script
 /**
  * @typedef {object} user A user stored in local storage
  * @property {string} email The users email address
@@ -10,11 +11,19 @@ import { decrypt, encrypt } from "./encryption.js";
 const form = document.getElementsByClassName("login-form")[0];
 
 form.onsubmit = async (ev) => {
+	// Checks if we should log in or register by checking if the 'geef wachtwoord opnieuw' input is presents
 	if (ev.target[2].id === "login-password-verify")
 		register(ev.target[0], ev.target[1], ev.target[2]);
 	else login(ev.target[0], ev.target[1]);
 };
 
+/**
+ *
+ * @param {HTMLInputElement} emailElem The input for the users email
+ * @param {HTMLInputElement} passElem The input element for the users password
+ * @param {HTMLInputElement} verifyPassElem The input element for the user to verify their password
+ * @returns {false | void}
+ */
 async function register(emailElem, passElem, verifyPassElem) {
 	const email = emailElem.value;
 	const password = passElem.value;
@@ -56,13 +65,22 @@ async function login(emailElem, passElem) {
 
 // ========================= Helper functions =========================
 
+/**
+ * This function shows an invalid message on a form element that goes away on a user input (like typing a new character)
+ * @param {HTMLElement} target The element to set the validity of
+ * @param {string} msg What to set the invalid message to
+ * @returns {false} Always return false (EventListeners usually return false when cancelled, so you can just return this)
+ */
 function setValidity(target, msg) {
+	// Set the message
 	target.setCustomValidity(msg);
+	// Shows the message
 	target.reportValidity();
 	// This resets the Validity when you type
 	target.oninput = async (_ev) => {
 		target.setCustomValidity("");
 		target.reportValidity();
+		// Remove this EventListener from the target when msg cleared
 		target.oninput = null;
 	};
 
