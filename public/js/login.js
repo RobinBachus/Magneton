@@ -1,12 +1,5 @@
 import { decrypt, encrypt } from "./encryption.js";
 
-// This allows the use of a 'user' type in this script
-/**
- * @typedef {object} user A user stored in local storage
- * @property {string} email The users email address
- * @property {string} password The users password stored as an encrypted string
- */
-
 /** @type HTMLFormElement */
 const form = document.getElementsByClassName("login-form")[0];
 
@@ -104,22 +97,22 @@ function setValidity(target, msg) {
 }
 
 /**
- * Tries to get a user from local storage
+ * Tries to get a user from local storage based on an email address
  * @param {string} email The email of the user to look for
  * @returns The user object if found, null otherwise
  */
 function findLocalUser(email) {
-	/** @type user[] */
+	/** @type IUser[] */
 	const users = JSON.parse(localStorage.getItem("users")) ?? []; // the `?? []` makes a new list if one does not exist in storage
 	return users.find((u) => u.email === email) ?? null;
 }
 
 /**
  * Adds a user to local space
- * @param {user} user The user to add
+ * @param {IUser} user The user to add
  */
 function registerUser(user) {
-	/** @type user[] */
+	/** @type IUser[] */
 	const users = JSON.parse(localStorage.getItem("users")) ?? [];
 	users.push(user);
 
