@@ -10,6 +10,7 @@ import { decrypt, encrypt } from "./encryption.js";
 /** @type HTMLFormElement */
 const form = document.getElementsByClassName("login-form")[0];
 
+// Runs when you click the submit button
 form.onsubmit = async (ev) => {
 	// Checks if we should log in or register by checking if the 'geef wachtwoord opnieuw' input is presents
 	if (ev.target[2].id === "login-password-verify")
@@ -18,20 +19,24 @@ form.onsubmit = async (ev) => {
 };
 
 /**
- *
- * @param {HTMLInputElement} emailElem The input for the users email
+ * Tries to register a new user
+ * @param {HTMLInputElement} emailElem The input element for the users email
  * @param {HTMLInputElement} passElem The input element for the users password
  * @param {HTMLInputElement} verifyPassElem The input element for the user to verify their password
- * @returns {false | void}
+ * @returns {false | void} False if cancelled (nothing otherwise)
  */
 async function register(emailElem, passElem, verifyPassElem) {
 	const email = emailElem.value;
 	const password = passElem.value;
 	const passwordVerified = verifyPassElem.value;
 
+	// Check if email already has an account
+	// If so, give an invalid message and highlight the login button
 	if (findLocalUser(email) !== null) {
 		const loginLink = document.getElementById("login-link");
 		loginLink.classList.remove("highlight");
+		// I'm not sure why this is needed, I will recheck this later
+		// TODO: Check
 		setTimeout(() => loginLink.classList.add("highlight"), 10);
 
 		return setValidity(emailElem, "Account bestaat al!");
@@ -40,22 +45,32 @@ async function register(emailElem, passElem, verifyPassElem) {
 	if (password !== passwordVerified)
 		return setValidity(verifyPassElem, "Wachtwoord komt niet overeen");
 
+	// Create a new user with the encrypted password
 	const user = {
 		email: email,
 		password: await encrypt(password),
 	};
 
+	// Store the user
 	registerUser(user);
 	console.log("User added to local storage");
 }
 
+/**
+ * Tries to log a user in
+ * @param {HTMLInputElement} emailElem The input element for the users email
+ * @param {HTMLInputElement} passElem The input element for the users password
+ * @returns {false | void} False if cancelled (nothing otherwise)
+ */
 async function login(emailElem, passElem) {
 	const email = emailElem.value;
 	const password = passElem.value;
 
+	// Look for the email in the registered users
 	const user = findLocalUser(email);
 	if (user === null) return setValidity(emailElem, "Account bestaat niet");
 
+	// Get the stored password and decrypt it
 	const _password = await decrypt(user.password);
 	if (!_password || password !== _password)
 		return setValidity(passElem, "Onjuist wachtwoord");
@@ -95,7 +110,7 @@ function setValidity(target, msg) {
  */
 function findLocalUser(email) {
 	/** @type user[] */
-	const users = JSON.parse(localStorage.getItem("users")) ?? [];
+	const users = JSON.parse(localStorage.getItem("users")) ?? []; // the `?? []` makes a new list if one does not exist in storage
 	return users.find((u) => u.email === email) ?? null;
 }
 
