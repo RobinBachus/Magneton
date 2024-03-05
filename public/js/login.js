@@ -95,7 +95,7 @@ function setValidity(target, msg) {
 	// Makes it easy to return false when called
 	return false;
 }
-
+    
 /**
  * Tries to get a user from local storage based on an email address
  * @param {string} email The email of the user to look for

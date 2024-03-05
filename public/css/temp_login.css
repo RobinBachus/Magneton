@@ -1,7 +1,7 @@
 :root {
-	--color-bg-dark: #393131;
-	--color-fg-dark: #d5f6de;
-	--color-text: #2983ac;
+	--color-bg-dark: #555bc7;
+	--color-fg-dark: gold;
+	--color-text: #523ea3;
 }
 
 i,
@@ -40,6 +40,7 @@ i::before {
 	/* misc */
 	background-color: var(--color-fg-dark);
 	border-radius: 2rem;
+	border: 2px solid var(--color-text);
 	padding: 1rem;
 }
 
@@ -62,7 +63,7 @@ i::before {
 	color: var(--color-bg-dark);
 	background-color: transparent;
 	border: 0;
-	border-bottom: 2px inset var(--color-bg-dark);
+	border-bottom: 2px inset var(--color-text);
 }
 
 .highlight {
