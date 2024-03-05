@@ -8,7 +8,7 @@ i,
 i::before {
 	/*
 	Makes fa icons the same size.
-	This can be changed if it interferes with icons other places,
+	This can be changed if it interferes with icons in other places,
 	so far it just seems fitting everywhere
 	*/
 	display: flex;
