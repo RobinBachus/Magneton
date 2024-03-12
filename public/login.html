@@ -38,5 +38,39 @@
         </ul>
       </nav>
     </header>
-  </body>
+		<main class="login-container">
+			<form class="login-form action-login" action="javascript:void(0)">
+				<h2>Welkom terug!</h2>
+				<label
+					><i class="fa-solid fa-envelope"></i>
+					<!-- TODO: Remove value-->
+					<input
+						type="email"
+						name="login-email"
+						id="login-email"
+						placeholder="someone@example.com"
+						aria-label="email"
+						value=""
+						required
+					/>
+				</label>
+				<label>
+					<i class="fa-solid fa-lock"></i>
+					<input
+						type="password"
+						name="login-password"
+						id="login-password"
+						placeholder="Wachtwoord"
+						aria-label="Wachtwoord"
+						minlength="8"
+						required
+					/>
+				</label>
+				<section class="login-submit-container">
+					<input type="submit" value="Sign in" />
+					<a href="signup.html">Register</a>
+				</section>
+			</form>
+		</main>
+	</body>
 </html>
