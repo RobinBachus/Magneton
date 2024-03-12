@@ -1,0 +1,15 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+body {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 200;
+  font-size: small;
+  font-style: normal;
+} */
+@font-face {
+  font-family: "Retro";
+  src: url("../assets/fonts/Pokemon\ GB.woff") format("woff");
+}
+body {
+  font-family: "Retro";
+  font-size: small;
+}
