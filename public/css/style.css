@@ -18,7 +18,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(183, 65, 65);
+  background-color: rgb(218, 31, 31);
 }
 
 header ul {
@@ -49,7 +49,7 @@ header a {
 .pointerpointer {
   cursor: pointer;
   position: relative;
-  right: 1350px;
+  right: 1370px;
   top: 63px;
   background-color: #747272;
   border-radius: 5%;
@@ -88,24 +88,32 @@ aside h1 {
 }
 
 .sidenav li a:hover {
-  animation: leftAndRight 0.5s ease infinite alternate;
+  animation: leftAndRight 0.5s ease forwards alternate;
 }
-.sidenav a:hover::before {
-  content: ">";
-  left: -5px;
+.sidenav li a:hover::before {
+  content: "";
   position: absolute;
+  left: -2px;
+  width: 2px;
+  height: 2px;
+  font-size: 2px;
+  color: #181010;
+  box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010,
+    2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010,
+    3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010,
+    3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010,
+    2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
+    2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
 }
 @keyframes leftAndRight {
   0% {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(
-      -5px
-    ); /* Adjust the value as needed for desired upward movement */
+    transform: translateX(-10px);
   }
   100% {
-    transform: translateX(-5px);
+    transform: translateX(-10px);
   }
 }
 .sidenav {
@@ -163,7 +171,7 @@ aside h1 {
 }
 
 #productimages img:hover {
-  animation: upAndDown 0.7s ease infinite alternate;
+  animation: upAndDown 0.5s ease infinite;
 }
 
 @keyframes upAndDown {
@@ -171,9 +179,7 @@ aside h1 {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(
-      -7px
-    ); /* Adjust the value as needed for desired upward movement */
+    transform: translateY(-7px);
   }
   100% {
     transform: translateY(0);
@@ -190,40 +196,37 @@ aside h1 {
   flex-direction: column;
   width: 100%;
   align-items: center;
+  text-decoration: none;
 }
 #Mysteryzone {
   left: 500px;
   position: relative;
   text-align: center;
 }
-.adderTab {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+.pokemon {
+  position: relative;
+  top: -173px;
 }
 .pokeball {
   opacity: 0.3;
-  width: 400px;
+  height: 200px !important;
+  width: 200px !important;
   z-index: -1;
   animation: rotation 20s infinite linear;
-}
-.pokemon {
-  position: relative;
-  top: -145px;
 }
 .pokeballselect {
   display: none;
   opacity: 0.5;
-  width: 400px;
+  height: 200px !important;
+  width: 200px !important;
   z-index: -1;
   animation: rotation 20s infinite linear;
 }
-.pokecontainer:hover .pokeballselect {
-  display: block;
+
+.pokeball:has(+ .pokemon:hover) {
+  content: url("../assets/img/POKEDEXSELECTBALL.png");
 }
-.pokecontainer:hover .pokeball {
-  display: none;
-}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -232,6 +235,7 @@ aside h1 {
     transform: rotate(359deg);
   }
 }
+/*Blackening filter for who's that pokemon:  -webkit-filter: brightness(0);*/
 @media only screen and (max-width: 1020px) {
   .pointerpointer {
     right: 542px;
