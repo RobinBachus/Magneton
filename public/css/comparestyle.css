@@ -1,0 +1,131 @@
+header {
+  background-color: rgb(154, 165, 232);
+}
+#logo {
+  width: 15%;
+}
+ul > li > section {
+  display: flex;
+  flex-direction: row;
+  color: black;
+  border-style: solid;
+  border-color: gray;
+  width: 255px;
+}
+
+ul > li {
+  display: grid;
+  grid-template-columns: 3rem 255px;
+}
+#usericon {
+  display: flex;
+  width: 7%;
+  margin-left: 92%;
+  margin-top: -8%;
+}
+#usericon2 {
+  display: flex;
+  width: 6%;
+  margin-left: 92%;
+  margin-top: -2.5%;
+}
+#magneton {
+  padding-left: 45%;
+}
+.pokemonDisplayCard {
+  border: 2px solid rgb(65, 78, 183);
+  background-color: rgb(155, 165, 236);
+  width: fit-content;
+  margin-left: 125px;
+}
+.health {
+  width: 0px;
+}
+
+.healthcontainer:before {
+  content: "HP";
+}
+
+.healthcontainer {
+  list-style: none;
+}
+.attack {
+  width: 0px;
+}
+
+.attackcontainer:before {
+  content: "ATK";
+}
+
+.attackcontainer {
+  list-style: none;
+}
+
+.defence {
+  height: 100%;
+  width: 0px;
+}
+
+.defencecontainer:before {
+  content: "DEF";
+}
+
+.defencecontainer {
+  list-style: none;
+}
+.specialattack {
+  height: 100%;
+  width: 0px;
+}
+.specialattackcontainer::before {
+  content: "SPA";
+}
+.specialattackcontainer {
+  list-style: none;
+}
+.specialdefence {
+  height: 100%;
+  width: 0px;
+}
+.specialdefencecontainer::before {
+  content: "SPD";
+}
+.specialdefencecontainer {
+  list-style: none;
+}
+.speed {
+  height: 100%;
+  width: 0px;
+}
+.speedcontainer::before {
+  content: "SPE";
+}
+.speedcontainer {
+  list-style: none;
+}
+#comperator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#activePlayer1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+}
+#img-container {
+  position: relative;
+}
+#activePlayer2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+}
+#img-container2 {
+  position: relative;
+}
+footer {
+  background-color: rgb(154, 165, 232);
+}

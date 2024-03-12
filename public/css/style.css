@@ -1,111 +1,248 @@
-ul > li > section {
+:root {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+body {
+  background-color: #6668e0;
+  color: rgb(255, 255, 255);
   display: flex;
-  flex-direction: row;
-  color: black;
-  border-style: solid;
-  border-color: gray;
-  width: 255px;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-ul > li {
-  display: grid;
-  grid-template-columns: 3rem 255px;
-}
-main {
-  background-image: url("pokemon-emerald-green-setting-hgox2c1ebjwek0xg.jpg");
-  background-size: contain;
-}
-.pokemonDisplayCard {
-  border: 1.5px solid rgb(65, 78, 183);
-  background-color: rgb(155, 165, 236);
-  width: fit-content;
-  margin-left: 125px;
-}
-.health {
-  width: 0px;
+header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(183, 65, 65);
 }
 
-.healthcontainer:before {
-  content: "HP";
-}
-
-.healthcontainer {
+header ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
-.attack {
-  width: 0px;
+#usericon {
+  display: flex;
+  width: 50%;
+  margin-left: 0%;
 }
-
-.attackcontainer:before {
-  content: "ATK";
-}
-
-.attackcontainer {
-  list-style: none;
-}
-
-.defence {
-  height: 100%;
-  width: 0px;
+header li {
+  margin: 0 10px;
+  border-radius: 25%;
 }
 
-.defencecontainer:before {
-  content: "DEF";
+header a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 1.2em;
+}
+#MnLogo {
+  height: 30%;
+  width: 30%;
+}
+.pointerpointer {
+  cursor: pointer;
+  position: relative;
+  right: 1350px;
+  top: 63px;
+  background-color: #747272;
+  border-radius: 5%;
+  padding: 5%;
+  font-size: x-large;
+}
+aside h1 {
+  margin: 0;
+  padding: 0 20px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+.sidenav {
+  height: 175%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #747272;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+.sidenav form {
+  padding-left: 10px;
+  width: 140px;
+}
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
 }
 
-.defencecontainer {
-  list-style: none;
+.sidenav li a:hover {
+  animation: leftAndRight 0.5s ease infinite alternate;
 }
-.specialattack {
-  height: 100%;
-  width: 0px;
+.sidenav a:hover::before {
+  content: ">";
+  left: -5px;
+  position: absolute;
 }
-.specialattackcontainer::before {
-  content: "SPA";
+@keyframes leftAndRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(
+      -5px
+    ); /* Adjust the value as needed for desired upward movement */
+  }
+  100% {
+    transform: translateX(-5px);
+  }
 }
-.specialattackcontainer {
-  list-style: none;
-}
-.specialdefence {
-  height: 100%;
-  width: 0px;
-}
-.specialdefencecontainer::before {
-  content: "SPD";
-}
-.specialdefencecontainer {
-  list-style: none;
-}
-.speed {
-  height: 100%;
-  width: 0px;
-}
-.speedcontainer::before {
-  content: "SPE";
-}
-.speedcontainer {
-  list-style: none;
-}
-#comperator {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-#activePlayer1 {
+.sidenav {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 500px;
+  left: 0px;
+  margin-right: 75px;
 }
-#img-container {
+.closebtn .sidenav {
+  font-size: 35px;
+}
+
+#productimages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  transition: margin-right 0.5s;
+  padding: 20px;
+}
+
+#productimages article {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+#productimages a {
+  width: 100%;
   position: relative;
+  display: block;
+  text-align: center;
+  overflow: hidden;
 }
-#activePlayer2 {
+
+#productimages img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  padding-top: 7px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  transition: transform 0.8s ease;
+}
+
+#productimages a p {
+  font-size: larger;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 500px;
+  bottom: -50px;
+  left: 80%;
+  transform: translateX(-50%);
+  opacity: 0;
+  color: white;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
 }
-#img-container2 {
+
+#productimages img:hover {
+  animation: upAndDown 0.7s ease infinite alternate;
+}
+
+@keyframes upAndDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(
+      -7px
+    ); /* Adjust the value as needed for desired upward movement */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#Pokedexlist {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+#Pokedexlist article {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+#Mysteryzone {
+  left: 500px;
   position: relative;
+  text-align: center;
+}
+.adderTab {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.pokeball {
+  opacity: 0.3;
+  width: 400px;
+  z-index: -1;
+  animation: rotation 20s infinite linear;
+}
+.pokemon {
+  position: relative;
+  top: -145px;
+}
+.pokeballselect {
+  display: none;
+  opacity: 0.5;
+  width: 400px;
+  z-index: -1;
+  animation: rotation 20s infinite linear;
+}
+.pokecontainer:hover .pokeballselect {
+  display: block;
+}
+.pokecontainer:hover .pokeball {
+  display: none;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+@media only screen and (max-width: 1020px) {
+  .pointerpointer {
+    right: 542px;
+    top: 20px;
+    font-size: larger;
+  }
+}
+@media only screen and (max-width: 720px) {
+  .pointerpointer {
+    right: 472px;
+    top: 20px;
+    font-size: larger;
+  }
 }
