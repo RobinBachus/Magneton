@@ -1,0 +1,148 @@
+#Pokedexlist a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+@property --a {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+/* in case of a too busy select screen remove the legendaries and add var( --a) instead of the last number in the rgb values */
+#Pokedexlist article:not(#mysteryzone) {
+  border-style: solid;
+  transition: --a 0.5s;
+  border-radius: 2%;
+  width: 250px;
+}
+#Pokedexlist #kanto:hover img {
+  content: url("../assets/img/KantoLgnds.png");
+}
+#Pokedexlist #johto:hover img {
+  content: url("../assets/img/JohtoLgnds.png");
+}
+#Pokedexlist #hoenn:hover img {
+  content: url("../assets/img/HoennLgnds.png");
+}
+#Pokedexlist #sinnoh:hover img {
+  content: url("../assets/img/SinnohLgnds.png");
+}
+#Pokedexlist #unova:hover img {
+  content: url("../assets/img/UnovaLgnds.png");
+}
+#Pokedexlist #kalos:hover img {
+  content: url("../assets/img/KalosLgnds.png");
+}
+#Pokedexlist #alola:hover img {
+  content: url("../assets/img/AlolaLgnds.png");
+}
+#Pokedexlist #galar:hover img {
+  content: url("../assets/img/GalarLgnds.png");
+}
+#Pokedexlist #paldea:hover img {
+  content: url("../assets/img/PaldeaLgnds.png");
+}
+#kanto {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.6) 50%,
+    rgba(122, 172, 241, 0.6) 50%
+  );
+}
+#johto {
+  background: linear-gradient(
+    90deg,
+    rgba(245, 193, 56, 0.6) 50%,
+    rgba(192, 192, 192, 0.6) 50%
+  );
+}
+#hoenn {
+  background: linear-gradient(
+    90deg,
+    rgba(227, 25, 44, 0.6) 50%,
+    rgba(30, 114, 255, 0.6) 50%
+  );
+}
+#sinnoh {
+  background: linear-gradient(
+    90deg,
+    rgba(202, 231, 244, 0.6) 50%,
+    rgba(247, 209, 209, 0.6) 50%
+  );
+}
+#unova {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 32, 33, 0.6) 50%,
+    rgba(248, 248, 248, 0.6) 50%
+  );
+}
+#kalos {
+  background: linear-gradient(
+    90deg,
+    rgba(84, 137, 184, 0.6) 50%,
+    rgba(180, 60, 60, 0.6) 50%
+  );
+}
+#alola {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 123, 0, 0.6) 50%,
+    rgba(45, 64, 130, 0.6) 50%
+  );
+}
+#galar {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 192, 255, 0.6) 50%,
+    rgba(255, 0, 63, 0.6) 50%
+  );
+}
+#paldea {
+  background: linear-gradient(
+    90deg,
+    rgba(221, 18, 25, 0.6) 50%,
+    rgba(127, 0, 255, 0.6) 50%
+  );
+}
+#Pokedexlist article:hover {
+  --a: 50%;
+}
+
+#mysteryzone {
+  overflow: hidden;
+  border-radius: 2%;
+  background-color: #333232;
+  box-shadow: 0 0 5px 5px #1f1e1e;
+}
+
+#mysteryzone p {
+  z-index: 100;
+}
+
+.foggy-background {
+  width: 750px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  max-width: none;
+
+  object-fit: fill;
+
+  animation-name: foggy;
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes foggy {
+  0% {
+    translate: 0px 0 0px;
+  }
+  50% {
+    translate: -100px 0 0px;
+  }
+  100% {
+    translate: 0px 0 0px;
+  }
+}

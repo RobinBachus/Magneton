@@ -1,4 +1,4 @@
-const urlAPI = "https://pokeapi.com/api/v2/pokemon/";
+const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
 const maxPokeId = 1026;
 
 async function getRandomPokemon() {

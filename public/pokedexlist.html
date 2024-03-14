@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href=".\css\style.css" />
+    <link rel="stylesheet" href="./css/mystery.css" />
     <link rel="stylesheet" href=".\css\fonts.css" />
     <script src=".\js\main.js" defer></script>
     <title>Thuis</title>
@@ -30,6 +31,9 @@
             <li><a href="index.html">My Buddy</a></li>
             <li><a href="comparator.html">Vergelijker</a></li>
             <li><a href="login.html">Login</a></li>
+            <li>
+              <a id="LightButton" href="javascript:void(0)">Toggle Darkmode</a>
+            </li>
           </aside>
           <li class="pointerpointer">
             <a onclick="openNav()">&#9776;</a>
@@ -39,66 +43,72 @@
     </header>
     <h1>Pokédexes</h1>
     <section id="Pokedexlist">
-      <article>
+      <!-- add box art instead of colors on hover per game -->
+      <article id="kanto">
         <a href="./pokelist.html"
-          ><img src="./assets/img/KantoTrio.png" alt="Kanto" />
+          ><img src="./assets/img/KantoTrio2.png" alt="Kanto" />
           <p>Generation 1<br />1-151</p>
         </a>
       </article>
-      <article>
+      <article id="johto">
         <a href="./pokelist.html"
-          ><img src="./assets/img/FORRETRESS.png" alt="Johto" />
+          ><img src="./assets/img/JohtoTrio2.png" alt="Johto" />
           <p>Generation 2<br />152-251</p>
         </a>
       </article>
-      <article>
+      <article id="hoenn">
         <a href="./pokelist.html"
-          ><img src="./assets/img/COMBUSKEN.png" alt="Hoenn" />
+          ><img src="./assets/img/HoennTrio2.png" alt="Hoenn" />
           <p>Generation 3<br />252-386</p>
         </a>
       </article>
-      <article>
+      <article id="sinnoh">
         <a href="./pokelist.html"
-          ><img src="./assets/img/LUXRAY.png" alt="Sinnoh" />
+          ><img src="./assets/img/SinnohTrio2.png" alt="Sinnoh" />
           <p>Generation 4<br />387-493</p>
         </a>
       </article>
-      <article>
+      <article id="unova">
         <a href="./pokelist.html"
-          ><img src="./assets/img/BLITZLE.png" alt="Unova" />
+          ><img src="./assets/img/UnovaTrio2.png" alt="Unova" />
           <p>Generation 5<br />494-649</p>
         </a>
       </article>
-      <article>
+      <article id="kalos">
         <a href="./pokelist.html"
-          ><img src="./assets/img/HONEDGE.png" alt="Kalos" />
+          ><img src="./assets/img/KalosTrio2.png" alt="Kalos" />
           <p>Generation 6<br />650-721</p>
         </a>
       </article>
-      <article>
+      <article id="alola">
         <a href="./pokelist.html"
-          ><img src="./assets/img/COMFEY.png" alt="Alola" />
+          ><img src="./assets/img/AlolaTrio2.png" alt="Alola" />
           <p>Generation 7<br />722-809</p>
         </a>
       </article>
-      <article>
+      <article id="galar">
         <a href="./pokelist.html"
-          ><img src="./assets/img/RILLABOOM.png" alt="Galar" />
+          ><img src="./assets/img/GalarTrio2.png" alt="Galar" />
           <p>Generation 8<br />810-905</p>
         </a>
       </article>
-      <article>
+      <article id="paldea">
         <a href="./pokelist.html"
-          ><img src="./assets/img/TINKATON.png" alt="Paldea" />
+          ><img src="./assets/img/PaldeaTrio2.png" alt="Paldea" />
           <p>Generation 9<br />906-1025</p>
         </a>
       </article>
-      <article id="Mysteryzone">
-        <a href="./pokelist.html"
-          ><img src="./assets/img/PLACEHOLDER.png" alt="Mystery" />
-          <p>???-???</p>
+      <article id="mysteryzone">
+        <a href="./pokelist.html">
+          <img
+            class="foggy-background"
+            src="./assets/img/fog-2642.png"
+            alt="mist"
+          /><img src="./assets/img/MysteryTrio.png" alt="Mystery" />
+          <p>Mystery Zone<br />???-???</p>
         </a>
       </article>
     </section>
   </body>
+  <footer><h4>A project by Team: Magneton</h4></footer>
 </html>

@@ -190,6 +190,7 @@ aside h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  justify-items: center;
 }
 #Pokedexlist article {
   display: flex;
@@ -198,7 +199,7 @@ aside h1 {
   align-items: center;
   text-decoration: none;
 }
-#Mysteryzone {
+#mysteryzone {
   left: 500px;
   position: relative;
   text-align: center;
