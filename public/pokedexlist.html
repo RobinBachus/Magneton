@@ -1,104 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href=".\css\style.css" />
-    <link rel="stylesheet" href=".\css\fonts.css" />
-    <script src=".\js\main.js" defer></script>
-    <title>Thuis</title>
-  </head>
-  <body>
-    <div class="main"></div>
-    <header>
-      <img id="MnLogo" src="./assets/img/LogoLightModeNewer.png" alt="Logo" />
-      <nav>
-        <img id="usericon" src="./assets/img/PLACEHOLDER.png" alt="" />
-        <ul>
-          <aside id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-              >&times;</a
-            >
-            <h1 id="shoppercart">Spelmodi:</h1>
-            <li><a href="landing.html">Landingspagina</a></li>
-            <li><a href="pokedexlist.html">Pokémon List</a></li>
-            <li><a href="mypokelist.html">Catch List</a></li>
-            <li><a href="battler.html">Battler</a></li>
-            <li><a href="quiz.html">Who's that pokémon?</a></li>
-            <li><a href="catcher.html">Catcher</a></li>
-            <li><a href="index.html">My Buddy</a></li>
-            <li><a href="comparator.html">Vergelijker</a></li>
-            <li><a href="login.html">Login</a></li>
-          </aside>
-          <li class="pointerpointer">
-            <a onclick="openNav()">&#9776;</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <h1>Pokédexes</h1>
-    <section id="Pokedexlist">
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/KantoTrio.png" alt="Kanto" />
-          <p>Generation 1<br />1-151</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/FORRETRESS.png" alt="Johto" />
-          <p>Generation 2<br />152-251</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/COMBUSKEN.png" alt="Hoenn" />
-          <p>Generation 3<br />252-386</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/LUXRAY.png" alt="Sinnoh" />
-          <p>Generation 4<br />387-493</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/BLITZLE.png" alt="Unova" />
-          <p>Generation 5<br />494-649</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/HONEDGE.png" alt="Kalos" />
-          <p>Generation 6<br />650-721</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/COMFEY.png" alt="Alola" />
-          <p>Generation 7<br />722-809</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/RILLABOOM.png" alt="Galar" />
-          <p>Generation 8<br />810-905</p>
-        </a>
-      </article>
-      <article>
-        <a href="./pokelist.html"
-          ><img src="./assets/img/TINKATON.png" alt="Paldea" />
-          <p>Generation 9<br />906-1025</p>
-        </a>
-      </article>
-      <article id="Mysteryzone">
-        <a href="./pokelist.html"
-          ><img src="./assets/img/PLACEHOLDER.png" alt="Mystery" />
-          <p>???-???</p>
-        </a>
-      </article>
-    </section>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href=".\css\style.css" />
+		<link rel="stylesheet" href=".\css\fonts.css" />
+		<script src=".\js\main.js" defer></script>
+		<title>Thuis</title>
+	</head>
+	<body>
+		<header>
+			<img
+				id="MnLogo"
+				src="./assets/img/LogoLightModeNewer.png"
+				alt="Logo"
+			/>
+			<nav>
+				<img id="usericon" src="./assets/img/PLACEHOLDER.png" alt="" />
+				<ul>
+					<aside id="mySidenav" class="sidenav">
+						<a
+							href="javascript:void(0)"
+							class="closebtn"
+							onclick="closeNav()"
+							>&times;</a
+						>
+						<h1 id="shoppercart">Spelmodi:</h1>
+						<li><a href="landing.html">Landingspagina</a></li>
+						<li><a href="pokedexlist.html">Pokémon List</a></li>
+						<li><a href="mypokelist.html">Catch List</a></li>
+						<li><a href="battler.html">Battler</a></li>
+						<li><a href="quiz.html">Who's that pokémon?</a></li>
+						<li><a href="catcher.html">Catcher</a></li>
+						<li><a href="index.html">My Buddy</a></li>
+						<li><a href="comparator.html">Vergelijker</a></li>
+						<li><a href="login.html">Login</a></li>
+					</aside>
+					<li class="pointerpointer">
+						<a onclick="openNav()">&#9776;</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<h1>Pokédexes</h1>
+		<section id="Pokedexlist">
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/KantoTrio.png" alt="Kanto" />
+					<p>Generation 1<br />1-151</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/FORRETRESS.png" alt="Johto" />
+					<p>Generation 2<br />152-251</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/COMBUSKEN.png" alt="Hoenn" />
+					<p>Generation 3<br />252-386</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/LUXRAY.png" alt="Sinnoh" />
+					<p>Generation 4<br />387-493</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/BLITZLE.png" alt="Unova" />
+					<p>Generation 5<br />494-649</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/HONEDGE.png" alt="Kalos" />
+					<p>Generation 6<br />650-721</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/COMFEY.png" alt="Alola" />
+					<p>Generation 7<br />722-809</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/RILLABOOM.png" alt="Galar" />
+					<p>Generation 8<br />810-905</p>
+				</a>
+			</article>
+			<article>
+				<a href="./pokelist.html"
+					><img src="./assets/img/TINKATON.png" alt="Paldea" />
+					<p>Generation 9<br />906-1025</p>
+				</a>
+			</article>
+			<article id="Mysteryzone">
+				<a href="./pokelist.html"
+					><img src="./assets/img/PLACEHOLDER.png" alt="Mystery" />
+					<p>???-???</p>
+				</a>
+			</article>
+		</section>
+	</body>
 </html>
