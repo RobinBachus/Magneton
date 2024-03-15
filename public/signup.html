@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Login</title>
+		<title>Sign up</title>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href=".\css\fonts.css" />
 		<link rel="stylesheet" href="css/style.css" />
@@ -56,10 +56,10 @@
 		</aside>
 		<main class="login-container">
 			<form
-				class="login-form action-login framed"
+				class="login-form action-signup framed"
 				action="javascript:void(0)"
 			>
-				<h2>Welkom terug!</h2>
+				<h2>Welkom bij Magneton!</h2>
 				<label
 					><i class="fa-solid fa-envelope"></i>
 					<input
@@ -68,7 +68,6 @@
 						id="login-email"
 						placeholder="someone@example.com"
 						aria-label="email"
-						value=""
 						required
 					/>
 				</label>
@@ -84,9 +83,20 @@
 						required
 					/>
 				</label>
+				<label>
+					<i class="fa-solid fa-arrows-rotate"></i>
+					<input
+						type="password"
+						name="login-password-verify"
+						id="login-password-verify"
+						placeholder="Bevestig wachtwoord"
+						aria-label="Bevestig wachtwoord"
+						required
+					/>
+				</label>
 				<section class="login-submit-container">
-					<input type="submit" value="Sign in" />
-					<a href="signup.html">Register</a>
+					<input type="submit" value="Sign up" />
+					<a href="login.html" id="login-link">Login</a>
 				</section>
 			</form>
 		</main>

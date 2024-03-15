@@ -1,253 +1,287 @@
 :root {
-  ::-webkit-scrollbar {
-    display: none;
-  }
+	--color-bg-light: #6668e0;
+	--color-fg-light: #484848;
+	--color-text: #ffffff;
 }
+
 body {
-  background-color: #6668e0;
-  color: rgb(255, 255, 255);
-  display: flex;
-  flex-direction: column;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+	display: grid;
+	grid-template-areas: "aside header" "aside main" "aside footer";
+	grid-template-columns: 0 100%;
+	grid-template-rows: 5rem 1fr 5rem;
+	height: 100vh;
+	background-color: var(--color-bg-light);
+	color: var(--color-text);
 }
 
 header {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgb(218, 31, 31);
+	grid-area: header;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgb(218, 31, 31);	
 }
 
-header ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-#usericon {
-  display: flex;
-  width: 50%;
-  margin-left: 0%;
-}
-header li {
-  margin: 0 10px;
-  border-radius: 25%;
+header img {
+	object-fit: contain;
+	max-width: fit-content;
+	height: 100%;
 }
 
-header a {
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  font-size: 1.2em;
+main {
+	grid-area: main;
+	height: 100%;
 }
-#MnLogo {
-  height: 30%;
-  width: 30%;
+
+footer {
+	grid-area: footer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.pointerpointer {
-  cursor: pointer;
-  position: relative;
-  right: 1370px;
-  top: 63px;
-  background-color: #747272;
-  border-radius: 5%;
-  padding: 5%;
-  font-size: x-large;
+
+aside {
+	grid-area: aside;
 }
-aside h1 {
-  margin: 0;
-  padding: 0 20px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-}
+
 .sidenav {
-  height: 175%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  background-color: #747272;
-  overflow-x: hidden;
-  padding-top: 60px;
-  transition: 0.5s;
+	position: sticky;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: #f8f3f8;
+	color: #000;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.5s;
+	height: 100vh;
+	padding: 0;
 }
-.sidenav form {
-  padding-left: 10px;
-  width: 140px;
+
+.sidenav.closed {
+	width: 0;
+	border-width: 21px 0 !important;
 }
+
+.sidenav.open {
+	width: 400px;
+}
+
+.sidenav nav {
+	display: flex;
+	flex-direction: column;
+}
+
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  display: block;
-  transition: 0.3s;
+	padding: 8px;
+	padding-left: 25px;
+	margin-left: 25px;
+	transition: 0.3s;
+	color: #000;
+	text-decoration: none;
+	font-size: 1.2em;
+	border-radius: 25%;
+	text-wrap: nowrap;
 }
 
-.sidenav li a:hover {
-  animation: leftAndRight 0.5s ease forwards alternate;
+.sidenav a:hover {
+	animation: leftAndRight 0.5s ease forwards alternate;
 }
-.sidenav li a:hover::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  width: 2px;
-  height: 2px;
-  font-size: 2px;
-  color: #181010;
-  box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010,
-    2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010,
-    3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010,
-    3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010,
-    2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
-    2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
+
+.sidenav a:hover::before {
+	content: "";
+	position: absolute;
+	left: -2px;
+	width: 2px;
+	height: 2px;
+	font-size: 2px;
+	color: #181010;
+	box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010,
+		2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010,
+		2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010,
+		1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010,
+		4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010,
+		2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010,
+		1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010,
+		1em 6em 0 #181010, 2em 6em 0 #181010;
 }
+
+.sidenav h1 {
+	margin: 0;
+	padding: 0 20px;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+}
+
+.menu-btn {
+	border-radius: 5%;
+	font-size: x-large;
+	height: fit-content;
+	width: fit-content;
+	padding: 0px 10px;
+	margin: 10px;
+}
+
+#open-nav {
+	background-color: var(--color-fg-light);
+	color: var(--color-text);
+}
+
+.menu-btn:active i {
+	transform: translate(0, 1px);
+}
+
 @keyframes leftAndRight {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-10px);
-  }
-  100% {
-    transform: translateX(-10px);
-  }
-}
-.sidenav {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  margin-right: 75px;
-}
-.closebtn .sidenav {
-  font-size: 35px;
+	0% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(-10px);
+	}
+
+	100% {
+		transform: translateX(-10px);
+	}
 }
 
 #productimages {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  transition: margin-right 0.5s;
-  padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	transition: margin-right 0.5s;
+	padding: 20px;
 }
 
 #productimages article {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
 }
 
 #productimages a {
-  width: 100%;
-  position: relative;
-  display: block;
-  text-align: center;
-  overflow: hidden;
+	width: 100%;
+	position: relative;
+	display: block;
+	text-align: center;
+	overflow: hidden;
 }
 
 #productimages img {
-  width: 100%;
-  height: 150px;
-  object-fit: contain;
-  padding-top: 7px;
-  box-sizing: border-box;
-  border-radius: 15px;
-  transition: transform 0.8s ease;
+	width: 100%;
+	height: 150px;
+	object-fit: contain;
+	padding-top: 7px;
+	box-sizing: border-box;
+	border-radius: 15px;
+	transition: transform 0.8s ease;
 }
 
 #productimages a p {
-  font-size: larger;
-  position: absolute;
-  bottom: -50px;
-  left: 80%;
-  transform: translateX(-50%);
-  opacity: 0;
-  color: white;
-  transition: opacity 0.3s ease, bottom 0.3s ease;
+	font-size: larger;
+	position: absolute;
+	bottom: -50px;
+	left: 80%;
+	transform: translateX(-50%);
+	opacity: 0;
+	color: white;
+	transition: opacity 0.3s ease, bottom 0.3s ease;
 }
 
 #productimages img:hover {
-  animation: upAndDown 0.5s ease infinite;
+
+	animation: upAndDown 0.5s ease infinite;
 }
 
 @keyframes upAndDown {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-7px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
 }
 
 #Pokedexlist {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-items: center;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
 }
+
 #Pokedexlist article {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	text-decoration: none;
 }
-#mysteryzone {
-  left: 500px;
-  position: relative;
-  text-align: center;
+
+#Mysteryzone {
+	left: 500px;
+	position: relative;
+	text-align: center;
 }
+
 .pokemon {
-  position: relative;
-  top: -173px;
+	position: relative;
+	top: -173px;
 }
+
 .pokeball {
-  opacity: 0.3;
-  height: 200px !important;
-  width: 200px !important;
-  z-index: -1;
-  animation: rotation 20s infinite linear;
+	opacity: 0.3;
+	height: 200px !important;
+	width: 200px !important;
+	z-index: -1;
+	animation: rotation 20s infinite linear;
 }
+
 .pokeballselect {
-  display: none;
-  opacity: 0.5;
-  height: 200px !important;
-  width: 200px !important;
-  z-index: -1;
-  animation: rotation 20s infinite linear;
+	display: none;
+	opacity: 0.5;
+	height: 200px !important;
+	width: 200px !important;
+	z-index: -1;
+	animation: rotation 20s infinite linear;
 }
 
 .pokeball:has(+ .pokemon:hover) {
-  content: url("../assets/img/POKEDEXSELECTBALL.png");
+	content: url("../assets/img/POKEDEXSELECTBALL.png");
 }
 
 @keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(359deg);
+	}
 }
+
 /*Blackening filter for who's that pokemon:  -webkit-filter: brightness(0);*/
 @media only screen and (max-width: 1020px) {
-  .pointerpointer {
-    right: 542px;
-    top: 20px;
-    font-size: larger;
-  }
+	#open-nav {
+		right: 542px;
+		top: 20px;
+		font-size: larger;
+	}
 }
+
 @media only screen and (max-width: 720px) {
-  .pointerpointer {
-    right: 472px;
-    top: 20px;
-    font-size: larger;
-  }
+	#open-nav {
+		right: 472px;
+		top: 20px;
+		font-size: larger;
+	}
 }
