@@ -195,6 +195,7 @@ aside {
 }
 
 #productimages img:hover {
+
 	animation: upAndDown 0.5s ease infinite;
 }
 
