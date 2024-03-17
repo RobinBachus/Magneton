@@ -1,0 +1,125 @@
+@property --a {
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 0%;
+}
+
+/* in case of a too busy select screen remove the legendaries and add var( --a) instead of the last number in the rgb values */
+#pokedex-list article:not(#mystery-zone) {
+	border-style: solid;
+	transition: --a 0.5s;
+	border-radius: 2%;
+	width: 250px;
+}
+
+#pokedex-list #kanto:hover img {
+	content: url("../assets/img/KantoLgnds.png");
+}
+
+#pokedex-list #johto:hover img {
+	content: url("../assets/img/JohtoLgnds.png");
+}
+
+#pokedex-list #hoenn:hover img {
+	content: url("../assets/img/HoennLgnds.png");
+}
+
+#pokedex-list #sinnoh:hover img {
+	content: url("../assets/img/SinnohLgnds.png");
+}
+
+#pokedex-list #unova:hover img {
+	content: url("../assets/img/UnovaLgnds.png");
+}
+
+#pokedex-list #kalos:hover img {
+	content: url("../assets/img/KalosLgnds.png");
+}
+
+#pokedex-list #alola:hover img {
+	content: url("../assets/img/AlolaLgnds.png");
+}
+
+#pokedex-list #galar:hover img {
+	content: url("../assets/img/GalarLgnds.png");
+}
+
+#pokedex-list #paldea:hover img {
+	content: url("../assets/img/PaldeaLgnds.png");
+}
+
+#kanto {
+	background: linear-gradient(
+		90deg,
+		rgba(255, 0, 0, 0.6) 50%,
+		rgba(122, 172, 241, 0.6) 50%
+	);
+}
+
+#johto {
+	background: linear-gradient(
+		90deg,
+		rgba(245, 193, 56, 0.6) 50%,
+		rgba(192, 192, 192, 0.6) 50%
+	);
+}
+
+#hoenn {
+	background: linear-gradient(
+		90deg,
+		rgba(227, 25, 44, 0.6) 50%,
+		rgba(30, 114, 255, 0.6) 50%
+	);
+}
+
+#sinnoh {
+	background: linear-gradient(
+		90deg,
+		rgba(202, 231, 244, 0.6) 50%,
+		rgba(247, 209, 209, 0.6) 50%
+	);
+}
+
+#unova {
+	background: linear-gradient(
+		90deg,
+		rgba(30, 32, 33, 0.6) 50%,
+		rgba(248, 248, 248, 0.6) 50%
+	);
+}
+
+#kalos {
+	background: linear-gradient(
+		90deg,
+		rgba(84, 137, 184, 0.6) 50%,
+		rgba(180, 60, 60, 0.6) 50%
+	);
+}
+
+#alola {
+	background: linear-gradient(
+		90deg,
+		rgba(255, 123, 0, 0.6) 50%,
+		rgba(45, 64, 130, 0.6) 50%
+	);
+}
+
+#galar {
+	background: linear-gradient(
+		90deg,
+		rgba(0, 192, 255, 0.6) 50%,
+		rgba(255, 0, 63, 0.6) 50%
+	);
+}
+
+#paldea {
+	background: linear-gradient(
+		90deg,
+		rgba(221, 18, 25, 0.6) 50%,
+		rgba(127, 0, 255, 0.6) 50%
+	);
+}
+
+#pokedex-list article:hover {
+	--a: 50%;
+}

@@ -5,17 +5,61 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Sign up</title>
 		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/temp_login.css" />
-		<script type="module" src="js/login.js"></script>
+		<link rel="stylesheet" href="css/frames.css" />
+
+		<script src="js/main.js" defer></script>
+
+		<!-- fa icons -->
 		<script
 			src="https://kit.fontawesome.com/91fd30522d.js"
 			crossorigin="anonymous"
 		></script>
+
+		<script type="module" src="js/login.js" defer></script>
+		<link rel="stylesheet" href="css/temp_login.css" />
 	</head>
 	<body>
+		<header>
+			<button id="open-nav" class="menu-btn" onclick="openNav()">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+			<img
+				id="MnLogo"
+				src="./assets/img/LogoLightModeNewer.png"
+				alt="Logo"
+			/>
+			<img
+				id="usericon"
+				src="./assets/img/placeholder.jpg"
+				alt="avatar"
+			/>
+		</header>
+		<aside>
+			<section id="side-nav" class="sidenav closed framed">
+				<button id="close-nav" class="menu-btn" onclick="closeNav()">
+					<i class="fa-solid fa-times"></i>
+				</button>
+				<h1 id="shoppercart">Spelmodi:</h1>
+				<nav>
+					<a href="landing.html">Landingspagina</a>
+					<a href="pokedexlist.html">Pokémon List</a>
+					<a href="mypokelist.html">Catch List</a>
+					<a href="battler.html">Battler</a>
+					<a href="quiz.html">Who's that pokémon?</a>
+					<a href="catcher.html">Catcher</a>
+					<a href="index.html">My Buddy</a>
+					<a href="comparator.html">Vergelijker</a>
+					<a href="login.html">Login</a>
+				</nav>
+			</section>
+		</aside>
 		<main class="login-container">
-			<form class="login-form action-signup" action="javascript:void(0)">
+			<form
+				class="login-form action-signup framed"
+				action="javascript:void(0)"
+			>
 				<h2>Welkom bij Magneton!</h2>
 				<label
 					><i class="fa-solid fa-envelope"></i>
@@ -57,5 +101,6 @@
 				</section>
 			</form>
 		</main>
+		<footer><p>&copy; Team Magneton</p></footer>
 	</body>
 </html>

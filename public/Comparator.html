@@ -1,152 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="./css/comparestyle.css" />
-    <link rel="stylesheet" href=".\css\style.css" />
-    <link rel="stylesheet" href=".\css\fonts.css" />
-    <script src=".\js\main.js" defer></script>
-    <script defer type="module" src="./js/pokemon.js"></script>
-    <title>Vergelijker</title>
-  </head>
-  <body>
-    <header>
-      <img id="MnLogo" src="./assets/img/LogoLightModeNewer.png" alt="Logo" />
-      <nav>
-        <img id="usericon" src="./assets/img/PLACEHOLDER.png" alt="" />
-        <ul>
-          <aside id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-              >&times;</a
-            >
-            <h1 id="shoppercart">Spelmodi:</h1>
-            <li><a href="landing.html">Landingspagina</a></li>
-            <li><a href="pokedexlist.html">Pokémon List</a></li>
-            <li><a href="mypokelist.html">Catch List</a></li>
-            <li><a href="battler.html">Battler</a></li>
-            <li><a href="quiz.html">Who's that pokémon?</a></li>
-            <li><a href="catcher.html">Catcher</a></li>
-            <li><a href="index.html">My Buddy</a></li>
-            <li><a href="comparator.html">Vergelijker</a></li>
-            <li><a href="login.html">Login</a></li>
-          </aside>
-          <li class="pointerpointer">
-            <a onclick="openNav()">&#9776;</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main id="comperator">
-      <section class="pokemonDisplayCard">
-        <h2 id="pokemonNamePlayer1"></h2>
-        <form action="">
-          <input type="search" name="findpoke1" id="findme" />
-          <select name="" id="">
-            <option value=""></option>
-          </select>
-        </form>
-        <section id="img-container">
-          <img id="pokeball1" src="./assets/img/BALL1IDLE.png" alt="testbal" />
-          <img id="activePlayer1" src="" alt="" />
-        </section>
-        <ul id="pokemon1">
-          <li class="healthcontainer">
-            <section>
-              <section id="healthPlayer1" class="health">&nbsp;</section>
-            </section>
-          </li>
-          <li class="attackcontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="attackPlayer1" class="attack">&nbsp;</section>
-            </section>
-          </li>
-          <li class="defencecontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="defencePlayer1" class="defence">&nbsp;</section>
-            </section>
-          </li>
-          <li class="specialattackcontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="specialAttackPlayer1" class="specialattack">
-                &nbsp;
-              </section>
-            </section>
-          </li>
-          <li class="specialdefencecontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="specialDefencePlayer1" class="specialdefence">
-                &nbsp;
-              </section>
-            </section>
-          </li>
-          <li class="speedcontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="speedPlayer1" class="speed">&nbsp;</section>
-            </section>
-          </li>
-        </ul>
-      </section>
-      <section class="pokemonDisplayCard">
-        <h2 id="pokemonNamePlayer2"></h2>
-        <form action="">
-          <input type="search" name="findpoke2" id="findme" />
-          <select name="" id="">
-            <option value=""></option>
-          </select>
-        </form>
-        <section id="img-container2">
-          <img id="pokeball2" src="./assets/img/BALL2IDLE.png" alt="testbal" />
-          <img id="activePlayer2" src="" alt="" />
-        </section>
-        <ul id="pokemon2">
-          <li class="healthcontainer">
-            <section>
-              <section id="healthPlayer2" class="health">&nbsp;</section>
-            </section>
-          </li>
-          <li class="attackcontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="attackPlayer2" class="attack">&nbsp;</section>
-            </section>
-          </li>
-          <li class="defencecontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="defencePlayer2" class="defence">&nbsp;</section>
-            </section>
-          </li>
-          <li class="specialattackcontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="specialAttackPlayer2" class="specialattack">
-                &nbsp;
-              </section>
-            </section>
-          </li>
-          <li class="specialdefencecontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="specialDefencePlayer2" class="specialdefence">
-                &nbsp;
-              </section>
-            </section>
-          </li>
-          <li class="speedcontainer">
-            <!--ipv empty space komen via js hier de stats in het zwart-->
-            <section>
-              <section id="speedPlayer2" class="speed">&nbsp;</section>
-            </section>
-          </li>
-        </ul>
-      </section>
-    </main>
-  </body>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vergelijker</title>
+
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fonts.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/frames.css" />
+
+		<link rel="stylesheet" href="./css/comparestyle.css" />
+
+		<script src="js/main.js" defer></script>
+		<script src="js/pokemon.js" defer></script>
+
+		<!-- fa icons -->
+		<script
+			src="https://kit.fontawesome.com/91fd30522d.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<header>
+			<button id="open-nav" class="menu-btn" onclick="openNav()">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+			<img
+				id="MnLogo"
+				src="./assets/img/LogoLightModeNewer.png"
+				alt="Logo"
+			/>
+			<img
+				id="usericon"
+				src="./assets/img/placeholder.jpg"
+				alt="avatar"
+			/>
+		</header>
+		<aside>
+			<section id="side-nav" class="sidenav closed framed">
+				<button id="close-nav" class="menu-btn" onclick="closeNav()">
+					<i class="fa-solid fa-times"></i>
+				</button>
+				<h1 id="shoppercart">Spelmodi:</h1>
+				<nav>
+					<a href="landing.html">Landingspagina</a>
+					<a href="pokedexlist.html">Pokémon List</a>
+					<a href="mypokelist.html">Catch List</a>
+					<a href="battler.html">Battler</a>
+					<a href="quiz.html">Who's that pokémon?</a>
+					<a href="catcher.html">Catcher</a>
+					<a href="index.html">My Buddy</a>
+					<a href="comparator.html">Vergelijker</a>
+					<a href="login.html">Login</a>
+				</nav>
+			</section>
+		</aside>
+		<main id="comparator">
+			<section class="pokemon-display-card">
+				<h2 id="pokemonNamePlayer1"></h2>
+				<form action="">
+					<input type="search" name="findpoke1" id="findme" />
+					<select name="" id="">
+						<option value=""></option>
+					</select>
+				</form>
+				<section class="compare-img-container">
+					<img
+						id="pokeball1"
+						src="./assets/img/BALL1IDLE.png"
+						class="comparing-pokeball-img"
+						alt="testbal"
+					/>
+					<img
+						id="activePlayer1"
+						class="compared-pokemon-img"
+						src=""
+						alt=""
+					/>
+				</section>
+				<ul id="pokemon1">
+					<li class="health-container">
+						<abbr title="Health">HP</abbr>
+						<section>
+							<section id="healthPlayer1" class="health">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="attack-container">
+						<abbr title="Attack">ATK</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="attackPlayer1" class="attack">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="defense-container">
+						<abbr title="Defense">DEF</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="defensePlayer1" class="defense">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-attack-container">
+						<abbr title="Special attack">SPA</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-attackPlayer1"
+								class="special-attack"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-defense-container">
+						<abbr title="Special defense">SPD</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-defensePlayer1"
+								class="special-defense"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="speed-container">
+						<abbr title="Speed">SPE</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="speedPlayer1" class="speed">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+				</ul>
+			</section>
+			<section class="pokemon-display-card">
+				<h2 id="pokemonNamePlayer2"></h2>
+				<form action="">
+					<input type="search" name="findpoke2" id="findme" />
+					<select name="" id="">
+						<option value=""></option>
+					</select>
+				</form>
+				<section class="compare-img-container">
+					<img
+						id="pokeball2"
+						src="./assets/img/BALL2IDLE.png"
+						class="comparing-pokeball-img"
+						alt="testbal"
+					/>
+					<img
+						id="activePlayer2"
+						class="compared-pokemon-img"
+						src=""
+						alt=""
+					/>
+				</section>
+				<ul id="pokemon2">
+					<li class="health-container">
+						<abbr title="Health">HP</abbr>
+						<section>
+							<section id="healthPlayer2" class="health">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="attack-container">
+						<abbr title="Attack">ATK</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="attackPlayer2" class="attack">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="defense-container">
+						<abbr title="Defense">DEF</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="defensePlayer2" class="defense">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-attack-container">
+						<abbr title="Special attack">SPA</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-attackPlayer2"
+								class="special-attack"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-defense-container">
+						<abbr title="Special defense">SPD</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-defensePlayer2"
+								class="special-defense"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="speed-container">
+						<abbr title="Speed">SPE</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="speedPlayer2" class="speed">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<footer><p>&copy; Team Magneton</p></footer>
+	</body>
 </html>
