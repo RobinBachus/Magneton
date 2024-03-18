@@ -1,46 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fonts.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/frames.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href=".\css\style.css" />
-  <link rel="stylesheet" href=".\css\fonts.css" />
-  <script src=".\js\main.js" defer></script>
-  <title>Thuis</title>
-  <style>
-  </style>
-</head>
+		<script src="js/main.js" defer></script>
 
-<body>
-  <div class="main"></div>
-  <header>
-    <img id="MnLogo" src="./assets/img/LogoLightModeNewer.png" alt="Logo" />
-    <nav>
-      <img id="usericon" src="./assets/img/PLACEHOLDER.png" alt="" />
-      <ul>
-        <aside id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <h1 id="shoppercart">Spelmodi:</h1>
-          <li><a href="landing.html">Landingspagina</a></li>
-          <li><a href="pokedexlist.html">Pokémon List</a></li>
-          <li><a href="mypokelist.html">Catch List</a></li>
-          <li><a href="battler.html">Battler</a></li>
-          <li><a href="quiz.html">Who's that pokémon?</a></li>
-          <li><a href="catcher.html">Catcher</a></li>
-          <li><a href="index.html">My Buddy</a></li>
-          <li><a href="comparator.html">Vergelijker</a></li>
-          <li><a href="login.html">Login</a></li>
-        </aside>
-        <li class="pointerpointer">
-          <a onclick="openNav()">&#9776;</a>
-        </li>
-      </ul>
-      </div>
-      </ul>
-    </nav>
-  </header>
-</body>
-
+		<!-- fa icons -->
+		<script
+			src="https://kit.fontawesome.com/91fd30522d.js"
+			crossorigin="anonymous"
+		></script>
+		<title>Thuis</title>
+	</head>
+	<body>
+		<header>
+			<button id="open-nav" class="menu-btn" onclick="openNav()">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+			<img
+				id="MnLogo"
+				src="./assets/img/LogoLightModeNewer.png"
+				alt="Logo"
+			/>
+			<img
+				id="usericon"
+				src="./assets/img/placeholder.jpg"
+				alt="avatar"
+			/>
+		</header>
+		<aside>
+			<section id="side-nav" class="sidenav closed framed">
+				<button id="close-nav" class="menu-btn" onclick="closeNav()">
+					<i class="fa-solid fa-times"></i>
+				</button>
+				<h1 id="shoppercart">Spelmodi:</h1>
+				<nav>
+					<a href="landing.html">Landingspagina</a>
+					<a href="pokedexlist.html">Pokémon List</a>
+					<a href="mypokelist.html">Catch List</a>
+					<a href="battler.html">Battler</a>
+					<a href="quiz.html">Who's that pokémon?</a>
+					<a href="catcher.html">Catcher</a>
+					<a href="index.html">My Buddy</a>
+					<a href="comparator.html">Vergelijker</a>
+					<a href="login.html">Login</a>
+				</nav>
+			</section>
+		</aside>
+		<main></main>
+		<footer><p>&copy; Team Magneton</p></footer>
+	</body>
 </html>
