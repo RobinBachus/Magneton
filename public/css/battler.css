@@ -1,0 +1,16 @@
+.buttons button {
+    width: 150px;
+    height: 50px;
+}
+
+.buttons .fight {
+    background-color: rgb(161, 81, 81);
+}
+
+.buttons .catch {
+    background-color: rgb(208, 208, 56);
+}
+
+.buttons .run {
+    background-color: rgb(115, 217, 115);
+}
