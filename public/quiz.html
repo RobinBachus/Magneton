@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/frames.css" />
 
 		<script src="js/main.js" defer></script>
+		<script src="js/quiz.js" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -53,7 +54,39 @@
 				</nav>
 			</section>
 		</aside>
-		<main></main>
+		<main id="quiz">
+			<section id="quiz-container" class="framed">
+				<h1>Who's that Pokémon?</h1>
+				<p>
+					Weet jij welke Pokémon dit is? Klik op de knop om te raden!
+				</p>
+				<section id="guess-img-container">
+					<img
+						id="guess-img"
+						class="not-guessed"
+						src="./assets/img/CHARIZARD.png"
+						alt="Pokémon"
+					/>
+				</section>
+				<form id="guess-form" action="javascript:void(0)">
+					<input
+						type="text"
+						id="guess"
+						value="cha"
+						name="guess"
+						placeholder="Vul hier de naam in"
+					/>
+					<!-- TODO: Dropdown -->
+					<button id="guess-btn" type="submit">Raad!</button>
+				</form>
+				<section id="guess-options-container">
+					<button class="guess-option">Chandelure</button>
+					<button class="guess-option">Charizard</button>
+					<button class="guess-option">Chatot</button>
+					<button class="guess-option" disabled>&nbsp;</button>
+				</section>
+			</section>
+		</main>
 		<footer><p>&copy; Team Magneton</p></footer>
 	</body>
 </html>

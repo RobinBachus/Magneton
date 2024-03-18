@@ -6,7 +6,10 @@
 
 body {
 	display: grid;
-	grid-template-areas: "aside header" "aside main" "aside footer";
+	grid-template-areas:
+		"aside header"
+		"aside main"
+		"aside footer";
 	grid-template-columns: 0 100%;
 	grid-template-rows: 5rem 1fr 5rem;
 	height: 100vh;
@@ -27,7 +30,6 @@ header img {
 	object-fit: contain;
 	max-width: fit-content;
 	height: 100%;
-	border-radius: 50%;
 }
 
 main {
@@ -134,13 +136,17 @@ a {
 	margin: 10px;
 }
 
+.menu-btn:active i {
+	transform: translate(0, 1px);
+}
+
+#usericon {
+	border-radius: 50%;
+}
+
 #open-nav {
 	background-color: var(--color-fg-light);
 	color: var(--color-text);
-}
-
-.menu-btn:active i {
-	transform: translate(0, 1px);
 }
 
 #pokemon-images {
@@ -237,6 +243,71 @@ a {
 
 .pokeball:has(+ .pokemon:hover) {
 	content: url("../assets/img/POKEDEXSELECTBALL.png");
+}
+
+/* quiz styles */
+#quiz {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#quiz-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 1rem;
+	align-items: center;
+	min-width: calc(400px - 2rem);
+}
+
+#guess-img-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
+}
+
+#guess-img {
+	object-fit: contain;
+	width: 300px;
+	border-radius: 10px;
+}
+
+.not-guessed {
+	filter: brightness(0);
+}
+
+#guess-options-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	min-width: fit-content;
+	width: 400px;
+	margin: 1rem 0;
+	border: 1px solid #000;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+#guess-options-container button {
+	text-align: start;
+	padding: 0.5rem;
+	border: 0;
+	border-bottom: 1px solid #b6b6b6;
+}
+
+#guess-options-container button:nth-last-child(1) {
+	border-bottom: none;
+}
+
+#guess-options-container button:hover {
+	background-color: #cbcbcb;
+}
+
+#guess-options-container button:active {
+	transform: scale(0.99);
 }
 
 @keyframes rotation {
