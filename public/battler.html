@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/frames.css" />
-
+		<link rel="stylesheet" href="css\battler.css" />
 		<script src="js/main.js" defer></script>
 
 		<!-- fa icons -->
@@ -53,29 +53,44 @@
 				</nav>
 			</section>
 		</aside>
-    <main>
-  <button>Example button</button>
+		<main>
+			<section class="bg-image">
+				<h2>A wild Pokémon has appeared! Get ready to battle!</h2>
+				<section class="pokemon-container">
+					<article class="pokemon">
+						<img
+							src="./assets/img/Catchspawn.png"
+							alt="Catchspawn"
+						/>
+						<img
+							src="./assets/img/SQUIRTLE.png"
+							alt="Squirtle"
+							class="on-spawn"
+						/>
+					</article>
+					<article class="pokemon">
+						<img
+							src="./assets/img/Catchspawn.png"
+							alt="Catchspawn"
+						/>
+						<img
+							src="./assets/img/MAGNETON3.png"
+							alt="Magneton"
+							class="on-spawn"
+						/>
+					</article>
+				</section>
+				<section class="buttons framed">
+					<h3>What are you gonna do?</h3>
+					<section class="battle-options">
+						<button class="fight">Fight</button>
+						<button class="catch">Catch</button>
+						<button class="run">Run</button>
+					</section>
+				</section>
+			</section>
+		</main>
 
-  <section>
-    <h3>Start menu</h3>
-    <ul class="framed buttons">
-      <li><button>Pokédex</button></li>
-      <li><button>Pokémon</button></li>
-      <li><button>Item</button></li>
-      <li><button>Player</button></li>
-      <li><button>Save</button></li>
-      <li><button>Option</button></li>
-      <li><button>Exit</button></li>
-    </ul>
-  </section>
-  <section>
-    <h3>Battle</h3>
-    <ul class="framed buttons compact">
-      <li><button>Fight</button></li>
-      <li><button>Catch</button></li>
-      <li><button>Run</button></li>
-    </ul>
-    <section>
-      </main>
-</body>
+		<footer><p>&copy; Team Magneton</p></footer>
+	</body>
 </html>

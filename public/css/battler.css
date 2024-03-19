@@ -1,6 +1,19 @@
+body {
+    background-image: url("../assets/img/field_bg.png"); /* hier problemen mee, voorlopig opgelost door background in html head te zetten */
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    color: black;
+}
+
 .buttons button {
-    width: 150px;
-    height: 50px;
+    height: 60px;
+    width: 100%;
+    margin: 1rem;
+}
+
+.buttons {
+    background-color: white;
 }
 
 .buttons .fight {
@@ -13,4 +26,43 @@
 
 .buttons .run {
     background-color: rgb(115, 217, 115);
+}
+
+.framed.buttons.compact {
+    display: flex;
+    justify-content: space-around; 
+}
+
+.framed.buttons.compact li {
+    list-style: none; 
+}
+
+.pokemon-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon {
+    position: relative;
+    margin-bottom: 40px; 
+}
+
+.on-spawn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pokemon img,
+.bg-image img {
+    width: 200px; 
+    height: auto; 
+}
+
+.battle-options {
+    display: flex;
+    list-style: none;
 }
