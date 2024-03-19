@@ -398,7 +398,6 @@ input:-webkit-autofill:active {
 .bg-image {
 	display: grid;
 	/* de 18rem kan aangepast worden om de image te verplaatsen */
-	grid-template-areas: ". textbox ." ". spawnArea ." ". pokeBall ." ". menu menu";
 	/* grid-template-rows: 16rem 1fr; */
 	align-items: center;
 	background-image: url("../assets/img/field_bg.png");
@@ -407,14 +406,23 @@ input:-webkit-autofill:active {
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-.bg-image img {
+
+#catcher .bg-image {
+	grid-template-areas:
+		". textbox ."
+		". spawnArea ."
+		". pokeBall ."
+		". menu menu";
+}
+
+#catcher .bg-image img {
 	width: 350px;
 	grid-area: spawnArea;
 	/* grid-row: 2; */
 }
 #pokeballHolder {
-	grid-area: pokeBall;
-	width: 175px;
+	grid-area: pokeBall !important;
+	width: 175px !important;
 }
 .catch-menu,
 button {
