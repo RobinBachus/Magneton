@@ -20,5 +20,10 @@ function submit(e) {
 	const guess = e.elements.guess.value;
 	console.log("Guessed: ", guess);
 
-	if (guess === "Charizard") guessImage.classList.remove("not-guessed");
+	if (guess === "Charizard") guessImage.classList.add("guessed");
 }
+
+// stops the user from seeing the image by dragging it
+guessImage.ondragstart = function () {
+	return false;
+};
