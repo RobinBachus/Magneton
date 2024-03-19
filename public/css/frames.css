@@ -2,42 +2,10 @@
 	border-image: url("../assets/img/frame-hd.png") 42 round;
 	border-width: 21px;
 	border-style: solid;
+	border-radius: 10px;
 }
+
 .framed.no-hd {
 	border-image: url("../assets/img/frame.png") 7 round;
 	border-width: 7px;
-}
-.framed.neutral {
-	background: #f8f3f8;
-	color: #181010;
-}
-.framed.neutral.exclude-border {
-	background-clip: padding-box;
-}
-.framed.primary {
-	background: #48a058;
-	color: #f8f3f8;
-	text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010,
-		1px 1px 0 #181010;
-}
-.framed.primary.exclude-border {
-	background-clip: padding-box;
-}
-.framed.secondary {
-	background: #f0b088;
-	color: #f8f3f8;
-	text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010,
-		1px 1px 0 #181010;
-}
-.framed.secondary.exclude-border {
-	background-clip: padding-box;
-}
-.framed.danger {
-	background: #b3181c;
-	color: #f8f3f8;
-	text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010,
-		1px 1px 0 #181010;
-}
-.framed.danger.exclude-border {
-	background-clip: padding-box;
 }

@@ -34,6 +34,7 @@ header {
 	background-color: var(--color-header);
 }
 
+header a,
 header img {
 	object-fit: contain;
 	max-width: fit-content;
@@ -68,10 +69,32 @@ a {
 	position: absolute;
 	top: 5rem;
 	right: 0;
-	width: 200px;
+	width: 75px;
+	height: 75px;
 	background: var(--color-light);
 	color: #000;
 	border-radius: 10px;
+	border-width: 10px;
+}
+
+#buddy > h1,
+#buddy > p {
+	font-size: 0;
+}
+
+#buddy.expanded {
+	width: 200px;
+	height: auto;
+	border-width: 21px;
+}
+
+#buddy.expanded > h1,
+#buddy.expanded > p {
+	font-size: 1.2em;
+}
+
+#buddy.expanded > img {
+	content: url("../assets/img/MAGNETON.png");
 }
 
 .sidenav {
@@ -88,6 +111,7 @@ a {
 	transition: 0.5s;
 	height: 100vh;
 	padding: 0;
+	border-radius: 0 !important;
 }
 
 .sidenav.closed {
@@ -263,6 +287,7 @@ a {
 .pokeball:has(+ .pokemon:hover) {
 	content: url("../assets/img/POKEDEXSELECTBALL.png");
 }
+
 #catcher {
 	padding: 0;
 	color: #181010;
@@ -295,10 +320,12 @@ a {
 	object-fit: contain;
 	width: 300px;
 	border-radius: 10px;
+	transition: filter 0.5s;
+	filter: brightness(0%);
 }
 
-.not-guessed {
-	filter: brightness(0);
+.guessed {
+	filter: brightness(100%) !important;
 }
 
 #guess-options-container {
@@ -396,9 +423,7 @@ input:-webkit-autofill:active {
 
 .bg-image {
 	display: grid;
-	/* de 18rem kan aangepast worden om de image te verplaatsen */
 	grid-template-areas: ". textbox ." ". spawnArea ." ". pokeBall ." ". menu menu";
-	/* grid-template-rows: 16rem 1fr; */
 	align-items: center;
 	background-image: url("../assets/img/field_bg.png");
 	width: 100%;
@@ -406,26 +431,31 @@ input:-webkit-autofill:active {
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
 .bg-image img {
 	width: 350px;
 	grid-area: spawnArea;
 	/* grid-row: 2; */
 }
+
 #pokeballHolder {
 	grid-area: pokeBall;
 	width: 175px;
 }
+
 .catch-menu,
 button {
 	background-color: #f8f3f8;
 	color: #000;
 	grid-area: menu;
 }
+
 #landcontainer {
 	display: flex;
 	height: 100vh;
 	justify-content: center;
 }
+
 .landing {
 	display: grid;
 	grid-template-areas:
@@ -440,6 +470,7 @@ button {
 	background-size: cover;
 	justify-items: center;
 }
+
 .landing a {
 	display: flex;
 	height: 16vh;
@@ -448,24 +479,31 @@ button {
 	justify-content: center;
 	box-shadow: 0 0 5px 5px #d5d9d7;
 }
+
 .landing img {
 	height: 100%;
 }
+
 .zespunt {
 	grid-area: fifa;
 }
+
 .zesmidden1 {
 	grid-area: fortnite;
 }
+
 .zesmidden2 {
 	grid-area: lego;
 }
+
 .zesmidden3 {
 	grid-area: magic;
 }
+
 .zesmidden4 {
 	grid-area: lotr;
 }
+
 .zespunt2 {
 	grid-area: pokemon;
 	background-color: #1f1e1e;
@@ -475,11 +513,13 @@ button {
 	0% {
 		background-color: transparent;
 	}
+
 	25%,
 	75% {
 		background-color: rgba(0, 208, 255, 0.35);
 		padding: 0 10px;
 	}
+
 	100% {
 		background-color: transparent;
 	}
@@ -536,6 +576,7 @@ button {
 		transform: translateX(-10px);
 	}
 }
+
 /*Blackening filter for who's that pokemon:  -webkit-filter: brightness(0);*/
 /* @media only screen and (max-width: 1020px) {
 	#open-nav {
@@ -543,7 +584,9 @@ button {
 		top: 20px;
 		font-size: larger;
 	}
+
 }
+
 
 @media only screen and (max-width: 720px) {
 	#open-nav {
@@ -551,4 +594,6 @@ button {
 		top: 20px;
 		font-size: larger;
 	}
-} */
+
+}
+ */
