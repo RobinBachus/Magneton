@@ -245,12 +245,11 @@ a {
 
 .pokeball {
 	opacity: 0.3;
-	height: 200px !important;
-	width: 200px !important;
+	height: 210px !important;
+	width: 210px !important;
 	z-index: -1;
 	animation: rotation 20s infinite linear;
 }
-
 .pokeballselect {
 	display: none;
 	opacity: 0.5;
@@ -261,8 +260,9 @@ a {
 }
 
 .pokeball:has(+ .pokemon:hover) {
-	content: url("../assets/img/POKEDEXSELECTBALL.png");
+	opacity: 0.7;
 }
+
 #catcher {
 	padding: 0;
 	color: #181010;
@@ -337,6 +337,7 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color: #070707;
 }
 
 .login-form {
@@ -446,7 +447,10 @@ button {
 	border-style: solid;
 	width: 120px;
 	justify-content: center;
-	box-shadow: 0 0 5px 5px #d5d9d7;
+	box-shadow: 0 0 5px 5px #babebc;
+}
+.landing img:hover {
+	box-shadow: 0 0 5px 7px #ffffff;
 }
 .landing img {
 	height: 100%;
