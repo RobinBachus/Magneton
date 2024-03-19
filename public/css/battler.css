@@ -1,68 +1,80 @@
-body {
-    background-image: url("../assets/img/field_bg.png"); /* hier problemen mee, voorlopig opgelost door background in html head te zetten */
-    background-size: cover; 
-    background-position: center; 
-    background-attachment: fixed; 
-    color: black;
+#battler {
+	padding: 0;
 }
 
 .buttons button {
-    height: 60px;
-    width: 100%;
-    margin: 1rem;
+	height: 60px;
+	width: 100%;
+	margin: 1rem;
 }
 
 .buttons {
-    background-color: white;
+	background-color: white;
+}
+
+.bg-image h2 {
+	color: black;
+}
+
+.buttons h3 {
+	color: black;
 }
 
 .buttons .fight {
-    background-color: rgb(161, 81, 81);
+	background-color: rgb(161, 81, 81);
 }
 
 .buttons .catch {
-    background-color: rgb(208, 208, 56);
+	background-color: rgb(208, 208, 56);
 }
 
 .buttons .run {
-    background-color: rgb(115, 217, 115);
+	background-color: rgb(115, 217, 115);
 }
 
 .framed.buttons.compact {
-    display: flex;
-    justify-content: space-around; 
+	display: flex;
+	justify-content: space-around;
 }
 
 .framed.buttons.compact li {
-    list-style: none; 
+	list-style: none;
 }
 
 .pokemon-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .pokemon {
-    position: relative;
-    margin-bottom: 40px; 
+	position: relative;
+	margin-bottom: 40px;
 }
 
 .on-spawn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .pokemon img,
 .bg-image img {
-    width: 200px; 
-    height: auto; 
+	width: 200px;
+	height: auto;
 }
 
 .battle-options {
-    display: flex;
-    list-style: none;
+	display: flex;
+	list-style: none;
+}
+
+#battler .bg-image {
+	height: auto;
+}
+
+#battler .pokemon {
+	margin: 0;
 }
