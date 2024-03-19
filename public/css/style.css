@@ -192,6 +192,23 @@ a {
 	color: var(--color-light);
 }
 
+#home {
+	display: flex;
+	flex-wrap: wrap;
+	width: fit-content;
+	height: fit-content;
+	justify-content: center;
+}
+
+#home img {
+	object-fit: contain;
+}
+
+#home p {
+	max-width: 800px;
+	margin-right: 2rem;
+}
+
 #pokemon-images {
 	display: flex;
 	flex-wrap: wrap;
@@ -423,17 +440,13 @@ input:-webkit-autofill:active {
 
 .bg-image {
 	display: grid;
-	grid-template-areas: 
-    ". textbox ." 
-    ". spawnArea ." 
-    ". pokeBall ." 
-    ". menu menu";
 	align-items: center;
 	background-image: url("../assets/img/field_bg.png");
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
+	padding: 2rem;
 }
 
 #catcher .bg-image {
