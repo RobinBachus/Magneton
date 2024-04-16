@@ -462,11 +462,6 @@ input:-webkit-autofill:active {
 /* Pokémon vangen */
 .bg-image {
 	display: grid;
-	grid-template-areas:
-		". textbox ."
-		". spawnArea ."
-		". pokeBall ."
-		". menu menu";
 	align-items: center;
 	background-image: url("../assets/img/field_bg.png");
 	width: 100%;
