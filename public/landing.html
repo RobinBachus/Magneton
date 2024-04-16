@@ -18,31 +18,17 @@
 			crossorigin="anonymous"
 		></script>
 	</head>
-	<body>
+	<body id="gameboy">
 		<header>
 			<h2>Welkom, maak hieronder keuze uit volgende projecten:</h2>
 		</header>
-		<aside>
-			<section id="side-nav" class="sidenav closed framed">
-				<button id="close-nav" class="menu-btn" onclick="closeNav()">
-					<i class="fa-solid fa-times"></i>
-				</button>
-				<h1 id="sidenav-title">Spelmodi:</h1>
-				<nav>
-					<a href="landing.html">Landingspagina</a>
-					<a href="index.html">Home</a>
-					<a href="pokedexlist.html">Pokémon List</a>
-					<a href="pokelist.html">Catch List</a>
-					<a target="_blank" href="battler.html">Battler</a>
-					<a href="quiz.html">Who's that pokémon?</a>
-					<a target="_blank" href="catcher.html">Catcher</a>
-					<a href="comparator.html">Vergelijker</a>
-					<a href="login.html">Login</a>
-					<a target="_blank" href="./assets/welcomescreen.mp4"></a>
-				</nav>
-			</section>
-		</aside>
 		<main id="landcontainer">
+			<aside>
+				<section id="score">
+					<h1>Tetris</h1>
+					<section id="nextup">d</section>
+				</section>
+			</aside>
 			<section class="landing">
 				<a href="404.html" class="zespunt"
 					><img src="./assets/img/FifaLogo.png" alt="Fifa"
@@ -54,12 +40,16 @@
 					><img src="./assets/img/LegoLogo.png" alt="Lego"
 				/></a>
 				<a href="404.html" class="zesmidden3"
-					><img src="./assets/img/MtgLogo.png" alt="Magic the Gathering"
+					><img
+						src="./assets/img/MtgLogo.png"
+						alt="Magic the Gathering"
 				/></a>
 				<a href="404.html" class="zesmidden4"
-					><img src="./assets/img/LotrLogo.png" alt="Lord of The Rings"
+					><img
+						src="./assets/img/LotrLogo.png"
+						alt="Lord of The Rings"
 				/></a>
-				<a href="signup.html" class="zespunt2"
+				<a href="login.html" class="zespunt2"
 					><img src="./assets/img/PokemonLogo.png	" alt="Pokemon"
 				/></a>
 			</section>

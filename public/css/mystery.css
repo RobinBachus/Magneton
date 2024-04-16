@@ -13,39 +13,39 @@
 }
 
 #pokedex-list #kanto:hover img {
-	content: url("../assets/img/KantoLgnds.png");
+	content: url("../assets/img/KantoQuintet.png");
 }
 
 #pokedex-list #johto:hover img {
-	content: url("../assets/img/JohtoLgnds.png");
+	content: url("../assets/img/JohtoQuintet.png");
 }
 
 #pokedex-list #hoenn:hover img {
-	content: url("../assets/img/HoennLgnds.png");
+	content: url("../assets/img/HoennQuintet.png");
 }
 
 #pokedex-list #sinnoh:hover img {
-	content: url("../assets/img/SinnohLgnds.png");
+	content: url("../assets/img/SinnohQuintet.png");
 }
 
 #pokedex-list #unova:hover img {
-	content: url("../assets/img/UnovaLgnds.png");
+	content: url("../assets/img/UnovaQuintet.png");
 }
 
 #pokedex-list #kalos:hover img {
-	content: url("../assets/img/KalosLgnds.png");
+	content: url("../assets/img/KalosQuintet.png");
 }
 
 #pokedex-list #alola:hover img {
-	content: url("../assets/img/AlolaLgnds.png");
+	content: url("../assets/img/AlolaQuintet.png");
 }
 
 #pokedex-list #galar:hover img {
-	content: url("../assets/img/GalarLgnds.png");
+	content: url("../assets/img/GalarQuintet.png");
 }
 
 #pokedex-list #paldea:hover img {
-	content: url("../assets/img/PaldeaLgnds.png");
+	content: url("../assets/img/PaldeaQuintet.png");
 }
 
 #kanto {
