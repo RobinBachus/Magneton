@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Error</title>
+		<title>Mijn Pokemon</title>
 
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/fonts.css" />
@@ -11,7 +11,6 @@
 		<link rel="stylesheet" href="css/frames.css" />
 
 		<script src="js/main.js" defer></script>
-		<script src="js/404.js" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -20,17 +19,8 @@
 		></script>
 	</head>
 	<body>
-		<header></header>
-		<aside></aside>
-		<main id="404">
-			<section id="404-message" class="framed">
-				<h1>Error 404!</h1>
-				<p>Deze pagina bestaat niet.</p>
-				<a id="back" href="#">
-					Ga <b>terug</b> naar de vorige pagina
-				</a>
-			</section>
-		</main>
-		<footer><p>&copy; Team Magneton</p></footer>
+		<%- include("/partials/header-aside") %>
+		<main></main>
+		<%- include("/partials/footer") %>
 	</body>
 </html>
