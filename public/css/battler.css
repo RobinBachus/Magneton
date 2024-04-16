@@ -72,7 +72,7 @@
 }
 
 #battler .bg-image {
-	height: auto;
+	height: 100%;
 }
 
 #battler .pokemon {
