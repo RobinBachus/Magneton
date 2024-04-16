@@ -64,6 +64,11 @@ a {
 	color: var(--color-light);
 }
 
+button,
+input[type="submit"] {
+	cursor: pointer;
+}
+
 #buddy {
 	grid-area: buddy;
 	position: absolute;
@@ -403,7 +408,7 @@ a {
 	display: flex;
 	justify-content: space-evenly;
 	margin-top: 0.5rem;
-	width: 100%;
+	width: 80%;
 }
 
 .login-form h2,
@@ -415,10 +420,25 @@ a {
 .login-form input[type="email"],
 .login-form input[type="password"] {
 	margin-top: 0.5rem;
-	color: var(--color-bg-dark);
+	color: var(--color-text-dark);
 	background-color: transparent;
 	border: 0;
 	border-bottom: 2px inset var(--color-text-dark);
+}
+
+.login-form input[type="submit"],
+.login-form a {
+	padding: 0.5rem;
+	border-radius: 10px;
+}
+
+.login-form a:hover {
+	text-decoration: underline;
+}
+
+.login-form a {
+	max-width: 50%;
+	color: var(--color-text-dark);
 }
 
 .highlight {
@@ -449,6 +469,10 @@ input:-webkit-autofill:active {
 	padding: 2rem;
 }
 
+#back {
+	text-decoration: underline;
+}
+
 #catcher .bg-image {
 	grid-template-areas:
 		". textbox ."
@@ -477,7 +501,6 @@ button {
 
 #landcontainer {
 	display: flex;
-	height: 100vh;
 	justify-content: center;
 }
 
@@ -489,7 +512,7 @@ button {
 		" magic . lotr"
 		" . pokemon .";
 	align-items: center;
-	height: 80vh;
+	height: 100%;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -500,7 +523,7 @@ button {
 	display: flex;
 	height: 16vh;
 	border-style: solid;
-	width: 120px;
+	width: 140px;
 	justify-content: center;
 	box-shadow: 0 0 5px 5px #babebc;
 }
@@ -605,6 +628,12 @@ button {
 	}
 }
 
+@media only screen and (max-width: 800px) {
+	#pokedex-list {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
 /*Blackening filter for who's that pokemon:  -webkit-filter: brightness(0);*/
 /* @media only screen and (max-width: 1020px) {
 	#open-nav {
@@ -616,12 +645,5 @@ button {
 }
 
 
-@media only screen and (max-width: 720px) {
-	#open-nav {
-		right: 472px;
-		top: 20px;
-		font-size: larger;
-	}
 
-}
  */
