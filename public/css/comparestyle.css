@@ -22,8 +22,8 @@
 }
 
 .pokemon-display-card {
-	border: 2px solid rgb(65, 78, 183);
-	background-color: rgb(155, 165, 236);
+	color: black;
+	background-color: #f8f3f8;
 	width: fit-content;
 	padding: 1rem;
 }
