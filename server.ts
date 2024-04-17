@@ -1,16 +1,21 @@
 import express from "express";
 import ejs, { render } from "ejs";
+import { Routes } from "./routes";
 
 const app = express();
 
-app.set("view engine", "ejs");
+app.engine("ejs", ejs.renderFile);
 app.set("port", process.env.PORT || 3000);
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-	res.render("index");
-});
+new Routes(app);
+
+// app.get("/", (req, res) => {
+// 	res.render("index");
+// });
 
 app.listen(app.get("port"), () => {
-	console.log(`Server running on port ${app.get("port")}`);
+	console.log(`Server running on http://localhost:${app.get("port")}`);
 });
+
+export {};

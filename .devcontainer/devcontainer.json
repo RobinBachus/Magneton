@@ -17,10 +17,11 @@
 				"pranaygp.vscode-css-peek",
 				"DigitalBrainstem.javascript-ejs-support",
 				"ecmel.vscode-html-css",
-				"formulahendry.auto-rename-tag"
+				"formulahendry.auto-rename-tag",
+				"ms-azuretools.vscode-docker"
 			]
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -29,7 +30,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	"postCreateCommand": "npm i && npm i -g nodemon"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
