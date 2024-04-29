@@ -3,21 +3,22 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Login</title>
-
+		<title>Sign up</title>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/frames.css" />
 
 		<script src="js/main.js" defer></script>
-		<script type="module" src="js/login.js" defer></script>
 
 		<!-- fa icons -->
 		<script
 			src="https://kit.fontawesome.com/91fd30522d.js"
 			crossorigin="anonymous"
 		></script>
+
+		<script type="module" src="js/login.js" defer></script>
+		<link rel="stylesheet" href="css/temp_login.css" />
 	</head>
 	<body>
 		<header>
@@ -60,9 +61,11 @@
 			</section>
 		</aside>
 		<main class="login-container">
-			<!-- TODO: make the action the js function again -->
-			<form class="login-form action-login framed" action="index.html">
-				<h2>Welkom terug!</h2>
+			<form
+				class="login-form action-signup framed"
+				action="javascript:void(0)"
+			>
+				<h2>Welkom bij Gotcha!</h2>
 				<label
 					><i class="fa-solid fa-envelope"></i>
 					<input
@@ -71,7 +74,6 @@
 						id="login-email"
 						placeholder="someone@example.com"
 						aria-label="email"
-						value=""
 						required
 					/>
 				</label>
@@ -87,12 +89,23 @@
 						required
 					/>
 				</label>
+				<label>
+					<i class="fa-solid fa-arrows-rotate"></i>
+					<input
+						type="password"
+						name="login-password-verify"
+						id="login-password-verify"
+						placeholder="Bevestig wachtwoord"
+						aria-label="Bevestig wachtwoord"
+						required
+					/>
+				</label>
 				<section class="login-submit-container">
-					<input type="submit" value="Sign in" />
-					<a href="signup.html">Maak een account</a>
+					<input type="submit" value="Sign up" />
+					<a href="login.html" id="login-link">Login</a>
 				</section>
 			</form>
 		</main>
-		<%- include("/partials/footer") %>
+		<%- include("partials/footer") %>
 	</body>
 </html>
