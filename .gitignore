@@ -137,3 +137,5 @@ dist
 **/private_key.json
 .vscode
 *.docx
+.env
+/certs
