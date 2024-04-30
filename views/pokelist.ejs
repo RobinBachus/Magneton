@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pokemon Lijst</title>
+
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fonts.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/frames.css" />
+
+		<script src="js/main.js" defer></script>
+
+		<!-- fa icons -->
+		<script
+			src="https://kit.fontawesome.com/91fd30522d.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<%- include("partials/header-aside") %>
+		<section id="buddy" class="framed no-hd">
+			<h1>My Buddy</h1>
+			<img src="assets/img/magneton_icon.png" alt="buddy" />
+			<p>Magneton</p>
+		</section>
+		<main>
+			<h1>Kanto</h1>
+			<!--Naam van de regio wordt vervangen met gebruik array en API-->
+			<section id="pokemon-images">
+				<article class="pokecontainer">
+					<!--Pokemon worden ingeladen per generatie met gebruik API-->
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/BULBASAUR.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/IVYSAUR.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/VENUSAUR.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/CHARMANDER.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/CHARMELEON.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/CHARIZARD.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/SQUIRTLE.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/WARTORTLE.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/BLASTOISE.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/CATERPIE.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/METAPOD.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXUNCAUGHT.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/BUTTERFREE.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+				<article class="pokecontainer">
+					<img
+						class="pokeball"
+						src="./assets/img/POKEDEXBUDDY.png"
+						alt="unchosen"
+					/>
+					<img
+						class="pokemon"
+						src="./assets/img/MAGNETON.png"
+						alt="PLACEHOLDER"
+					/>
+				</article>
+			</section>
+		</main>
+		<%- include("partials/footer") %>
+	</body>
+</html>

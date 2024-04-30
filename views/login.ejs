@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login</title>
+
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fonts.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/frames.css" />
+
+		<script src="js/main.js" defer></script>
+		<script type="module" src="js/login.js" defer></script>
+
+		<!-- fa icons -->
+		<script
+			src="https://kit.fontawesome.com/91fd30522d.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<header>
+			<button id="open-nav" class="menu-btn" onclick="openNav()">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+			<a href="index.html">
+				<img
+					id="logo"
+					src="./assets/img/LogoLightModeNewer.png"
+					alt="Logo"
+				/>
+			</a>
+			<img
+				id="usericon"
+				src="./assets/img/placeholder.jpg"
+				alt="avatar"
+			/>
+		</header>
+		<aside>
+			<section id="side-nav" class="sidenav closed framed">
+				<button id="close-nav" class="menu-btn" onclick="closeNav()">
+					<i class="fa-solid fa-times"></i>
+				</button>
+				<h1 id="sidenav-title">Spelmodi:</h1>
+				<nav>
+					<a href="landing.html">Landingspagina</a>
+					<a href="index.html">Home</a>
+					<a href="pokedexlist.html">Pokémon List</a>
+					<a href="pokelist.html">Catch List</a>
+					<a target="_blank" href="battler.html">Battler</a>
+					<a target="_blank" href="catcher.html">Catcher</a>
+					<a href="quiz.html">Who's that pokémon?</a>
+					<a href="comparator.html">Vergelijker</a>
+					<a
+						target="_blank"
+						href="./assets/videos/welcomescreen.mp4"
+					></a>
+				</nav>
+			</section>
+		</aside>
+		<main class="login-container">
+			<!-- TODO: make the action the js function again -->
+			<form class="login-form action-login framed" action="index.html">
+				<h2>Welkom terug!</h2>
+				<label
+					><i class="fa-solid fa-envelope"></i>
+					<input
+						type="email"
+						name="login-email"
+						id="login-email"
+						placeholder="someone@example.com"
+						aria-label="email"
+						value=""
+						required
+					/>
+				</label>
+				<label>
+					<i class="fa-solid fa-lock"></i>
+					<input
+						type="password"
+						name="login-password"
+						id="login-password"
+						placeholder="Wachtwoord"
+						aria-label="Wachtwoord"
+						minlength="8"
+						required
+					/>
+				</label>
+				<section class="login-submit-container">
+					<input type="submit" value="Sign in" />
+					<a href="signup.html">Maak een account</a>
+				</section>
+			</form>
+		</main>
+		<%- include("partials/footer") %>
+	</body>
+</html>

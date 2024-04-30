@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vergelijker</title>
+
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fonts.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/frames.css" />
+
+		<link rel="stylesheet" href="./css/comparestyle.css" />
+
+		<script src="js/main.js" defer></script>
+		<script src="js/pokemon.js" defer></script>
+
+		<!-- fa icons -->
+		<script
+			src="https://kit.fontawesome.com/91fd30522d.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<%- include("partials/header-aside") %>
+		<main id="comparator">
+			<section class="pokemon-display-card framed">
+				<h2 id="pokemonNamePlayer1"></h2>
+				<form action="">
+					<input type="search" name="findpoke1" id="findme" />
+					<select name="" id="">
+						<option value=""></option>
+					</select>
+				</form>
+				<section class="compare-img-container">
+					<img
+						id="pokeball1"
+						src="./assets/img/BALL1IDLE.png"
+						class="comparing-pokeball-img"
+						alt="testbal"
+					/>
+					<img
+						id="activePlayer1"
+						class="compared-pokemon-img"
+						src=""
+						alt=""
+					/>
+				</section>
+				<ul id="pokemon1">
+					<li class="health-container">
+						<abbr title="Health">HP</abbr>
+						<section>
+							<section id="healthPlayer1" class="health">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="attack-container">
+						<abbr title="Attack">ATK</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="attackPlayer1" class="attack">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="defense-container">
+						<abbr title="Defense">DEF</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="defensePlayer1" class="defense">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-attack-container">
+						<abbr title="Special Attack">SPA</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-attackPlayer1"
+								class="special-attack"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-defense-container">
+						<abbr title="Special Defense">SPD</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-defensePlayer1"
+								class="special-defense"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="speed-container">
+						<abbr title="Speed">SPE</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="speedPlayer1" class="speed">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+				</ul>
+			</section>
+			<section class="pokemon-display-card framed">
+				<h2 id="pokemonNamePlayer2"></h2>
+				<form action="">
+					<input type="search" name="findpoke2" id="findme" />
+					<select name="" id="">
+						<option value=""></option>
+					</select>
+				</form>
+				<section class="compare-img-container">
+					<img
+						id="pokeball2"
+						src="./assets/img/BALL1IDLE.png"
+						class="comparing-pokeball-img"
+						alt="testbal"
+					/>
+					<img
+						id="activePlayer2"
+						class="compared-pokemon-img"
+						src=""
+						alt=""
+					/>
+				</section>
+				<ul id="pokemon2">
+					<li class="health-container">
+						<abbr title="Health">HP</abbr>
+						<section>
+							<section id="healthPlayer2" class="health">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="attack-container">
+						<abbr title="Attack">ATK</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="attackPlayer2" class="attack">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="defense-container">
+						<abbr title="Defense">DEF</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="defensePlayer2" class="defense">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-attack-container">
+						<abbr title="Special Attack">SPA</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-attackPlayer2"
+								class="special-attack"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="special-defense-container">
+						<abbr title="Special Defense">SPD</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section
+								id="special-defensePlayer2"
+								class="special-defense"
+							>
+								&nbsp;
+							</section>
+						</section>
+					</li>
+					<li class="speed-container">
+						<abbr title="Speed">SPE</abbr>
+						<!--ipv empty space komen via js hier de stats in het zwart-->
+						<section>
+							<section id="speedPlayer2" class="speed">
+								&nbsp;
+							</section>
+						</section>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<%- include("partials/footer") %>
+	</body>
+</html>
