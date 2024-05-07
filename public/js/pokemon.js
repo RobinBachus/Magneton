@@ -29,7 +29,7 @@ async function main() {
 		nameElement.innerText = pokemon.name;
 		const image = document.getElementById(`activePlayer${index}`);
 		image.src = pokemon.sprites.other["official-artwork"].front_default;
-
+		// moving back pokemon: image.src = pokemon.sprites.other.showdown.back_default;
 		console.log(pokemon.name, pokemon.id);
 		for (let i = 0; i < pokemon.stats.length; i++) {
 			const stat = pokemon.stats[i];
