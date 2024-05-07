@@ -1,4 +1,4 @@
-import { CaughtPokemon } from "../types/pokemon";
+import { CaughtPokemon } from "../@types/pokemon";
 
 class User {
 	public constructor(name: string) {
@@ -8,7 +8,6 @@ class User {
 
 	/** This can be used to do a fast lookup in the database */
 	public readonly _hash: number;
-	public id: number;
 	public username: string;
 	/** Url to the user's avatar or null if they don't have one */
 	public avatar: string | null = null;

@@ -1,31 +1,58 @@
 import express from "express";
 import ejs, { render } from "ejs";
-import { Routes } from "./modules/routes";
 import dotenv from "dotenv";
+import { Router } from "./modules/router";
 import { DataBase } from "./modules/database";
+import { CleanUp } from "./modules/cleanup";
 
 dotenv.config();
 
-const app = express();
+async function main() {
+	const app = express();
 
-app.engine("ejs", ejs.renderFile);
-app.set("view engine", "ejs");
-app.set("port", process.env.PORT || 3000);
-app.use(express.static("public"));
+	app.engine("ejs", ejs.renderFile);
+	app.set("view engine", "ejs");
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: true }));
+	app.set("port", process.env.PORT || 3000);
+	app.use(express.static("public"));
 
-// const uri = process.env.DATABASE_URI;
-// const certs = process.env.DATABASE_CREDS;
+	// If database is causing issues while testing, comment out the following line
+	const database = await dbInit();
 
-// if (!uri || !certs) {
-// 	console.error("Missing database credentials");
-// 	process.exit(1);
-// }
+	const router = new Router(app, database);
+	router.setGetRoutes();
+	router.setPostRoutes();
 
-//const database = new DataBase(uri, certs);
-const routes = new Routes(app);
+	// If database is causing issues while testing, comment out the following line
+	// This will close the database connection when the server is closed
+	new CleanUp(database);
 
-app.listen(app.get("port"), () => {
-	console.log(`Server running on http://localhost:${app.get("port")}`);
-});
+	app.listen(app.get("port"), () => {
+		console.log(`Server running on http://localhost:${app.get("port")}`);
+	});
+}
+
+async function dbInit() {
+	const uri = process.env.DATABASE_URI;
+	const certs = process.env.DATABASE_CREDS;
+
+	if (!uri || !certs) {
+		console.error("Missing database credentials");
+		process.exit(1);
+	}
+
+	const database = new DataBase(uri, certs);
+
+	database.onReady(() => {
+		console.log("Database is ready");
+	});
+
+	await database.connect();
+
+	return database;
+}
+
+main();
 
 export {};
