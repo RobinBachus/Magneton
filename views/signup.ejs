@@ -63,14 +63,15 @@
 		<main class="login-container">
 			<form
 				class="login-form action-signup framed"
-				action="javascript:void(0)"
+				action="signup"
+				method="post"
 			>
 				<h2>Welkom bij Gotcha!</h2>
 				<label
 					><i class="fa-solid fa-envelope"></i>
 					<input
 						type="email"
-						name="login-email"
+						name="email"
 						id="login-email"
 						placeholder="someone@example.com"
 						aria-label="email"
@@ -81,7 +82,7 @@
 					<i class="fa-solid fa-lock"></i>
 					<input
 						type="password"
-						name="login-password"
+						name="password"
 						id="login-password"
 						placeholder="Wachtwoord"
 						aria-label="Wachtwoord"
@@ -93,7 +94,7 @@
 					<i class="fa-solid fa-arrows-rotate"></i>
 					<input
 						type="password"
-						name="login-password-verify"
+						name="password-verify"
 						id="login-password-verify"
 						placeholder="Bevestig wachtwoord"
 						aria-label="Bevestig wachtwoord"
@@ -102,7 +103,7 @@
 				</label>
 				<section class="login-submit-container">
 					<input type="submit" value="Sign up" />
-					<a href="login.html" id="login-link">Login</a>
+					<a href="login" id="login-link">Login</a>
 				</section>
 			</form>
 		</main>
