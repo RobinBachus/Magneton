@@ -214,25 +214,29 @@ input[type="submit"] {
 	margin-right: 2rem;
 }
 
+#pokelist-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
 #pokemon-images {
+	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 20px;
-	padding: 20px;
+	gap: 5px;
+	padding: 5px;
 	transition: margin-right 0.5s;
 }
 
 #pokemon-images article {
-	display: grid;
-	grid-template-columns: 1fr;
+	width: 15%;
+	display: flex;
 	justify-items: center;
 	align-items: center;
 }
 
 #pokemon-images img {
-	width: 100%;
-	height: 150px;
 	object-fit: contain;
 	padding-top: 7px;
 	border-radius: 15px;
@@ -288,27 +292,6 @@ input[type="submit"] {
 	animation-duration: 20s;
 	animation-timing-function: ease-in-out;
 }
-
-.pokeball {
-	opacity: 0.3;
-	height: 210px !important;
-	width: 210px !important;
-	z-index: -1;
-	animation: rotation 20s infinite linear;
-}
-.pokeballselect {
-	display: none;
-	opacity: 0.5;
-	height: 200px !important;
-	width: 200px !important;
-	z-index: -1;
-	animation: rotation 20s infinite linear;
-}
-
-.pokeball:has(+ .pokemon:hover) {
-	opacity: 0.7;
-}
-
 #catcher {
 	padding: 0;
 	color: #181010;
