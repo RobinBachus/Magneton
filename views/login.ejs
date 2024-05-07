@@ -61,13 +61,13 @@
 		</aside>
 		<main class="login-container">
 			<!-- TODO: make the action the js function again -->
-			<form class="login-form action-login framed" action="index.html">
+			<form class="login-form action-login framed" action="login" method="post">
 				<h2>Welkom terug!</h2>
 				<label
 					><i class="fa-solid fa-envelope"></i>
 					<input
 						type="email"
-						name="login-email"
+						name="email"
 						id="login-email"
 						placeholder="someone@example.com"
 						aria-label="email"
@@ -79,7 +79,7 @@
 					<i class="fa-solid fa-lock"></i>
 					<input
 						type="password"
-						name="login-password"
+						name="password"
 						id="login-password"
 						placeholder="Wachtwoord"
 						aria-label="Wachtwoord"
@@ -89,7 +89,7 @@
 				</label>
 				<section class="login-submit-container">
 					<input type="submit" value="Sign in" />
-					<a href="signup.html">Maak een account</a>
+					<a href="signup">Maak een account</a>
 				</section>
 			</form>
 		</main>
