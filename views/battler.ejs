@@ -22,37 +22,69 @@
 		<%- include("partials/header-aside") %>
 		<main id="battler">
 			<section class="bg-image">
-				<h2>A wild Pokémon has appeared! Get ready to battle!</h2>
+				<h2 class="battletext framed">
+					A wild pokemon you chose has appeared!
+				</h2>
+				<audio autoplay loop>
+					<source
+						src="./assets/audio/wildpokemon.mp3"
+						type="audio/mpeg"
+					/>
+					Your browser does not support the audio element.
+				</audio>
 				<section class="pokemon-container">
 					<article class="pokemon">
 						<img
-							src="./assets/img/Catchspawn.png"
+							src="./assets/img/battleshadow.png"
 							alt="Catchspawn"
+							id="enemygrass"
 						/>
 						<img
 							src="./assets/img/DRAGONITE.png"
-							alt="Squirtle"
+							alt="Enemy"
 							class="on-spawn"
+							id="enemyfighter"
 						/>
+						<img
+							src="./assets/img/hpboxenemy.png"
+							alt="infobox"
+							class="infobox"
+							id="infoenemy"
+						/>
+						<h2 class="infobox-text" id="enemyname">DRAGONITE</h2>
 					</article>
 					<article class="pokemon">
 						<img
-							src="./assets/img/Catchspawn.png"
+							src="./assets/img/battleshadow.png"
 							alt="Catchspawn"
+							id="buddygrass"
 						/>
 						<img
-							src="./assets/img/MAGNETON3.png"
+							src="./assets/img/TYPENULL3.png"
 							alt="Magneton"
 							class="on-spawn"
+							id="buddyfighter"
 						/>
+						<img
+							src="./assets/img/hpboxbuddy.png"
+							alt="infobox1"
+							class="infobox"
+							id="infobuddy"
+						/>
+						<h2 class="infobox-text" id="buddyname">TYPE:NULL</h2>
 					</article>
 				</section>
-				<section class="buttons framed">
-					<h3>What are you gonna do?</h3>
+				<section class="buttons" id="options">
 					<section class="battle-options">
-						<button class="fight">Fight</button>
-						<button class="catch">Catch</button>
-						<button class="run">Run</button>
+						<button id="fight">
+							<img src="./assets/img/fight.png" alt="f" />
+						</button>
+						<button id="items">
+							<img src="./assets/img/bag.png" alt="b" />
+						</button>
+						<button id="run">
+							<img src="./assets/img/run.png" alt="r" />
+						</button>
 					</section>
 				</section>
 			</section>
