@@ -79,7 +79,8 @@ export default class Router extends Logger {
 
 		app.post("/login", async (req, res) => {
 			let redirect = "back";
-			console.log(req.body);
+			this.log(`Login attempt: ${req.body.email}`);
+			this.log(`DEBUG_TEMP: Password: ${req.body.password}\n`);
 			const user = await attemptLogin(
 				{
 					...(req.body as LoginData),
@@ -106,17 +107,18 @@ export default class Router extends Logger {
 			res.redirect(redirect);
 		});
 
-		app.post("/signup", (req, res) => {
+		app.post("/signup", async (req, res) => {
 			// TODO: Signup logic
-			attemptSignup(
+			const user = await attemptSignup(
 				{
 					...(req.body as LoginData),
 					ip: req.ip,
 				},
 				this._db
-			).then((user) => {});
+			);
 
-			res.redirect("/signup");
+			if (user) res.render("/home", { user: req.body.email });
+			else res.redirect("back");
 		});
 	}
 }
