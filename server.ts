@@ -2,8 +2,8 @@ import express from "express";
 import ejs, { render } from "ejs";
 import dotenv from "dotenv";
 import { Router } from "./modules/router";
-import { DataBase } from "./modules/database";
-import { CleanUp } from "./modules/cleanup";
+import Database from "./modules/database";
+import CleanUp from "./modules/cleanup";
 
 dotenv.config();
 
@@ -29,7 +29,7 @@ async function main() {
 	new CleanUp(database);
 
 	app.listen(app.get("port"), () => {
-		console.log(`Server running on http://localhost:${app.get("port")}`);
+		router.log(`Server running on http://localhost:${app.get("port")}`);
 	});
 }
 
@@ -42,10 +42,10 @@ async function dbInit() {
 		process.exit(1);
 	}
 
-	const database = new DataBase(uri, certs);
+	const database = new Database(uri, certs);
 
 	database.onReady(() => {
-		console.log("Database is ready");
+		database.log("Database is ready");
 	});
 
 	await database.connect();
