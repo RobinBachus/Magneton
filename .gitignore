@@ -138,4 +138,5 @@ dist
 .vscode
 *.docx
 .env
-/certs
+certs/
+test/

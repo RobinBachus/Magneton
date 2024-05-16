@@ -1,14 +1,15 @@
 import { MongoClient } from "mongodb";
 import { CollectionType, DbCollections, DbUser } from "../@types/db";
-import { EventEmitter } from "events";
+import Logger from "./logger";
+import { Color } from "./common";
 
-export class DataBase extends EventEmitter {
+export default class Database extends Logger {
 	client: MongoClient;
 	collections: DbCollections = { users: null };
 	ready: boolean = false;
 
 	constructor(uri: string, certs: string) {
-		super();
+		super("Database", Color.fg.cyan);
 
 		this.client = new MongoClient(uri, {
 			tlsCertificateKeyFile: certs,
@@ -67,7 +68,7 @@ export class DataBase extends EventEmitter {
 	async close() {
 		await this.client.close();
 		this._setReady(false);
-		console.log("Database connection closed");
+		this.log("Database connection closed");
 	}
 
 	onReady(callback: () => void) {

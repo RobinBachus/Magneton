@@ -1,0 +1,247 @@
+body {
+	max-width: 100vw;
+}
+
+#battler {
+	padding: 0;
+}
+
+.bg-image {
+	display: grid;
+	grid-template-areas:
+		"head enemy-info"
+		"buddy enemy"
+		"buddy-info buttons";
+
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto 1fr auto;
+	align-items: center;
+	background-image: url("../assets/img/mysterybattlebg.jpg");
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 0;
+}
+
+.buttons {
+	grid-area: buttons;
+}
+
+.buttons button {
+	height: 60px;
+	border: none;
+	background-color: transparent;
+}
+
+.bg-image h2 {
+	color: black;
+	/* position: absolute;
+	top: 80px;
+	left: 1px; */
+}
+
+.battletext {
+	grid-area: head;
+	background-color: white;
+	opacity: 0.8;
+}
+
+.buttons h3 {
+	color: black;
+}
+
+#fight:hover img {
+	content: url("../assets/img/fighthover.png");
+}
+#fight:active img {
+	content: url("../assets/img/fightselect.png");
+}
+#items:hover img {
+	content: url("../assets/img/baghover.png");
+}
+#items:active img {
+	content: url("../assets/img/bagselect.png");
+}
+#run:hover img {
+	content: url("../assets/img/runhover.png");
+}
+#run:active img {
+	content: url("../assets/img/runselect.png");
+}
+.framed.buttons.compact {
+	display: flex;
+	justify-content: space-around;
+}
+
+.framed.buttons.compact li {
+	list-style: none;
+}
+
+.pokemon-container {
+	/* position: relative; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pokemon {
+	margin-bottom: 40px;
+}
+
+#buddyfighter {
+	/* position: absolute; */
+	/* top: -190px;
+	right: 440px; */
+	height: 100%;
+	width: auto;
+	animation: introbuddy 7s 1;
+}
+#enemyfighter {
+	/* position: absolute; */
+	/* left: 440px;
+	top: -130px; */
+	height: 100%;
+	width: auto;
+	animation: introenemy 7s 1;
+	z-index: -1;
+}
+#buddygrass {
+	/* position: relative;
+	right: 4500px;
+	top: 100px; */
+	width: 500px;
+	z-index: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+#enemygrass {
+	/* position: relative;
+	left: 5000px;
+	top: 300px; */
+	width: 500px;
+	opacity: 0.9;
+}
+#infobuddy {
+	/* position: absolute;
+	right: 600px;
+	bottom: -208px; */
+	width: 450px;
+}
+#infoenemy {
+	/* position: absolute;
+	left: 594px;
+	top: -208px; */
+	width: 450px;
+}
+#buddyname {
+	/* position: absolute;
+	left: -490px;
+	top: 225px; */
+	margin-bottom: 4vh;
+	margin-left: -37vw;
+}
+#enemyname {
+	/* position: absolute;
+	left: 680px;
+	top: -185px; */
+	margin-bottom: 7vh;
+	margin-right: 5vw;
+}
+
+#buddy-container {
+	grid-area: buddy;
+}
+
+#enemy-container {
+	grid-area: enemy;
+	display: flex;
+	justify-content: flex-end;
+	z-index: 0;
+}
+
+#buddy-info {
+	z-index: 1;
+	height: fit-content;
+	width: 100%;
+}
+
+#buddy-info-container {
+	grid-area: buddy-info;
+	height: 100%;
+	display: flex;
+	z-index: 1;
+	align-items: flex-end;
+}
+
+#enemy-info {
+	grid-area: enemy-info;
+	justify-items: end;
+	align-items: end;
+}
+
+.info-box {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr;
+	align-items: center;
+	text-align: center;
+}
+
+.info-box > * {
+	grid-row: 1;
+	grid-column: 1;
+}
+
+.info-box > h2 {
+	padding: 0 5rem;
+}
+
+.pokemon img,
+.bg-image img {
+	width: 200px;
+	height: auto;
+}
+
+.battle-options {
+	display: flex;
+	list-style: none;
+	flex-direction: column;
+	align-items: flex-end;
+	z-index: 1;
+}
+.battle-options button {
+	margin-bottom: 9px;
+}
+
+#battler .pokemon {
+	margin: 0;
+	grid-row: 2/4;
+	height: 100%;
+	z-index: 0;
+}
+
+@keyframes introbuddy {
+	0% {
+		transform: translateX(30vw);
+	}
+
+	25% {
+		transform: translateX(0px);
+	}
+}
+
+@keyframes introenemy {
+	0% {
+		filter: brightness(0%);
+		transform: translateX(-30vw);
+	}
+
+	25% {
+		filter: brightness(100%);
+		transform: translateX(0px);
+	}
+}

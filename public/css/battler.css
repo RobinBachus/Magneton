@@ -1,3 +1,7 @@
+body {
+	overflow-x: hidden;
+}
+
 #battler {
 	padding: 0;
 }
@@ -6,30 +10,36 @@
 	height: 60px;
 	width: 100%;
 	margin: 1rem;
-}
-
-.buttons {
-	background-color: white;
+	border: none;
+	background-color: transparent;
 }
 
 .bg-image h2 {
 	color: black;
+	position: absolute;
+	top: 80px;
+	left: 1px;
 }
 
+.battletext {
+	background-color: white;
+	opacity: 0.8;
+	grid-area: head;
+}
 .buttons h3 {
 	color: black;
 }
 
-.buttons .fight {
-	background-color: rgb(161, 81, 81);
+#fight:hover img {
+	content: url("../assets/img/fightselect.png");
 }
 
-.buttons .catch {
-	background-color: rgb(208, 208, 56);
+#items:hover img {
+	content: url("../assets/img/bagselect.png");
 }
 
-.buttons .run {
-	background-color: rgb(115, 217, 115);
+#run:hover img {
+	content: url("../assets/img/runselect.png");
 }
 
 .framed.buttons.compact {
@@ -53,11 +63,56 @@
 	margin-bottom: 40px;
 }
 
-.on-spawn {
+#buddyfighter {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	width: 500px;
+	top: -140px;
+	right: 460px;
+	animation: introbuddy 7s 1;
+}
+#enemyfighter {
+	position: absolute;
+	width: 500px;
+	left: 485px;
+	top: -100px;
+	animation: introenemy 7s 1;
+}
+#buddygrass {
+	position: relative;
+	right: 4500px;
+	top: 100px;
+	width: 500px;
+	z-index: 0;
+}
+#enemygrass {
+	position: relative;
+	left: 500px;
+	top: 275px;
+	width: 500px;
+	opacity: 0.8;
+}
+#infobuddy {
+	grid-area: info-buddy;
+	position: absolute;
+	width: 450px;
+	right: 600px;
+	bottom: -208px;
+}
+#infoenemy {
+	position: absolute;
+	width: 450px;
+	left: 594px;
+	top: -175px;
+}
+#buddyname {
+	position: absolute;
+	left: -490px;
+	top: 225px;
+}
+#enemyname {
+	position: absolute;
+	left: 680px;
+	top: -155px;
 }
 
 .pokemon img,
@@ -69,12 +124,41 @@
 .battle-options {
 	display: flex;
 	list-style: none;
+	flex-direction: column;
 }
-
+.battle-options button {
+	margin-bottom: -7px;
+}
 #battler .bg-image {
 	height: 100%;
 }
 
 #battler .pokemon {
 	margin: 0;
+}
+#options {
+	position: absolute;
+	top: 472px;
+	left: 1325px;
+}
+@keyframes introbuddy {
+	0% {
+		right: -50px;
+	}
+
+	25% {
+		right: 460px;
+	}
+}
+
+@keyframes introenemy {
+	0% {
+		filter: brightness(0%);
+		left: -50px;
+	}
+
+	25% {
+		filter: brightness(100%);
+		left: 485px;
+	}
 }
