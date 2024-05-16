@@ -1,37 +1,23 @@
 import type { Express } from "express";
 import type { LoginData } from "../@types/db";
+import { Color } from "./common";
 import Database from "./database";
-import { attemptLogin, attemptSignup, getUserByToken } from "./login";
 import Logger from "./logger";
-import { Color, TColor } from "./common";
+import { attemptLogin, attemptSignup, authSession } from "./login";
 
-const noAuth = ["/login", "/signup", "/favicon", "/404", "/"];
-
-export class Router extends Logger {
+export default class Router extends Logger {
 	private _db: Database;
 	private _app: Express;
 
-	constructor(app: Express, database: Database) {
+	constructor(app: Express, database: Database, debugLoginRequired = false) {
 		super("Router", Color.fg.magenta);
-
-		app.use(async (req, res, next) => {
-			const session = req.query.session as string | undefined;
-
-			if (noAuth.includes(req.url)) next();
-			else if (!session) res.redirect("/login");
-			else {
-				const user = await getUserByToken(session, this._db, req.ip);
-
-				if (!user) res.redirect("/login");
-				else {
-					res.locals.user = user;
-					next();
-				}
-			}
-		});
 
 		this._app = app;
 		this._db = database;
+
+		if (!debugLoginRequired) return;
+
+		app.use((req, res, next) => authSession(req, res, next, this._db));
 	}
 
 	setGetRoutes() {
@@ -92,7 +78,7 @@ export class Router extends Logger {
 		const app = this._app;
 
 		app.post("/login", async (req, res) => {
-			let redirect = "/login";
+			let redirect = "back";
 			console.log(req.body);
 			const user = await attemptLogin(
 				{
@@ -102,7 +88,20 @@ export class Router extends Logger {
 				this._db
 			); // TODO: Handle login
 
-			if (user) redirect = "/home?session=" + user.session!.token;
+			if (user) {
+				redirect = "/home";
+
+				if (user.session) {
+					res.cookie("session", user.session.token, {
+						httpOnly: true,
+						sameSite: "strict",
+						secure: true,
+						signed: true,
+						expires: new Date(user.session.expiration),
+						path: "/",
+					});
+				}
+			}
 
 			res.redirect(redirect);
 		});

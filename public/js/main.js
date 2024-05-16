@@ -4,6 +4,7 @@ failed.push(setupSideNav() ? null : "Side Nav");
 failed.push(setupBuddy() ? null : "Buddy");
 failed.push(setupDarkMode() ? null : "Dark Mode");
 failed.push(setup404() ? null : "404 Page");
+failed.push(setupCookieBanner() ? null : "Cookie Banner");
 
 failed = failed.filter((x) => x);
 if (failed.length) {
@@ -75,5 +76,51 @@ function setup404() {
 	if (!returnLink) return false;
 
 	returnLink.href = document.referrer;
+	return true;
+}
+
+// ---- Cookie banner ----
+
+async function setupCookieBanner() {
+	if (document.cookie.includes("cookie-consent=accept")) return true;
+
+	const cookieBanner = document.createElement("dialog");
+	cookieBanner.id = "cookie-banner";
+
+	const consentForm = document.createElement("form");
+	consentForm.innerHTML = `
+		<section>
+			<h2>Cookie Policy</h2>
+			<p>
+				We use cookies to ensure you get the best experience on our website.
+			</p>
+		</section>
+		<section>
+			<button value="true" id="cookie-accept">Accept</button>
+			<button>Reject</button>
+		</section>
+	`;
+
+	consentForm.method = "dialog";
+
+	cookieBanner.appendChild(consentForm);
+
+	consentForm.onsubmit = (ev) => {
+		ev.preventDefault();
+
+		if (ev.submitter.id === "cookie-accept") {
+			const expires = new Date(Date.now() + 1000 * 60 * 60 * 24 * 31); // A month (ms * s * m * h * d)
+			document.cookie = `cookie-consent=accept; expires=${expires.toUTCString()};`;
+		}
+
+		cookieBanner.close();
+		cookieBanner.remove();
+	};
+
+	setTimeout(() => {
+		document.body.appendChild(cookieBanner);
+		cookieBanner.showModal();
+	}, 1000);
+
 	return true;
 }
