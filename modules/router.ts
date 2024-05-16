@@ -15,6 +15,9 @@ export class Router {
 
 	constructor(app: Express, database: DataBase) {
 		app.use((req, res, next) => {
+			// TODO: temp
+			next();
+			return;
 			if (
 				!req.query.session &&
 				!req.url.includes("login") &&
@@ -68,7 +71,9 @@ export class Router {
 		app.get("/battler", (req, res) => {
 			res.render("battler");
 		});
-
+		app.get("/mysterybattler", (req, res) => {
+			res.render("mysterybattler");
+		});
 		app.get("/caught", (req, res) => {
 			res.render("caught");
 		});
@@ -156,7 +161,7 @@ export class Router {
 	): DbSession {
 		const token = Math.random().toString(36).substring(2);
 		const expiration = Date.now() + 1000 * 60 * 60 * 24 * 7 * 4; // 4 weeks
-		const known_ips = session?.known_ips?.unique() ?? [];
+		const known_ips = session?.known_ips ?? [];
 		if (ip && !known_ips.includes(ip)) known_ips.push(ip);
 
 		return {
