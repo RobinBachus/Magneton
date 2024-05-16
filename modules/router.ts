@@ -80,7 +80,7 @@ export default class Router extends Logger {
 		app.post("/login", async (req, res) => {
 			let redirect = "back";
 			this.log(`Login attempt: ${req.body.email}`);
-			this.log(`DEBUG_TEMP: Password: ${req.body.password}\n`);
+			this.log(`DEBUG_TEMP: Password: ${req.body.password}`);
 			const user = await attemptLogin(
 				{
 					...(req.body as LoginData),
@@ -103,6 +103,8 @@ export default class Router extends Logger {
 					});
 				}
 			}
+
+			this.log(`Login ${user ? "successful" : "failed"}\n`);
 
 			res.redirect(redirect);
 		});
