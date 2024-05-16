@@ -35,3 +35,9 @@ export interface DbSession {
 	expiration: number;
 	known_ips: string[];
 }
+
+interface LoginData {
+	email: string;
+	password: string;
+	ip?: string;
+}

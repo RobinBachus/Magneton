@@ -1,33 +1,37 @@
 import type { Express } from "express";
-import { DataBase } from "./database";
-import { DbSession, DbUser } from "../@types/db";
-import bcrypt from "bcrypt";
+import type { LoginData } from "../@types/db";
+import Database from "./database";
+import { attemptLogin, attemptSignup, getUserByToken } from "./login";
+import Logger from "./logger";
+import { Color, TColor } from "./common";
 
-interface LoginData {
-	email: string;
-	password: string;
-	ip?: string;
-}
+const noAuth = ["/login", "/signup", "/favicon", "/404", "/"];
 
-export class Router {
-	private _database: DataBase;
+export class Router extends Logger {
+	private _db: Database;
 	private _app: Express;
 
-	constructor(app: Express, database: DataBase) {
-		app.use((req, res, next) => {
-			if (
-				!req.query.session &&
-				!req.url.includes("login") &&
-				!req.url.includes("signup") &&
-				!req.url.includes("404") &&
-				req.url !== "/"
-			)
-				res.redirect("/login");
-			else next();
+	constructor(app: Express, database: Database) {
+		super("Router", Color.fg.magenta);
+
+		app.use(async (req, res, next) => {
+			const session = req.query.session as string | undefined;
+
+			if (noAuth.includes(req.url)) next();
+			else if (!session) res.redirect("/login");
+			else {
+				const user = await getUserByToken(session, this._db, req.ip);
+
+				if (!user) res.redirect("/login");
+				else {
+					res.locals.user = user;
+					next();
+				}
+			}
 		});
 
 		this._app = app;
-		this._database = database;
+		this._db = database;
 	}
 
 	setGetRoutes() {
@@ -88,10 +92,13 @@ export class Router {
 		app.post("/login", async (req, res) => {
 			let redirect = "/login";
 			console.log(req.body);
-			const user = await this._attemptLogin({
-				...(req.body as LoginData),
-				ip: req.ip,
-			}); // TODO: Handle login
+			const user = await attemptLogin(
+				{
+					...(req.body as LoginData),
+					ip: req.ip,
+				},
+				this._db
+			); // TODO: Handle login
 
 			if (user) redirect = "/home?session=" + user.session!.token;
 
@@ -100,70 +107,15 @@ export class Router {
 
 		app.post("/signup", (req, res) => {
 			// TODO: Signup logic
-			this._attemptSignup({
-				...(req.body as LoginData),
-				ip: req.ip,
-			}).then((user) => {});
+			attemptSignup(
+				{
+					...(req.body as LoginData),
+					ip: req.ip,
+				},
+				this._db
+			).then((user) => {});
 
 			res.redirect("/signup");
 		});
-	}
-
-	private async _attemptLogin(loginData: LoginData): Promise<DbUser | null> {
-		const { email, password, ip } = loginData;
-
-		const user = await this._database.collections.users?.findOne({ email });
-		if (!user) return null;
-
-		if (!(await bcrypt.compare(password, user.hashed_pass))) return null;
-
-		// Update the session
-		user.session = this._updateSession(user.session, ip);
-
-		this._database.update("users", { email }, user);
-
-		return user;
-	}
-
-	private async _attemptSignup(loginData: LoginData): Promise<DbUser | null> {
-		const { email, password, ip } = loginData;
-
-		const user = await this._database.collections.users?.findOne({ email });
-		if (user) return null;
-
-		// Hash the password
-		const hashed_pass = await bcrypt.hash(password, 10);
-
-		// Create the user
-		const newUser: DbUser = {
-			email,
-			hashed_pass,
-			session: this._updateSession(null, ip),
-			username: "",
-			avatar: null,
-			buddy: null,
-			caught: [],
-		};
-
-		this._database.upsert("users", { email }, newUser);
-
-		return newUser;
-	}
-
-	private _updateSession(
-		session: DbSession | null,
-		ip: string | null = null
-	): DbSession {
-		const token = Math.random().toString(36).substring(2);
-		const expiration = Date.now() + 1000 * 60 * 60 * 24 * 7 * 4; // 4 weeks
-		const known_ips = session?.known_ips?.unique() ?? [];
-		if (ip && !known_ips.includes(ip)) known_ips.push(ip);
-
-		return {
-			token,
-			creation: Date.now(),
-			expiration,
-			known_ips,
-		};
 	}
 }
