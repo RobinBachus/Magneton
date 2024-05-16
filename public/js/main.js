@@ -92,12 +92,12 @@ async function setupCookieBanner() {
 		<section>
 			<h2>Cookie Policy</h2>
 			<p>
-				We use cookies to ensure you get the best experience on our website.
+				We gebruiken cookies om je de beste ervaring te geven op onze website.
 			</p>
 		</section>
 		<section>
-			<button value="true" id="cookie-accept">Accept</button>
-			<button>Reject</button>
+			<button value="true" id="cookie-accept">Akkoord</button>
+			<button>Weigeren</button>
 		</section>
 	`;
 
