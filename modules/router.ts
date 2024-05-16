@@ -72,7 +72,9 @@ export class Router extends Logger {
 		app.get("/battler", (req, res) => {
 			res.render("battler");
 		});
-
+		app.get("/mysterybattler", (req, res) => {
+			res.render("mysterybattler");
+		});
 		app.get("/caught", (req, res) => {
 			res.render("caught");
 		});
