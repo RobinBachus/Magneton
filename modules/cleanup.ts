@@ -1,4 +1,6 @@
-import { DataBase } from "./database";
+import { Color } from "./common";
+import Database from "./database";
+import Logger from "./logger";
 
 const events = [
 	`exit`,
@@ -9,11 +11,13 @@ const events = [
 	`SIGTERM`,
 ];
 
-export class CleanUp {
-	private _database: DataBase;
+export default class CleanUp extends Logger {
+	private _database: Database;
 	private _exitCode: number = 0;
 
-	constructor(database: DataBase) {
+	constructor(database: Database) {
+		super("CleanUp", Color.fg.yellow);
+
 		this._database = database;
 		this._addListeners();
 	}
@@ -22,7 +26,7 @@ export class CleanUp {
 		events.forEach((eventType) => {
 			if (eventType === "uncaughtException") {
 				process.on(eventType, async (err) => {
-					console.error(err);
+					this.error(err);
 					this._exitCode = 1;
 					await this._cleanUp(eventType);
 				});
@@ -40,14 +44,14 @@ export class CleanUp {
 
 	private async _cleanUp(eventType?: string) {
 		if (eventType) {
-			console.log(`CleanUp: Received signal: ${eventType}`);
+			this.log(`Received signal: ${eventType}`);
 		}
 
-		console.log("CleanUp: Cleaning up...");
+		this.log("Cleaning up...");
 
 		await this._database.close();
 
-		console.log("CleanUp: Cleanup complete");
+		this.log("Cleanup complete");
 		this._removeListeners();
 		process.exit(this._exitCode);
 	}
