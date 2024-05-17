@@ -1,7 +1,7 @@
 const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
 const maxPokeId = 1025;
 let shinyCheck = false;
-const shinyOdds = 5;
+const shinyOdds = 10;
 main();
 async function shinyRoller() {
 	const shinyId = Math.floor(Math.random() * shinyOdds) + 1;
@@ -81,6 +81,45 @@ async function main() {
 
 			// Loop through each stat of the Pokemon
 			for (let i = 0; i < pokemon.stats.length; i++) {
+				const stat = pokemon.stats[i];
+				const statArray = [
+					`healthPlayer${index}`,
+					`attackPlayer${index}`,
+					`defensePlayer${index}`,
+					`special-attackPlayer${index}`,
+					`special-defensePlayer${index}`,
+					`speedPlayer${index}`,
+				];
+				const statElement = document.getElementById(statArray[i]);
+				statElement.style.width = stat.base_stat + "px";
+				statElement.innerText = stat.base_stat;
+				if (
+					stat.base_stat < pokemons[+!(index - 1)].stats[i].base_stat
+				) {
+					statElement.style.backgroundColor = "red";
+				}
+				if (
+					stat.base_stat == pokemons[+!(index - 1)].stats[i].base_stat
+				) {
+					statElement.style.backgroundColor = "orange";
+				}
+				if (
+					stat.base_stat > pokemons[+!(index - 1)].stats[i].base_stat
+				) {
+					statElement.style.backgroundColor = "green";
+				}
+				statElement.style.color = "white";
+				let width = 1;
+				const id = setInterval(frame, 5);
+				function frame() {
+					if (width >= stat.base_stat) {
+						clearInterval(id);
+					} else {
+						width++;
+						statElement.style.width = width + "px";
+					}
+				}
+
 				// Other stat-related actions
 			}
 		}
@@ -91,61 +130,5 @@ async function main() {
 
 	// Call the main function to start the process
 	main();
-
-	// const pokemons = [];
-	// pokemons.push(await getRandomPokemon());
-	// pokemons.push(await getRandomPokemon());
-	// const { shinyId, shinyCheck: rollerCheck } = await shinyRoller();
-	// for (let index = 1; index <= 2; index++) {
-	// 	const pokemon = pokemons[index - 1];
-	// const nameElement = document.getElementById(`pokemonNamePlayer${index}`);
-	// nameElement.innerText = pokemon.name;
-	// const image = document.getElementById(`activePlayer${index}`);
-	// if (rollerCheck === true) {
-	// 	image.src = pokemon.sprites.other["official-artwork"].front_shiny;
-	// } else {
-	// 	image.src = pokemon.sprites.other["official-artwork"].front_default;
-	// }
-	// // moving back pokemon: image.src = pokemon.sprites.other.showdown.back_default;
-	// console.log(pokemon.name, pokemon.id);
-	// for (let i = 0; i < pokemon.stats.length; i++) {
-	// 	const stat = pokemon.stats[i];
-
-	// 	const statArray = [
-	// 		`healthPlayer${index}`,
-	// 		`attackPlayer${index}`,
-	// 		`defensePlayer${index}`,
-	// 		`special-attackPlayer${index}`,
-	// 		`special-defensePlayer${index}`,
-	// 		`speedPlayer${index}`,
-	// 	];
-	// 	const statElement = document.getElementById(statArray[i]);
-	// 	statElement.style.width = stat.base_stat + "px";
-	// 	statElement.innerText = stat.base_stat;
-
-	// 	console.log(stat.base_stat, pokemons[+!(index - 1)].stats[i].base_stat);
-
-	// 	if (stat.base_stat < pokemons[+!(index - 1)].stats[i].base_stat) {
-	// 		statElement.style.backgroundColor = "red";
-	// 	}
-	// 	if (stat.base_stat == pokemons[+!(index - 1)].stats[i].base_stat) {
-	// 		statElement.style.backgroundColor = "orange";
-	// 	}
-	// 	if (stat.base_stat > pokemons[+!(index - 1)].stats[i].base_stat) {
-	// 		statElement.style.backgroundColor = "green";
-	// 	}
-	// 	statElement.style.color = "white";
-
-	// 	let width = 1;
-	// 	const id = setInterval(frame, 5);
-	// 	function frame() {
-	// 		if (width >= stat.base_stat) {
-	// 			clearInterval(id);
-	// 		} else {
-	// 			width++;
-	// 			statElement.style.width = width + "px";
-	// 		}
-	// 	}
-	// }
 	/*Battler */
 }
