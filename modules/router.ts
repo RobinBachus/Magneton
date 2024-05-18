@@ -14,21 +14,21 @@ export class Router extends Logger {
 	constructor(app: Express, database: Database) {
 		super("Router", Color.fg.magenta);
 
-		app.use(async (req, res, next) => {
-			const session = req.query.session as string | undefined;
+		// app.use(async (req, res, next) => {
+		// 	const session = req.query.session as string | undefined;
 
-			if (noAuth.includes(req.url)) next();
-			else if (!session) res.redirect("/login");
-			else {
-				const user = await getUserByToken(session, this._db, req.ip);
+		// 	if (noAuth.includes(req.url)) next();
+		// 	else if (!session) res.redirect("/login");
+		// 	else {
+		// 		const user = await getUserByToken(session, this._db, req.ip);
 
-				if (!user) res.redirect("/login");
-				else {
-					res.locals.user = user;
-					next();
-				}
-			}
-		});
+		// 		if (!user) res.redirect("/login");
+		// 		else {
+		// 			res.locals.user = user;
+		// 			next();
+		// 		}
+		// 	}
+		// });
 
 		this._app = app;
 		this._db = database;

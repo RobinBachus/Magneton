@@ -1,7 +1,9 @@
 const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
-const maxPokeId = 1025;
+// const maxPokeId = 1025;
+const maxPokeId = 10277;
+const minPokeId = 10001;
 let shinyCheck = false;
-const shinyOdds = 10;
+const shinyOdds = 4;
 main();
 async function shinyRoller() {
 	const shinyId = Math.floor(Math.random() * shinyOdds) + 1;
@@ -19,7 +21,9 @@ async function shinyRoller() {
 
 async function getRandomPokemon() {
 	try {
-		const randomId = Math.floor(Math.random() * maxPokeId) + 1;
+		// const randomId = Math.floor(Math.random() * maxPokeId) + 1;
+		const randomId =
+			Math.floor(Math.random() * (maxPokeId - minPokeId + 1)) + minPokeId;
 		const url = urlAPI + randomId;
 		const response = await fetch(url);
 		const pokemon = await response.json();
@@ -28,6 +32,7 @@ async function getRandomPokemon() {
 		console.error("Error fetching Pokemon data:", error);
 	}
 }
+
 async function main() {
 	async function main() {
 		const pokemons = [];
@@ -61,10 +66,8 @@ async function main() {
 				console.error(`Element pokemonNamePlayer${index} not found.`);
 			}
 
-			// Get the image element using document.getElementById
 			const image = document.getElementById(`activePlayer${index}`);
 			if (image) {
-				// Check if pokemon is shiny and set the image source accordingly
 				if (pokemon.shinyCheck) {
 					image.src =
 						pokemon.sprites.other["official-artwork"].front_shiny;
@@ -75,11 +78,21 @@ async function main() {
 			} else {
 				console.error(`Element activePlayer${index} not found.`);
 			}
+			const mysteryname = document.getElementById(`enemyname`);
+			if (mysteryname) {
+				mysteryname.innerText = pokemon.name;
+			}
+			const battleimage = document.getElementById(`enemyfighter`);
+			if (battleimage) {
+				if (pokemon.shinyCheck) {
+					battleimage.src = pokemon["sprites"]["front_shiny"];
+				} else {
+					battleimage.src = pokemon["sprites"]["front_default"];
+				}
+			}
 
-			// Log Pokemon details
 			console.log(pokemon.name, pokemon.id);
 
-			// Loop through each stat of the Pokemon
 			for (let i = 0; i < pokemon.stats.length; i++) {
 				const stat = pokemon.stats[i];
 				const statArray = [
@@ -119,16 +132,10 @@ async function main() {
 						statElement.style.width = width + "px";
 					}
 				}
-
-				// Other stat-related actions
 			}
 		}
-
-		// Log the updated Pokemon array with shinyCheck applied
 		console.log("Pokemons with ShinyCheck:", pokemons);
 	}
-
-	// Call the main function to start the process
 	main();
 	/*Battler */
 }
