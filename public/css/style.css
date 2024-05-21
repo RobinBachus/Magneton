@@ -566,6 +566,50 @@ button {
 	height: 125%;
 	width: 150%;
 }
+
+#cookie-banner {
+	position: sticky;
+	bottom: 1rem;
+	left: 50%;
+	transform: translateX(-50%); /* Center the banner */
+	max-width: 50vw;
+
+	padding: 1rem;
+	border-radius: 20px;
+}
+
+#cookie-banner p {
+	font-size: larger;
+}
+
+#cookie-banner > form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: fit-content;
+}
+
+#cookie-banner > form > section * {
+	margin: 0.5rem 1rem;
+	display: flex;
+	align-items: center;
+}
+
+::backdrop {
+	transition: 0.5s;
+	-webkit-transition: background-color 1000ms linear;
+	-ms-transition: background-color 1000ms linear;
+	transition: background-color 1000ms linear;
+	background-color: rgba(0, 0, 0, 0);
+	animation: dim-background 0.5s forwards;
+}
+
+@keyframes dim-background {
+	to {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+}
+
 @keyframes highlight-pulse {
 	0% {
 		background-color: transparent;
