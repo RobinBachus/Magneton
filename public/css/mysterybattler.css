@@ -57,6 +57,12 @@ body {
 #fight:active img {
 	content: url("../assets/img/fightselect.png");
 }
+#catch:hover img {
+	content: url("../assets/img/catchhover.png");
+}
+#catch:active img {
+	content: url("../assets/img/catchselect.png");
+}
 #items:hover img {
 	content: url("../assets/img/baghover.png");
 }
@@ -95,7 +101,7 @@ body {
 	right: 440px; */
 	height: 100%;
 	width: auto;
-	animation: introbuddy 7s 1;
+	animation: introbuddy 7s 1, playerthrow 0.9s 1;
 }
 #enemyfighter {
 	/* position: absolute; */
@@ -224,12 +230,41 @@ body {
 	z-index: 0;
 }
 
+@keyframes playerthrow {
+	0% {
+		content: url("../assets/img/PLAYER1-1.png");
+		transform: translateX(0);
+	}
+	20% {
+		content: url("../assets/img/PLAYER1-2.png");
+		transform: translateX(-2rem);
+	}
+	40% {
+		content: url("../assets/img/PLAYER1-3.png");
+		transform: translateX(2rem);
+	}
+	60% {
+		content: url("../assets/img/PLAYER1-4.png");
+		transform: translateX(3rem);
+	}
+	80% {
+		content: url("../assets/img/PLAYER1-5.png");
+		transform: translateX(2rem);
+	}
+	100% {
+		content: url("../assets/img/PLAYER1-1.png");
+		transform: translateX(0);
+	}
+}
 @keyframes introbuddy {
 	0% {
 		transform: translateX(30vw);
 	}
 
 	25% {
+		transform: translateX(0px);
+	}
+	100% {
 		transform: translateX(0px);
 	}
 }

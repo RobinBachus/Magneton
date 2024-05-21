@@ -2,45 +2,92 @@
 <html lang="nl">
 	<head>
 		<meta charset="UTF-8" />
+		<title>Pokemon Vangen</title>
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/frames.css" />
-
+		<link rel="stylesheet" href="css\mysterybattler.css" />
 		<script src="js/main.js" defer></script>
+		<script src="js/pokemon.js" defer></script>
 
 		<!-- fa icons -->
 		<script
 			src="https://kit.fontawesome.com/91fd30522d.js"
 			crossorigin="anonymous"
 		></script>
-		<title>Pokemon Vangen</title>
 	</head>
 	<body>
 		<%- include("partials/header-aside") %>
-		<section id="buddy" class="framed">
-			<h1>My Buddy</h1>
-			<img src="assets/img/MAGNETON.png" alt="" />
-			<p>Magneton</p>
-		</section>
-		<main id="catcher">
-			<section class="bg-image">
-				<h2>A wild Seedot Appeared!</h2>
-				<img src="./assets/img/Catchspawn.png" alt="" />
-				<img src="./assets/img/TYPENULL.png" alt="" />
+		<audio autoplay loop>
+			<source src="./assets/audio/catchloop.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio>
+		<main id="battler" class="bg-image">
+			<!-- <section class="bg-image"> -->
+			<h2 class="battletext framed" id="announcement"></h2>
+
+			<!-- <section class="pokemon-container"> -->
+			<article class="pokemon" id="enemy-container">
 				<img
-					id="pokeballHolder"
-					src="./assets/img/BALL1IDLE.png"
-					alt=""
+					src="./assets/img/battleshadow.png"
+					alt="Catchspawn"
+					id="enemygrass"
+					class="hidden"
 				/>
-				<section class="catch-menu framed">
-					<h3>Wat wens je te doen?</h3>
-					<h4>Tip: sleep de pokeball over de pokemon.</h4>
-					<button>Pokeballs</button>
-					<button>Run</button>
+				<img src="" alt="" class="on-spawn" id="enemyfighter" />
+			</article>
+			<article class="pokemon" id="buddy-container">
+				<img
+					src="./assets/img/battleshadow.png"
+					alt="Catchspawn"
+					class="hidden"
+					id="buddygrass"
+				/>
+				<img
+					src="./assets/img/PLAYER1-1.png"
+					alt="Magneton"
+					class="on-spawn"
+					id="buddyfighter"
+				/>
+			</article>
+			<!-- </section> -->
+
+			<section id="buddy-info-container">
+				<section id="buddy-info" class="info-box">
+					<img
+						src="./assets/img/trainerboxbuddy.png"
+						alt="infobox1"
+						class="infobox"
+						id="infobuddy"
+					/>
+					<h2 class="infobox-text" id="buddyname">{USER}</h2>
 				</section>
 			</section>
+
+			<section id="enemy-info" class="info-box">
+				<img
+					src="./assets/img/hpboxenemy.png"
+					alt="infobox"
+					class="infobox"
+					id="infoenemy"
+				/>
+				<h2 class="infobox-text" id="enemyname"></h2>
+			</section>
+			<section class="battle-options buttons" id="options">
+				<button id="catch">
+					<img src="./assets/img/catch.png" alt="c" />
+				</button>
+				<button id="items">
+					<img src="./assets/img/bag.png" alt="b" />
+				</button>
+				<button id="run">
+					<img src="./assets/img/run.png" alt="r" />
+				</button>
+			</section>
+			<!-- </section> -->
 		</main>
 		<%- include("partials/footer") %>
 	</body>
