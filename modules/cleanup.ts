@@ -51,7 +51,7 @@ export default class CleanUp extends Logger {
 
 		await this._database.close();
 
-		this.log("Cleanup complete");
+		this.log("Cleanup complete\n");
 		this._removeListeners();
 		process.exit(this._exitCode);
 	}

@@ -1,7 +1,8 @@
 import express from "express";
 import ejs, { render } from "ejs";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import { Router } from "./modules/router";
+import Router from "./modules/router";
 import Database from "./modules/database";
 import CleanUp from "./modules/cleanup";
 
@@ -14,13 +15,17 @@ async function main() {
 	app.set("view engine", "ejs");
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
+	app.use(cookieParser("secret"));
 	app.set("port", process.env.PORT || 3000);
 	app.use(express.static("public"));
 
 	// If database is causing issues while testing, comment out the following line
 	const database = await dbInit();
 
-	const router = new Router(app, database);
+	// DEBUG: Disable login unless explicitly set to true (for testing)
+	const debugLoginRequired = process.env.LOGIN_REQUIRED === "true";
+
+	const router = new Router(app, database, debugLoginRequired);
 	router.setGetRoutes();
 	router.setPostRoutes();
 

@@ -1,37 +1,23 @@
 import type { Express } from "express";
 import type { LoginData } from "../@types/db";
+import { Color } from "./common";
 import Database from "./database";
-import { attemptLogin, attemptSignup, getUserByToken } from "./login";
 import Logger from "./logger";
-import { Color, TColor } from "./common";
+import { attemptLogin, attemptSignup, authSession } from "./login";
 
-const noAuth = ["/login", "/signup", "/favicon", "/404", "/"];
-
-export class Router extends Logger {
+export default class Router extends Logger {
 	private _db: Database;
 	private _app: Express;
 
-	constructor(app: Express, database: Database) {
+	constructor(app: Express, database: Database, debugLoginRequired = false) {
 		super("Router", Color.fg.magenta);
-
-		app.use(async (req, res, next) => {
-			const session = req.query.session as string | undefined;
-
-			if (noAuth.includes(req.url)) next();
-			else if (!session) res.redirect("/login");
-			else {
-				const user = await getUserByToken(session, this._db, req.ip);
-
-				if (!user) res.redirect("/login");
-				else {
-					res.locals.user = user;
-					next();
-				}
-			}
-		});
 
 		this._app = app;
 		this._db = database;
+
+		if (!debugLoginRequired) return;
+
+		app.use((req, res, next) => authSession(req, res, next, this._db));
 	}
 
 	setGetRoutes() {
@@ -86,14 +72,26 @@ export class Router extends Logger {
 		app.get("/signup", (req, res) => {
 			res.render("signup");
 		});
+
+		app.get("/error/:code", (req, res) => {
+			const code = req.params.code;
+
+			let message;
+			if (code === "404")
+				message = "De pagina die je zocht kon niet worden gevonden";
+			else message = req.query.message || "Er is een fout opgetreden";
+
+			res.render("error", { code, message });
+		});
 	}
 
 	setPostRoutes() {
 		const app = this._app;
 
 		app.post("/login", async (req, res) => {
-			let redirect = "/login";
-			console.log(req.body);
+			let redirect = "back";
+			this.log(`Login attempt: ${req.body.email}`);
+			this.log(`DEBUG_TEMP: Password: ${req.body.password}`);
 			const user = await attemptLogin(
 				{
 					...(req.body as LoginData),
@@ -102,22 +100,38 @@ export class Router extends Logger {
 				this._db
 			); // TODO: Handle login
 
-			if (user) redirect = "/home?session=" + user.session!.token;
+			if (user) {
+				redirect = "/home";
+
+				if (user.session) {
+					res.cookie("session", user.session.token, {
+						httpOnly: true,
+						sameSite: "strict",
+						secure: true,
+						signed: true,
+						expires: new Date(user.session.expiration),
+						path: "/",
+					});
+				}
+			}
+
+			this.log(`Login ${user ? "successful" : "failed"}\n`);
 
 			res.redirect(redirect);
 		});
 
-		app.post("/signup", (req, res) => {
+		app.post("/signup", async (req, res) => {
 			// TODO: Signup logic
-			attemptSignup(
+			const user = await attemptSignup(
 				{
 					...(req.body as LoginData),
 					ip: req.ip,
 				},
 				this._db
-			).then((user) => {});
+			);
 
-			res.redirect("/signup");
+			if (user) res.render("/home", { user: req.body.email });
+			else res.redirect("back");
 		});
 	}
 }

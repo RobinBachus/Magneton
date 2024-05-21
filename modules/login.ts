@@ -1,9 +1,11 @@
-import { query } from "express";
-import { DbUser, DbSession, LoginData } from "../@types/db";
+import type { DbUser, DbSession, LoginData } from "../@types/db";
+import type { Request, Response, NextFunction } from "express";
 import { toUniqueArray } from "./common";
 import Database from "./database";
 
 import bcrypt from "bcrypt";
+
+const noAuth = ["/login", "/signup", "/favicon", "/error", "/"];
 
 export async function attemptLogin(
 	loginData: LoginData,
@@ -59,8 +61,6 @@ export async function getUserByToken(
 	db: Database,
 	ip: string | null = null
 ): Promise<DbUser | null> {
-	console.log(token, ip);
-
 	if (!ip) return null;
 
 	const query = { "session.token": token };
@@ -75,12 +75,29 @@ export async function getUserByToken(
 	return user;
 }
 
+export async function authSession(
+	req: Request,
+	res: Response,
+	next: NextFunction,
+	db: Database
+) {
+	if (noAuth.includes(req.path)) return next();
+
+	const token = req.signedCookies.session as string | undefined;
+	if (!token) return res.redirect("/login");
+
+	const user = await getUserByToken(token, db, req.ip);
+	if (!user) return res.redirect("/login");
+
+	return next();
+}
+
 export function updateSession(
 	session: DbSession | null,
 	ip: string | null = null
 ): DbSession {
-	const token = bcrypt.hashSync(Math.random().toString(36).substring(2), 10); // unique token, 60 characters long
-	const expiration = Date.now() + 1000 * 60; // 4 weeks, temp 1 minute for testing
+	const token = bcrypt.hashSync(Math.random().toString(36).substring(2), 10);
+	const expiration = Date.now() + 1000 * 60 * 60 * 24 * 7; // 1 week
 	const known_ips = toUniqueArray(session?.known_ips || []);
 	if (ip && !known_ips.includes(ip)) known_ips.push(ip);
 
