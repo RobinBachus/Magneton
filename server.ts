@@ -5,10 +5,13 @@ import dotenv from "dotenv";
 import Router from "./modules/router";
 import Database from "./modules/database";
 import CleanUp from "./modules/cleanup";
+import { StatusCode, failed } from "./modules/common";
 
 dotenv.config();
 
-async function main() {
+let cleanup: CleanUp;
+
+async function main(): Promise<StatusCode> {
 	const app = express();
 
 	app.engine("ejs", ejs.renderFile);
@@ -20,44 +23,32 @@ async function main() {
 	app.use(express.static("public"));
 
 	// If database is causing issues while testing, comment out the following line
-	const database = await dbInit();
+	const { result, status } = await Database.create();
+
+	if (failed(status)) return status;
+
+	const database = result!;
 
 	// DEBUG: Disable login unless explicitly set to true (for testing)
-	const debugLoginRequired = process.env.LOGIN_REQUIRED === "true";
+	// const debugLoginRequired = process.env.LOGIN_REQUIRED === "true";
 
-	const router = new Router(app, database, debugLoginRequired);
+	const router = new Router(app, database, true);
 	router.setGetRoutes();
 	router.setPostRoutes();
 
 	// If database is causing issues while testing, comment out the following line
 	// This will close the database connection when the server is closed
-	new CleanUp(database);
+	cleanup = new CleanUp(database);
 
 	app.listen(app.get("port"), () => {
 		router.log(`Server running on http://localhost:${app.get("port")}`);
 	});
+
+	return StatusCode.success;
 }
 
-async function dbInit() {
-	const uri = process.env.DATABASE_URI;
-	const certs = process.env.DATABASE_CREDS;
-
-	if (!uri || !certs) {
-		console.error("Missing database credentials");
-		process.exit(1);
-	}
-
-	const database = new Database(uri, certs);
-
-	database.onReady(() => {
-		database.log("Database is ready");
-	});
-
-	await database.connect();
-
-	return database;
-}
-
-main();
+main().then((status) => {
+	if (cleanup) cleanup.exitCode = status;
+});
 
 export {};

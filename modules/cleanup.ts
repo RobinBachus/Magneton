@@ -22,6 +22,10 @@ export default class CleanUp extends Logger {
 		this._addListeners();
 	}
 
+	set exitCode(code: number) {
+		this._exitCode = code;
+	}
+
 	private _addListeners() {
 		events.forEach((eventType) => {
 			if (eventType === "uncaughtException") {
@@ -53,6 +57,8 @@ export default class CleanUp extends Logger {
 
 		this.log("Cleanup complete");
 		this._removeListeners();
+
+		Logger.log(`Program exited with status code: ${this._exitCode}`);
 		process.exit(this._exitCode);
 	}
 }
