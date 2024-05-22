@@ -5,7 +5,7 @@ import Database from "./database";
 
 import bcrypt from "bcrypt";
 
-const noAuth = ["/login", "/signup", "/favicon", "/404", "/"];
+const noAuth = ["/login", "/signup", "/favicon", "/error", "/"];
 
 export async function attemptLogin(
 	loginData: LoginData,

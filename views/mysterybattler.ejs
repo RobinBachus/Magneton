@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/frames.css" />
 		<link rel="stylesheet" href="css\mysterybattler.css" />
 		<script src="js/main.js" defer></script>
+		<script src="js/pokemon.js" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -26,7 +27,7 @@
 		</audio>
 		<main id="battler" class="bg-image">
 			<!-- <section class="bg-image"> -->
-			<h2 class="battletext framed">A Pokemon Suddenly appeared!</h2>
+			<h2 class="battletext framed" id="announcement"></h2>
 
 			<!-- <section class="pokemon-container"> -->
 			<article class="pokemon" id="enemy-container">
@@ -36,12 +37,7 @@
 					id="enemygrass"
 					class="hidden"
 				/>
-				<img
-					src="./assets/img/ETERNATUS.png"
-					alt="Enemy"
-					class="on-spawn"
-					id="enemyfighter"
-				/>
+				<img src="" alt="" class="on-spawn" id="enemyfighter" />
 			</article>
 			<article class="pokemon" id="buddy-container">
 				<img
@@ -78,7 +74,7 @@
 					class="infobox"
 					id="infoenemy"
 				/>
-				<h2 class="infobox-text" id="enemyname">ETERNATUS</h2>
+				<h2 class="infobox-text" id="enemyname"></h2>
 			</section>
 			<section class="battle-options buttons" id="options">
 				<button id="fight">

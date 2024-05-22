@@ -72,6 +72,17 @@ export default class Router extends Logger {
 		app.get("/signup", (req, res) => {
 			res.render("signup");
 		});
+
+		app.get("/error/:code", (req, res) => {
+			const code = req.params.code;
+
+			let message;
+			if (code === "404")
+				message = "De pagina die je zocht kon niet worden gevonden";
+			else message = req.query.message || "Er is een fout opgetreden";
+
+			res.render("error", { code, message });
+		});
 	}
 
 	setPostRoutes() {

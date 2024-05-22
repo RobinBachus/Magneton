@@ -55,7 +55,7 @@ export default class CleanUp extends Logger {
 
 		await this._database.close();
 
-		this.log("Cleanup complete");
+		this.log("Cleanup complete\n");
 		this._removeListeners();
 
 		Logger.log(`Program exited with status code: ${this._exitCode}`);
