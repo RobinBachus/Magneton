@@ -1,4 +1,21 @@
-import e from "express";
+export enum StatusCode {
+	success = 0,
+	dbMissingCredentials = 1000,
+	dbConnectionError = 1001,
+}
+
+export function success(status: StatusCode): boolean {
+	return status === StatusCode.success;
+}
+
+export function failed(status: StatusCode): boolean {
+	return status !== StatusCode.success;
+}
+
+export type TResult<T> = {
+	result: T | null;
+	status: StatusCode;
+};
 
 export enum Modifier {
 	none = "",
@@ -55,7 +72,13 @@ export function colorize(
 	return `${fg}${bg}${text}${Color.modifier.reset}`;
 }
 
-export function colorizeExtended(text: string, ...colors: TColor[]): string {
+/**
+ * An extended version of the colorize function that allows for multiple colors and modifiers to be applied to the text.
+ * @param text The text to colorize
+ * @param colors The colors and modifiers to apply to the text
+ * @returns The modified text
+ */
+export function colorizeExt(text: string, ...colors: TColor[]): string {
 	return colors.reduce((acc, color) => colorize(acc, color), text);
 }
 
