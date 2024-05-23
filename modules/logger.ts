@@ -31,7 +31,7 @@ export default abstract class Logger extends EventEmitter {
 	}
 
 	error(error: TError) {
-		Logger.error(this._process, error, this._color);
+		Logger.error(error, this._process, this._color);
 		this.emit("error", error);
 	}
 
@@ -42,17 +42,17 @@ export default abstract class Logger extends EventEmitter {
 	 * @param processColor The color to use for the process name (default: gray)
 	 */
 	static log(
-		message: string,
+		message: string | any,
 		process: string = "general",
 		processColor: TColor = Color.fg.gray
 	) {
 		const prefix = colorize(process, processColor);
-		console.log(`${prefix}: ${message}`);
+		console.log(`${prefix}:`, message);
 	}
 
 	static error(
-		process: string,
 		error: TError,
+		process: string = "general",
 		processColor: TColor = Color.fg.red
 	) {
 		const prefix = colorize(process, processColor);

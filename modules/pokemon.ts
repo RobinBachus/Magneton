@@ -1,4 +1,5 @@
 import { Pokemon } from "../@types/pokemon";
+import Logger from "./logger";
 
 const API_URL = "https://pokeapi.co/api/v2/pokemon/";
 const BACKUP_URL =
@@ -13,8 +14,6 @@ export async function getRandomPokemon(form: boolean = false) {
 	const min = form ? minMysteryId : 1;
 	const max = form ? maxMysteryId : maxPokeId;
 
-	let pokemon: Pokemon;
-
 	try {
 		const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
 		const url = `${API_URL}${randomId}`;
@@ -24,9 +23,13 @@ export async function getRandomPokemon(form: boolean = false) {
 
 		return jsonToPokemon(pokemonData, url);
 	} catch (error) {
-		// TODO: Add after push to main
-		console.error("Error fetching Pokemon data:", error);
+		Logger.error(
+			`Failed to get random Pokemon: ${error}`,
+			"getRandomPokemon"
+		);
 	}
+
+	return null;
 }
 
 function jsonToPokemon(json: any, url: string): Pokemon {
@@ -43,9 +46,10 @@ function jsonToPokemon(json: any, url: string): Pokemon {
 		},
 		shiny: Math.floor(Math.random() * shinyOdds) === 4,
 		url,
-		icon: "",
+		icon: "", // Is set in the return statement
 		sprite: "",
 		backSprite: "",
+		types: json.types.map((type: any) => type.type.name),
 	};
 
 	return setImages(pokemon, json);

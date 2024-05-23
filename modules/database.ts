@@ -42,8 +42,8 @@ export default class Database extends Logger {
 
 		if (!uri || !credentials) {
 			Logger.error(
-				"Database",
 				"Missing database credentials",
+				"Database",
 				Database._color
 			);
 

@@ -5,7 +5,9 @@ import dotenv from "dotenv";
 import Router from "./modules/router";
 import Database from "./modules/database";
 import CleanUp from "./modules/cleanup";
-import { StatusCode, failed, getRandomPokemon } from "./modules/common";
+import { StatusCode, failed } from "./modules/common";
+import { getRandomPokemon } from "./modules/pokemon";
+import Logger from "./modules/logger";
 
 dotenv.config();
 
@@ -40,7 +42,7 @@ async function main(): Promise<StatusCode> {
 	// This will close the database connection when the server is closed
 	cleanup = new CleanUp(database);
 
-	console.log(await getRandomPokemon());
+	Logger.log(await getRandomPokemon());
 
 	app.listen(app.get("port"), () => {
 		router.log(`Server running on http://localhost:${app.get("port")}`);
