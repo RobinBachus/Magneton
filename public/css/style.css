@@ -235,55 +235,6 @@ input[type="submit"] {
 	margin-right: 2rem;
 }
 
-#pokelist-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-}
-
-#pokemon-images {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 5px;
-	padding: 5px;
-	transition: margin-right 0.5s;
-}
-
-#pokemon-images article {
-	width: 15%;
-	display: flex;
-	justify-items: center;
-	align-items: center;
-}
-
-#pokemon-images img {
-	object-fit: contain;
-	padding-top: 7px;
-	border-radius: 15px;
-	transition: transform 0.8s ease;
-	grid-row: 1;
-	grid-column: 1;
-}
-
-#pokemon-images img:hover {
-	animation: upAndDown 0.5s ease infinite;
-}
-
-#pokedex-list {
-	display: grid;
-	justify-items: center;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 20px;
-}
-
-#pokedex-list article {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	align-items: center;
-}
-
 #mystery-zone {
 	position: relative;
 	grid-column-start: 2;
@@ -488,6 +439,19 @@ input:-webkit-autofill:active {
 #back {
 	text-decoration: underline;
 }
+#pokedex-list {
+	display: grid;
+	justify-items: center;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+}
+
+#pokedex-list article {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+}
 
 #catcher .bg-image {
 	grid-template-areas:
@@ -686,9 +650,22 @@ button {
 
 /*Blackening filter for who's that pokemon:  -webkit-filter: brightness(0);*/
 @media only screen and (max-width: 1080px) {
+	header {
+		max-width: 500px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: var(--color-header);
+	}
+
+	header a,
+	header img {
+		object-fit: contain;
+		max-width: fit-content;
+	}
 	#backgroundvideo {
-		width: 100vw;
-		height: 100vh;
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
 		position: fixed;
 		left: 0;

@@ -1,0 +1,34 @@
+#pokelist-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+#pokemon-images {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 5px;
+	padding: 5px;
+	transition: margin-right 0.5s;
+}
+
+#pokemon-images article {
+	width: 15%;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+#pokemon-images img {
+	object-fit: contain;
+	padding-top: 7px;
+	border-radius: 15px;
+	transition: transform 0.8s ease;
+	grid-row: 1;
+	grid-column: 1;
+}
+
+#pokemon-images img:hover {
+	animation: upAndDown 0.5s ease infinite;
+}
