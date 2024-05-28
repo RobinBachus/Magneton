@@ -52,6 +52,7 @@ footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #da1f1f;
 }
 
 aside {
