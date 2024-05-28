@@ -24,20 +24,30 @@
 			<img src="assets/img/magneton_icon.png" alt="buddy" />
 			<p>Magneton</p>
 		</section>
-		<main id="home">
-			<img src="./assets/img/MAGNETON.png" alt="Foto Magneton" />
-			<section>
-				<h1>Welkom bij Gotcha!</h1>
-				<p>
-					Welkom Trainer! Betreed de fantastische wereld van Pokémon,
-					waar avontuur en uitdaging om elke hoek wachten. Hier kan je
-					legendarische Pokémon vangen en je vaardigheden als Trainer
-					aanscherpen. Maar vergeet niet, elke Pokémon is uniek en je
-					reis zal gevuld zijn met verrassingen en spannende
-					ontmoetingen.Ben je klaar om je eigen verhaal te schrijven?
-				</p>
+		<main id="home" class="home-bg-image">
+			<section id="welcome-section">
+				<div class="welcome-frame framed">
+					<div class="welcome-text">
+						<h1>Welkom bij Gotcha!</h1>
+						<p>
+							Welkom Trainer! Betreed de fantastische wereld van
+							Pokémon, waar avontuur en uitdaging om elke hoek
+							wacht. Kies een spelmodus om te beginnen!
+						</p>
+					</div>
+				</div>
+				<div class="game-modes">
+					<a class="game-mode framed" href="pokedex">Pokémon</a>
+					<a class="game-mode framed" href="quiz"
+						>Who's that Pokémon?</a
+					>
+					<a class="game-mode framed" href="/comparator"
+						>Vergelijker</a
+					>
+				</div>
 			</section>
 		</main>
+
 		<%- include("partials/footer") %>
 	</body>
 </html>
