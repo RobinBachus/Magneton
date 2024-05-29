@@ -59,6 +59,10 @@ export default class Database extends Logger {
 			database.log("Database is ready");
 		});
 
+		database.onConnect(() => {
+			database.log("Database connection established");
+		});
+
 		try {
 			await database.connect();
 		} catch (error: any) {
@@ -120,8 +124,8 @@ export default class Database extends Logger {
 		return await _collection.updateOne(query, { $set: data });
 	}
 
-	async close() {
-		await this.client.close();
+	async close(force: boolean = false) {
+		await this.client.close(force);
 		this._setReady(false);
 		this.log("Database connection closed");
 	}
@@ -132,6 +136,10 @@ export default class Database extends Logger {
 
 	offReady(callback: () => void) {
 		this.off("ready", callback);
+	}
+
+	onConnect(callback: () => void) {
+		this.client.on("connectionReady", callback);
 	}
 
 	private _setReady(val: boolean = true) {

@@ -1,9 +1,18 @@
-#pokelist-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+#selectedPokemon {
+	background-color: rgb(46, 59, 59);
+	border-style: solid;
+	border-color: rgb(19, 24, 24);
+	border-radius: 5%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #pokemon-images {
+	background-color: rgb(46, 59, 59);
+	border-style: solid;
+	border-color: rgb(19, 24, 24);
+	border-radius: 5%;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -31,4 +40,75 @@
 
 #pokemon-images img:hover {
 	animation: upAndDown 0.5s ease infinite;
+}
+#selection {
+	background-image: url("../assets/img/grassbg.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 45vw;
+}
+
+#buddy-button {
+	margin-left: 80%;
+	background-color: black;
+	color: aliceblue;
+	border-radius: 60%;
+	position: relative;
+	top: 27vh;
+	font-size: x-large;
+}
+#buddy-button:active {
+	color: red;
+}
+#type1 {
+	width: 22.5vw;
+	margin-left: -22.5vw;
+}
+#type2 {
+	width: 22.5vw;
+	margin-left: 22.5vw;
+	margin-top: -9.8vh;
+}
+#battle-button {
+	background-color: rgb(254, 96, 84);
+	font-size: x-large;
+
+	border-radius: 6%;
+	position: relative;
+	top: 2vh;
+	width: 22.5vw;
+	height: 12vh;
+	margin-left: -22.5vw;
+}
+#catch-button {
+	background-color: rgb(88, 255, 255);
+	font-size: x-large;
+	border-radius: 6%;
+	width: 22.5vw;
+	height: 12vh;
+	margin-left: 23vw;
+	margin-top: -10vh;
+}
+#dateCaught {
+	margin-top: 1vh;
+}
+#releasebutton {
+	position: relative;
+	right: -19.5vw;
+	top: 7vh;
+}
+.pokecontainer {
+	max-height: 128px;
+}
+.pokemon {
+	filter: brightness(0%);
+}
+.stat-grid {
+	margin-right: 37vw;
+	margin-top: 4vh;
+	font-size: x-large;
+}
+h2 {
+	position: relative;
+	right: -1vw;
 }

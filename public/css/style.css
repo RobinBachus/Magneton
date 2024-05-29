@@ -40,7 +40,6 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-left: auto;
 	gap: 50px;
 }
 
@@ -139,6 +138,7 @@ input[type="submit"] {
 	color: #000;
 	border-radius: 10px;
 	border-width: 10px;
+	z-index: 1000;
 }
 
 #buddy > h1,
@@ -434,36 +434,6 @@ input[type="submit"] {
 	grid-template-columns: 1fr 1fr;
 }
 
-#pokemon-images {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 5px;
-	padding: 5px;
-	transition: margin-right 0.5s;
-}
-
-#pokemon-images article {
-	width: 15%;
-	display: flex;
-	justify-items: center;
-	align-items: center;
-}
-
-#pokemon-images img {
-	object-fit: contain;
-	padding-top: 7px;
-	border-radius: 15px;
-	transition: transform 0.8s ease;
-	grid-row: 1;
-	grid-column: 1;
-}
-
-#pokemon-images img:hover {
-	animation: upAndDown 0.5s ease infinite;
-}
-
 #pokedex-list {
 	display: grid;
 	justify-items: center;
@@ -663,6 +633,7 @@ input[type="submit"] {
 	font-size: small;
 }
 
+.login-form input[type="text"],
 .login-form input[type="email"],
 .login-form input[type="password"] {
 	margin-top: 0.5rem;
@@ -803,6 +774,7 @@ button {
 }
 #gameboy footer {
 	color: #7953ff;
+	background-color: transparent;
 	font-size: xx-large;
 	justify-content: start;
 	padding-left: 5rem;
@@ -819,7 +791,6 @@ button {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	align-items: center;
-	height: 100%;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -840,8 +811,17 @@ button {
 	border: none;
 }
 .landing img {
+	aspect-ratio: 1 / 1;
 	height: 125%;
-	width: 150%;
+	max-width: 150%;
+}
+.light {
+	margin-top: 15vh;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	background-color: rgb(234, 25, 25);
+	box-shadow: 0 0 20px rgb(33, 31, 31);
 }
 
 #cookie-banner {
