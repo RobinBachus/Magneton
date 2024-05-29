@@ -9,3 +9,8 @@
 	border-image: url("../assets/img/frame.png") 7 round;
 	border-width: 7px;
 }
+
+.selected:hover {
+	background: url("../assets/img/cursor.png") no-repeat center center;
+	background-size: contain;
+}
