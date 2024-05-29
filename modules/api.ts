@@ -85,5 +85,5 @@ function getFromBackup(
 	type: "icons" | "front" | "front_shiny" | "back" | "back_shiny",
 	id: number
 ) {
-	return `${BACKUP_URL}${id > 10000 ? "forms" : ""}/${type}/${id}.png`;
+	return `${BACKUP_URL}${id > 10000 ? "forms/" : ""}${type}/${id}.png`;
 }

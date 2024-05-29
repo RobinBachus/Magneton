@@ -17,27 +17,34 @@ export interface DbCollections {
 	users: Collection<DbUser> | null;
 }
 
-export interface DbUser extends BSON.Document {
-	username: string;
-	hashed_pass: string;
-	avatar: string | null;
-	buddy: CaughtPokemon | null;
-	caught: CaughtPokemon[];
-	session: DbSession | null;
+export interface DbUser extends BSON.Document, SecureUser {
 	_id?: ObjectId;
+	hashed_pass: string;
 }
 
+export interface SecureUser {
+	_id?: never | ObjectId;
+	hashed_pass?: never | string;
+	email: string;
+	username: string;
+	avatar: string;
+	buddy: CaughtPokemon | null;
+	caught: CaughtPokemon[];
+}
+
+/** This is the old session type that was used in the database. We are now using express-session
+ * @deprecated
+ */
 export interface DbSession {
 	token: string;
 	/** UTC timestamp */
 	creation: number;
 	/** UTC timestamp */
 	expiration: number;
-	known_ips: string[];
 }
 
 interface LoginData {
 	email: string;
 	password: string;
-	ip?: string;
+	avatar: string;
 }

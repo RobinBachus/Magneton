@@ -1,41 +1,44 @@
-import type { DbUser, DbSession, LoginData } from "../@types/db";
-import type { Request, Response, NextFunction } from "express";
-import { toUniqueArray } from "./common";
-import Database from "./database";
+import type { DbUser, LoginData, SecureUser } from "../@types/db";
+import IRouter from "../routes/router";
 
 import bcrypt from "bcrypt";
 
 const noAuth = ["/login", "/signup", "/favicon", "/error", "/"];
 
-export async function attemptLogin(
-	loginData: LoginData,
-	db: Database
-): Promise<DbUser | null> {
-	const { email, password, ip } = loginData;
+/**
+ * @throws Error if email or password is missing
+ * @throws Error if user is not found
+ * @throws Error if password is incorrect
+ */
+export async function attemptLogin(loginData: LoginData): Promise<SecureUser> {
+	const { email, password } = loginData;
 
-	const user = await db.collections.users?.findOne({ email });
-	if (!user) return null;
+	if (!email || !password)
+		throw new Error("Email en wachtwoord zijn verplicht");
 
-	if (!(await bcrypt.compare(password, user.hashed_pass))) return null;
+	const user = await IRouter.db.collections.users?.findOne({ email });
 
-	// Update the session
-	user.session = updateSession(user.session, ip);
+	if (!user || !(await bcrypt.compare(password, user.hashed_pass)))
+		throw new Error("Email of wachtwoord is onjuist");
 
-	db.update("users", { email }, user);
+	let sUser = user as SecureUser;
+	delete sUser.hashed_pass;
+	delete sUser._id;
 
-	return user;
+	return sUser;
 }
 
-export async function attemptSignup(
-	loginData: LoginData,
-	db: Database
-): Promise<DbUser | null> {
-	const { email, password, ip } = loginData;
+/**
+ * @throws Error if user already exists
+ * @throws Error if user could not be created
+ */
+export async function attemptSignup(loginData: LoginData): Promise<SecureUser> {
+	const { email, password } = loginData;
 
-	const user = await db.collections.users?.findOne({
+	const user = await IRouter.db.collections.users?.findOne({
 		email,
 	});
-	if (user) return null;
+	if (user) throw new Error("Gebruiker bestaat al");
 
 	// Hash the password
 	const hashed_pass = await bcrypt.hash(password, 10);
@@ -44,67 +47,20 @@ export async function attemptSignup(
 	const newUser: DbUser = {
 		email,
 		hashed_pass,
-		session: updateSession(null, ip),
-		username: "",
-		avatar: null,
+		username: email,
+		avatar: loginData.avatar,
 		buddy: null,
 		caught: [],
 	};
 
-	db.upsert("users", { email }, newUser);
+	const res = await IRouter.db.upsert("users", { email }, newUser);
 
-	return newUser;
-}
+	if (res?.upsertedCount !== 1)
+		throw new Error("Gebruiker kon niet worden aangemaakt");
 
-export async function getUserByToken(
-	token: string,
-	db: Database,
-	ip: string | null = null
-): Promise<DbUser | null> {
-	if (!ip) return null;
+	let sUser = newUser as SecureUser;
+	delete sUser.hashed_pass;
+	delete sUser._id;
 
-	const query = { "session.token": token };
-
-	const user = await db.collections.users?.findOne(query);
-	if (!user) return null;
-
-	const session = user.session!;
-	if (session.expiration < Date.now()) return null;
-	if (!session.known_ips.includes(ip)) return null;
-
-	return user;
-}
-
-export async function authSession(
-	req: Request,
-	res: Response,
-	next: NextFunction,
-	db: Database
-) {
-	if (noAuth.includes(req.path)) return next();
-
-	const token = req.signedCookies.session as string | undefined;
-	if (!token) return res.redirect("/login");
-
-	const user = await getUserByToken(token, db, req.ip);
-	if (!user) return res.redirect("/login");
-
-	return next();
-}
-
-export function updateSession(
-	session: DbSession | null,
-	ip: string | null = null
-): DbSession {
-	const token = bcrypt.hashSync(Math.random().toString(36).substring(2), 10);
-	const expiration = Date.now() + 1000 * 60 * 60 * 24 * 7; // 1 week
-	const known_ips = toUniqueArray(session?.known_ips || []);
-	if (ip && !known_ips.includes(ip)) known_ips.push(ip);
-
-	return {
-		token,
-		creation: Date.now(),
-		expiration,
-		known_ips,
-	};
+	return sUser;
 }

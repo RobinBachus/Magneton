@@ -3,7 +3,7 @@
 	--color-dark: #484848;
 	--color-light: #f5f5f5;
 	--color-header: #da1f1f;
-	--color-text-dark: #523ea3;
+	--color-text-dark: #332279;
 	--color-bg-light: #6668e0;
 	--color-fg-light: #484848;
 	--color-text: #ffffff;
@@ -24,6 +24,7 @@ body {
 	background-color: var(--color-bg);
 	color: var(--color-light);
 }
+
 header {
 	grid-area: header;
 	padding: 1rem;
@@ -68,6 +69,13 @@ button,
 input[type="submit"] {
 	cursor: pointer;
 }
+
+.pixelated {
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+}
+
 #landingLines {
 	padding: 10px 0;
 	border: 5px solid transparent;
@@ -207,6 +215,36 @@ input[type="submit"] {
 
 .menu-btn:active i {
 	transform: translate(0, 1px);
+}
+
+#user-form {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	background: var(--color-light);
+	padding: 5px;
+	border-radius: 10px;
+	border: 2px solid #000;
+}
+
+#user-form button {
+	color: var(--color-header);
+	background-color: transparent;
+	height: 2rem;
+	width: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border: 1px solid var(--color-header);
+	border-radius: 10px;
+
+	transition: background-color 0.2s, color 0.2s;
+}
+
+#user-form button:hover {
+	background-color: var(--color-header);
+	color: var(--color-light);
 }
 
 #usericon {
@@ -405,7 +443,7 @@ input[type="submit"] {
 	height: fit-content;
 
 	/* misc */
-	background-color: gold;
+	background-color: var(--color-light);
 	border-radius: 0.5rem;
 	padding: 1rem;
 }
@@ -418,9 +456,15 @@ input[type="submit"] {
 }
 
 .login-form h2,
+.login-form h3,
 .login-form i {
 	color: var(--color-text-dark);
 	margin-right: 0.5rem;
+}
+
+.login-form h3 {
+	margin-top: 0.5rem;
+	font-size: small;
 }
 
 .login-form input[type="email"],
@@ -445,6 +489,30 @@ input[type="submit"] {
 .login-form a {
 	max-width: 50%;
 	color: var(--color-text-dark);
+}
+
+#avatar-selection {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+#avatar-selection button {
+	font-size: xx-large;
+	border: 0;
+}
+
+#avatar-selection button:hover {
+	transform: scale(1.1);
+}
+
+#avatar-selection button:active {
+	transform: scale(0.9);
+}
+
+.avatar {
+	width: 100px;
+	height: 100px;
 }
 
 .highlight {
