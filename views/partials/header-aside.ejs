@@ -10,7 +10,14 @@
 	<!-- <button id="open-nav" class="menu-btn" onclick="openNav()">
 		<img src="./assets/img/icon_ball.png" alt="" />
 	</button> -->
-	<img id="usericon" src="./assets/img/placeholder.jpg" alt="avatar" />
+
+	<form action="/logout" method="post" id="user-form">
+		<img id="usericon" class="pixelated" src="<%= user.avatar ??
+		"./assets/img/placeholder.jpg" %>" alt="avatar" />
+		<button type="submit" name="sign out">
+			<i class="fa-solid fa-sign-out"></i>
+		</button>
+	</form>
 </header>
 
 <aside>

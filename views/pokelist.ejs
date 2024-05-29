@@ -19,18 +19,25 @@
 		></script>
 	</head>
 	<body>
-		<audio autoplay loop>
-			<source src="./assets/audio/pokedexloop.mp3" type="audio/mpeg" />
-			Your browser does not support the audio element.
-		</audio>
 		<%- include("partials/header-aside") %>
 		<section id="buddy" class="framed no-hd">
 			<h1>My Buddy</h1>
-			<img src="assets/img/magneton_icon.png" alt="buddy" />
+			<img
+				src="assets/img/magneton_icon.png"
+				alt="buddy"
+				class="pixelated"
+			/>
 			<p>Magneton</p>
 		</section>
 		<main>
 			<h1>Kanto</h1>
+			<audio autoplay controls loop>
+				<source
+					src="./assets/audio/pokedexloop.mp3"
+					type="audio/mpeg"
+				/>
+				Your browser does not support the audio element.
+			</audio>
 			<section id="pokelist-container">
 				<section>
 					<p>Gen IX</p>

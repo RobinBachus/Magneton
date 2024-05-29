@@ -8,7 +8,7 @@
 
 #comparator li {
 	display: grid;
-	grid-template-columns: 3rem 255px;
+	grid-template-columns: 3rem 1fr;
 	list-style: none;
 }
 
@@ -18,9 +18,8 @@
 	color: black;
 	border-style: solid;
 	border-color: gray;
-	width: 255px;
+	width: 100%;
 }
-
 .pokemon-display-card {
 	color: black;
 	background-color: #f8f3f8;
@@ -30,16 +29,69 @@
 
 .compare-img-container {
 	display: grid;
+	justify-content: center;
+	max-width: 70vw;
 }
 
 .comparing-pokeball-img {
 	grid-column: 1;
 	grid-row: 1;
 	height: 100%;
+	max-width: 70vw;
 }
 
 .compared-pokemon-img {
 	grid-column: 1;
 	grid-row: 1;
 	height: 100%;
+	max-width: 70vw;
+}
+.dropdown {
+	left: 26%;
+	background-color: #f9f9f9;
+	z-index: 1000;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	border: 1px solid #ccc;
+	border-top: none;
+	width: 100%;
+	max-height: 200px;
+	overflow-y: auto;
+	display: none;
+}
+.dropdown li {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.dropdown li:hover {
+	background-color: #ddd;
+}
+
+.search {
+	width: 54%;
+}
+@media only screen and (max-width: 1080px) {
+	.pokemon-display-card {
+		color: black;
+		background-color: #f8f3f8;
+		width: 90%;
+		padding: 1rem;
+	}
+
+	#comparator li {
+		display: grid;
+		grid-template-columns: 3rem auto;
+		list-style: none;
+	}
+
+	#comparator li > section {
+		display: flex;
+		flex-direction: row;
+		color: black;
+		border-style: solid;
+		border-color: gray;
+		width: 50%;
+	}
 }

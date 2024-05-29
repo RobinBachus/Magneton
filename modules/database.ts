@@ -38,7 +38,7 @@ export default class Database extends Logger {
 	 */
 	static async create(): Promise<TResult<Database>> {
 		const uri = process.env.DATABASE_URI;
-		const credentials = process.env.DATABASE_CREDS;
+		const credentials = process.env.DATABASE_CERT;
 
 		if (!uri || !credentials) {
 			Logger.error(

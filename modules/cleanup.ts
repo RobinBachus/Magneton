@@ -30,7 +30,7 @@ export default class CleanUp extends Logger {
 		events.forEach((eventType) => {
 			if (eventType === "uncaughtException") {
 				process.on(eventType, async (err) => {
-					this.error(err);
+					Logger.error(err, "Cleanup");
 					this._exitCode = 1;
 					await this._cleanUp(eventType);
 				});
