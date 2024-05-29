@@ -5,8 +5,6 @@
 	--color-header: #da1f1f;
 	--color-text-dark: #332279;
 	--color-bg-light: #6668e0;
-	--color-fg-light: #484848;
-	--color-text: #ffffff;
 	::-webkit-scrollbar {
 		display: none;
 	}
@@ -423,6 +421,46 @@ input[type="submit"] {
 
 #guess-options-container button:active {
 	transform: scale(0.99);
+}
+
+#error-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+#error-container > * {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: var(--color-text-dark);
+	background-color: var(--color-light);
+}
+
+#error-container > * > * {
+	margin: 0.5rem;
+}
+
+#error-container code {
+	background-color: #1f1f1f;
+	color: #eea230;
+	padding: 0.5rem;
+	border-radius: 0.3rem;
+}
+
+#error-container code::before {
+	content: "Error: '";
+}
+
+#error-container code::after {
+	content: "'";
+}
+
+#error-container a {
+	color: var(--color-text-dark);
+	background-color: var(--color-light);
 }
 
 .login-container {

@@ -2,7 +2,6 @@ import express from "express";
 import ejs, { render } from "ejs";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import MiscRouter from "./routes/miscRouter";
 import Database from "./modules/database";
 import CleanUp from "./modules/cleanup";
 import { StatusCode, failed } from "./modules/common";
@@ -10,6 +9,7 @@ import Logger from "./modules/logger";
 import session from "./middleware/session";
 import LoginRouter from "./routes/loginRouter";
 import SecureRouter from "./routes/secureRouter";
+import MiscRouter from "./routes/miscRouter";
 import IRouter from "./routes/router";
 
 dotenv.config();

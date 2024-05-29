@@ -23,7 +23,6 @@ export default class LoginRouter extends IRouter {
 	setPostRoutes(): void {
 		this.router.post("/login", async (req, res) => {
 			this.log(`Login attempt: ${req.body.email}`);
-			this.log(`DEBUG_TEMP: Password: ${req.body.password}`);
 
 			try {
 				const user = await attemptLogin(req.body as LoginData);
@@ -36,7 +35,6 @@ export default class LoginRouter extends IRouter {
 
 		this.router.post("/signup", async (req, res) => {
 			this.log(`Signup attempt: ${req.body.email}`);
-			this.log(`DEBUG_TEMP: Password: ${req.body.password}`);
 
 			try {
 				const user = await attemptSignup(req.body as LoginData);
