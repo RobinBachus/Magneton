@@ -3,10 +3,8 @@
 	--color-dark: #484848;
 	--color-light: #f5f5f5;
 	--color-header: #da1f1f;
-	--color-text-dark: #523ea3;
+	--color-text-dark: #332279;
 	--color-bg-light: #6668e0;
-	--color-fg-light: #484848;
-	--color-text: #ffffff;
 	::-webkit-scrollbar {
 		display: none;
 	}
@@ -24,6 +22,7 @@ body {
 	background-color: var(--color-bg);
 	color: var(--color-light);
 }
+
 header {
 	grid-area: header;
 	padding: 1rem;
@@ -31,6 +30,37 @@ header {
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--color-header);
+}
+
+#logo {
+	max-width: fit-content;
+}
+
+.menu-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: auto;
+	gap: 50px;
+}
+
+.menu-btn {
+	padding: 20px;
+	background-color: var(--color-dark);
+	color: white;
+	border: 2px solid #333;
+	font-size: 14px;
+	font-family: Arial, sans-serif;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-btn:hover {
+	background-color: #555;
+	animation: upAndDown 0.5s ease infinite;
+}
+
+#usericon {
+	margin-left: auto;
 }
 
 header a,
@@ -52,6 +82,7 @@ footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #da1f1f;
 }
 
 aside {
@@ -68,6 +99,13 @@ button,
 input[type="submit"] {
 	cursor: pointer;
 }
+
+.pixelated {
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+}
+
 #landingLines {
 	padding: 10px 0;
 	border: 5px solid transparent;
@@ -209,6 +247,36 @@ input[type="submit"] {
 	transform: translate(0, 1px);
 }
 
+#user-form {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	background: var(--color-light);
+	padding: 5px;
+	border-radius: 10px;
+	border: 2px solid #000;
+}
+
+#user-form button {
+	color: var(--color-header);
+	background-color: transparent;
+	height: 2rem;
+	width: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border: 1px solid var(--color-header);
+	border-radius: 10px;
+
+	transition: background-color 0.2s, color 0.2s;
+}
+
+#user-form button:hover {
+	background-color: var(--color-header);
+	color: var(--color-light);
+}
+
 #usericon {
 	border-radius: 50%;
 }
@@ -217,22 +285,197 @@ input[type="submit"] {
 	background-color: var(--color-dark);
 	color: var(--color-light);
 }
+/* Home page */
+.welcome-frame {
+	background-color: var(--color-light);
+	color: #062eb2;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 1rem;
+	transition: 0.5s;
+	border-width: 21px;
+	border-style: solid;
+	box-shadow: 0 0 5px 5px #1f1e1e;
+}
+
+.welcome-text h1,
+.welcome-text p {
+	color: #000;
+}
+
+.welcome-text h1 {
+	font-size: 1.5em;
+}
+
+.welcome-text p {
+	font-size: 1em;
+	margin-top: 1rem;
+}
+
+#welcome-section {
+	margin-top: 1rem;
+	margin-left: 50px;
+}
 
 #home {
 	display: flex;
 	flex-wrap: wrap;
-	width: fit-content;
-	height: fit-content;
+	height: 100vh;
 	justify-content: center;
+	margin-top: 0rem;
 }
 
 #home img {
-	object-fit: contain;
+	object-fit: cover;
+}
+
+#home section {
+	max-width: 800px;
+	margin-right: 2rem;
+	text-align: center;
+	align-self: flex-start;
+}
+
+#home h1 {
+	max-width: 800px;
+	margin-right: 2rem;
+	text-align: center;
 }
 
 #home p {
 	max-width: 800px;
 	margin-right: 2rem;
+	text-align: center;
+}
+
+.home-bg-image {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	align-items: center;
+	background-image: url("../assets/img/frank-gallaxx-pokemon-4.jpg");
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
+}
+
+/* de 3 centrale buttons van home page met spelmodi in */
+.game-modes {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+}
+
+.game-mode {
+	width: 500px;
+	height: 400px;
+	margin-right: 30px;
+	background-color: #1215b6;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	position: relative;
+	padding: 10px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.game-mode::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	font-size: 1em;
+	text-align: center;
+	opacity: 0;
+	transition: opacity 0.3s;
+	width: 90%;
+}
+
+.game-mode:hover::after {
+	opacity: 1;
+}
+
+.game-mode:nth-child(1):hover::after {
+	content: "Ontdek de Pokédex. Vang en vecht met honderden Pokémon!";
+}
+
+.game-mode:nth-child(2):hover::after {
+	content: "Raad de Pokémon in deze uitdagende quiz!";
+}
+
+.game-mode:nth-child(3):hover::after {
+	content: "Vergelijk Pokémon! Wie is de sterkste?";
+}
+
+.game-mode:hover {
+	color: transparent;
+}
+
+.game-mode:last-child {
+	margin-right: 0;
+}
+
+/* pokedex lijst */
+
+#pokelist-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+#pokemon-images {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 5px;
+	padding: 5px;
+	transition: margin-right 0.5s;
+}
+
+#pokemon-images article {
+	width: 15%;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+#pokemon-images img {
+	object-fit: contain;
+	padding-top: 7px;
+	border-radius: 15px;
+	transition: transform 0.8s ease;
+	grid-row: 1;
+	grid-column: 1;
+}
+
+#pokemon-images img:hover {
+	animation: upAndDown 0.5s ease infinite;
+}
+
+#pokedex-list {
+	display: grid;
+	justify-items: center;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+}
+
+#pokedex-list article {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
 }
 
 #mystery-zone {
@@ -338,6 +581,46 @@ input[type="submit"] {
 	transform: scale(0.99);
 }
 
+#error-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+#error-container > * {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: var(--color-text-dark);
+	background-color: var(--color-light);
+}
+
+#error-container > * > * {
+	margin: 0.5rem;
+}
+
+#error-container code {
+	background-color: #1f1f1f;
+	color: #eea230;
+	padding: 0.5rem;
+	border-radius: 0.3rem;
+}
+
+#error-container code::before {
+	content: "Error: '";
+}
+
+#error-container code::after {
+	content: "'";
+}
+
+#error-container a {
+	color: var(--color-text-dark);
+	background-color: var(--color-light);
+}
+
 .login-container {
 	display: flex;
 	justify-content: center;
@@ -356,7 +639,7 @@ input[type="submit"] {
 	height: fit-content;
 
 	/* misc */
-	background-color: gold;
+	background-color: var(--color-light);
 	border-radius: 0.5rem;
 	padding: 1rem;
 }
@@ -369,9 +652,15 @@ input[type="submit"] {
 }
 
 .login-form h2,
+.login-form h3,
 .login-form i {
 	color: var(--color-text-dark);
 	margin-right: 0.5rem;
+}
+
+.login-form h3 {
+	margin-top: 0.5rem;
+	font-size: small;
 }
 
 .login-form input[type="email"],
@@ -396,6 +685,30 @@ input[type="submit"] {
 .login-form a {
 	max-width: 50%;
 	color: var(--color-text-dark);
+}
+
+#avatar-selection {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+#avatar-selection button {
+	font-size: xx-large;
+	border: 0;
+}
+
+#avatar-selection button:hover {
+	transform: scale(1.1);
+}
+
+#avatar-selection button:active {
+	transform: scale(0.9);
+}
+
+.avatar {
+	width: 100px;
+	height: 100px;
 }
 
 .highlight {

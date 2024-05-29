@@ -6,27 +6,29 @@ const BACKUP_URL =
 	"https://raw.githubusercontent.com/DennisMortelmans/pokesprites/main/";
 
 const maxPokeId = 1025;
-const minMysteryId = 10001;
-const maxMysteryId = 10277;
+const minForm = 10001;
+const maxForm = 10277;
 const shinyOdds = 20;
 
 export async function getRandomPokemon(form: boolean = false) {
-	const min = form ? minMysteryId : 1;
-	const max = form ? maxMysteryId : maxPokeId;
+	const min = form ? minForm : 1;
+	const max = form ? maxForm : maxPokeId;
 
+	const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
+
+	return getPokemon(randomId);
+}
+
+export async function getPokemon(id: number | string) {
 	try {
-		const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
-		const url = `${API_URL}${randomId}`;
+		const url = `${API_URL}${id}`;
 
 		const response = await fetch(url);
 		const pokemonData = await response.json();
 
 		return jsonToPokemon(pokemonData, url);
 	} catch (error) {
-		Logger.error(
-			`Failed to get random Pokemon: ${error}`,
-			"getRandomPokemon"
-		);
+		Logger.error(`Failed to get Pokemon by ID: ${error}`, "getPokemonById");
 	}
 
 	return null;
@@ -83,5 +85,5 @@ function getFromBackup(
 	type: "icons" | "front" | "front_shiny" | "back" | "back_shiny",
 	id: number
 ) {
-	return `${BACKUP_URL}${id > 10000 ? "forms" : ""}/${type}/${id}.png`;
+	return `${BACKUP_URL}${id > 10000 ? "forms/" : ""}${type}/${id}.png`;
 }

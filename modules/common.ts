@@ -4,12 +4,18 @@ export enum StatusCode {
 	dbConnectionError = 1001,
 }
 
-export function success(status: StatusCode): boolean {
-	return status === StatusCode.success;
+export function success(status: StatusCode): boolean;
+export function success<T>(status: TResult<T>): boolean;
+export function success<T>(status: StatusCode | TResult<T>): boolean {
+	if (typeof status === "number") return status === StatusCode.success;
+	return status.status === StatusCode.success;
 }
 
-export function failed(status: StatusCode): boolean {
-	return status !== StatusCode.success;
+export function failed(status: StatusCode): boolean;
+export function failed<T>(status: TResult<T>): boolean;
+export function failed<T>(status: StatusCode | TResult<T>): boolean {
+	if (typeof status === "number") return status !== StatusCode.success;
+	return status.status !== StatusCode.success;
 }
 
 export type TResult<T> = {
