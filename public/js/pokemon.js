@@ -1,133 +1,121 @@
 const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
 const maxPokeId = 1025;
-const minMysteryId = 10001;
-const maxMysteryId = 10277;
-const shinyOdds = 20;
+let pokemons = [];
 
-main();
+document.addEventListener("DOMContentLoaded", () => {
+	const findme = document.getElementById("findme");
+	const dropdown1 = document.getElementById("dropdown1");
+	const findme2 = document.getElementById("findme2");
+	const dropdown2 = document.getElementById("dropdown2");
 
-async function main() {
-	const pokemons = [];
+	findme.addEventListener("input", (e) => handleInput(e, dropdown1, 1));
+	findme2.addEventListener("input", (e) => handleInput(e, dropdown2, 2));
 
-	// Get first random Pokemon and roll for shiny status
-	const pokemon1 = await getRandomPokemon();
-	pokemon1.shinyCheck = await shinyRoller();
+	dropdown1.addEventListener("click", (e) => handleDropdownClick(e, 1));
+	dropdown2.addEventListener("click", (e) => handleDropdownClick(e, 2));
 
-	// Get second random Pokemon and roll for shiny status
-	const pokemon2 = await getRandomPokemon();
-	pokemon2.shinyCheck = await shinyRoller();
-
-	// Get random pokemon and roll for shiny status
-	const pokemonForm = await getRandomPokemon(minMysteryId, maxMysteryId);
-	pokemonForm.shinyCheck = await shinyRoller();
-
-	// Push the Pokemon objects into the array
-	pokemons.push(pokemon1);
-	pokemons.push(pokemon2);
-
-	// Loop through each Pokemon in the array
-	for (let index = 1; index <= pokemons.length; index++) {
-		// Ensure 'pokemon' is defined and accessible
-		const pokemon = pokemons[index - 1];
-		const mysteryPokemon = pokemonForm;
-
-		// Get the nameElement using document.getElementById
-		const nameElement = document.getElementById(
-			`pokemonNamePlayer${index}`
+	async function handleInput(e, dropdown, player) {
+		const searchString = e.target.value.trim().toLowerCase();
+		if (searchString.length === 0) {
+			dropdown.innerHTML = "";
+			dropdown.style.display = "none"; // Hide dropdown if no search string
+			return;
+		}
+		const response = await fetch(
+			`https://pokeapi.co/api/v2/pokemon/?limit=1025`
 		);
-		if (nameElement) {
-			nameElement.innerText = pokemon.name;
-		} else {
-			console.error(`Element pokemonNamePlayer${index} not found.`);
-		}
-		const mysteryNameElement = document.getElementById(`enemyname`);
-		if (mysteryNameElement) {
-			mysteryNameElement.innerText = mysteryPokemon.name;
-		}
+		const data = await response.json();
+		const matchingPokemons = data.results
+			.filter((pokemon) => pokemon.name.includes(searchString))
+			.slice(0, 3);
+		dropdown.innerHTML = matchingPokemons
+			.map((pokemon) => `<li>${pokemon.name}</li>`)
+			.join("");
+		dropdown.style.display = matchingPokemons.length ? "block" : "none"; // Show dropdown if there are suggestions, otherwise hide
+	}
 
-		// Get the image element using document.getElementById
-		const announcementName = document.getElementById("announcement");
-		if (announcementName) {
-			announcementName.innerText = `A wild ${mysteryPokemon.name} Appeared!`;
+	async function handleDropdownClick(e, player) {
+		const selectedPokemon = e.target.textContent;
+		const response = await fetch(
+			`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`
+		);
+		const data = await response.json();
+		pokemons[player - 1] = data; // Store the selected Pokémon data
+		displayPokemon(data, player);
+		if (pokemons.length === 2 && pokemons[0] && pokemons[1]) {
+			compareAndStyleStats();
 		}
-		const image = document.getElementById(`activePlayer${index}`);
-		if (image) {
-			// Check if pokemon is shiny and set the image source accordingly
-			if (pokemon.shinyCheck) {
-				image.src =
-					pokemon.sprites.other["official-artwork"].front_shiny;
-			} else {
-				image.src =
-					pokemon.sprites.other["official-artwork"].front_default;
-			}
-		} else {
-			console.error(`Element activePlayer${index} not found.`);
-		}
-		const mysteryImage = document.getElementById(`enemyfighter`);
-		if (mysteryImage) {
-			// Check if pokemon is shiny and set the image source accordingly
-			if (mysteryPokemon.shinyCheck) {
-				mysteryImage.src = mysteryPokemon["sprites"]["front_shiny"];
-				mysteryNameElement.innerText = `${mysteryPokemon.name} ✨`;
-			} else {
-				mysteryImage.src = mysteryPokemon["sprites"]["front_default"];
-			}
-		} else {
-			console.error(`Element activePlayer${index} not found.`);
-		}
+		const dropdown = player === 1 ? dropdown1 : dropdown2;
+		dropdown.style.display = "none"; // Hide dropdown after selection
+	}
 
-		// Log Pokemon details
-		console.log(pokemon.name, pokemon.id);
+	function displayPokemon(pokemonData, player) {
+		const playerName = document.getElementById(
+			`pokemonNamePlayer${player}`
+		);
+		const activePokemon = document.getElementById(`activePlayer${player}`);
+		const pokemonStats = document.getElementById(`pokemon${player}`);
 
-		let statArray = [];
+		playerName.textContent = pokemonData.name;
+		activePokemon.src =
+			pokemonData.sprites.other["official-artwork"].front_default;
 
-		// Loop through each stat of the Pokemon
-		for (let i = 0; i < pokemon.stats.length; i++) {
-			statArray = [
-				`healthPlayer${index}`,
-				`attackPlayer${index}`,
-				`defensePlayer${index}`,
-				`special-attackPlayer${index}`,
-				`special-defensePlayer${index}`,
-				`speedPlayer${index}`,
-			];
-		}
+		const statsHTML = `
+            <li id="hp${player}" class="health-container">
+                <abbr title="Health Points">HP</abbr>
+                <section style="background-color: transparent;">${pokemonData.stats[0].base_stat}</section>
+            </li>
+            <li id="attack${player}" class="attack-container">
+                <abbr title="Attack">ATK</abbr>
+                <section style="background-color: transparent;">${pokemonData.stats[1].base_stat}</section>
+            </li>
+            <li id="defense${player}" class="defense-container">
+                <abbr title="Defense">DEF</abbr>
+                <section style="background-color: transparent;">${pokemonData.stats[2].base_stat}</section>
+            </li>
+            <li id="special-attack${player}" class="special-attack-container">
+                <abbr title="Special Attack">SPA</abbr>
+                <section style="background-color: transparent;">${pokemonData.stats[3].base_stat}</section>
+            </li>
+            <li id="special-defense${player}" class="special-defense-container">
+                <abbr title="Special Defense">SPD</abbr>
+                <section style="background-color: transparent;">${pokemonData.stats[4].base_stat}</section>
+            </li>
+            <li id="speed${player}" class="speed-container">
+                <abbr title="Speed">SPE</abbr>
+                <section style="background-color: transparent;">${pokemonData.stats[5].base_stat}</section>
+            </li>
+        `;
+		pokemonStats.innerHTML = statsHTML;
+	}
 
+	function compareAndStyleStats() {
 		for (let i = 0; i < pokemons[0].stats.length; i++) {
-			const stat = pokemons[index - 1].stats[i];
-			// [+!(index - 1)] is a fancy way of getting the other index
-			const otherStat = pokemons[+!(index - 1)].stats[i].base_stat;
+			const stat1 = pokemons[0].stats[i].base_stat;
+			const stat2 = pokemons[1].stats[i].base_stat;
 
-			const statElement = document.getElementById(statArray[i]);
-			statElement.style.width = stat.base_stat + "px";
-			statElement.innerText = stat.base_stat;
+			const statElement1 = document
+				.getElementById(`${pokemons[0].stats[i].stat.name}1`)
+				.querySelector("section");
+			const statElement2 = document
+				.getElementById(`${pokemons[1].stats[i].stat.name}2`)
+				.querySelector("section");
 
-			let bg;
+			let bg, bg2;
 
-			if (stat.base_stat < otherStat) bg = "red";
-			else if (stat.base_stat === otherStat) bg = "yellow";
+			if (stat1 < stat2) bg = "red";
+			else if (stat1 === stat2) bg = "yellow";
 			else bg = "green";
+			if (stat1 > stat2) bg2 = "red";
+			else if (stat1 === stat2) bg2 = "yellow";
+			else bg2 = "green";
+			console.log(stat2);
 
-			statElement.style.backgroundColor = bg;
-			statElement.style.color = "white";
+			statElement1.style.width = stat1 / 2.55 + "%";
+			statElement1.style.backgroundColor = bg;
+
+			statElement2.style.width = stat2 / 2.55 + "%";
+			statElement2.style.backgroundColor = bg2;
 		}
 	}
-}
-
-async function shinyRoller() {
-	return Math.floor(Math.random() * shinyOdds) + 1 === 4;
-}
-
-async function getRandomPokemon(min = 0, max = maxPokeId) {
-	try {
-		const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
-		const url = urlAPI + randomId;
-		const response = await fetch(url);
-		const pokemon = await response.json();
-		return pokemon;
-	} catch (error) {
-		console.error("Error fetching Pokemon data:", error);
-	}
-}
-
-/*Battler */
+});

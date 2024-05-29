@@ -25,11 +25,15 @@
 		<main id="comparator">
 			<section class="pokemon-display-card framed">
 				<h2 id="pokemonNamePlayer1"></h2>
-				<form action="">
-					<input type="search" name="findpoke1" id="findme" />
-					<select name="" id="">
-						<option value=""></option>
-					</select>
+				<form class="search" action="">
+					Zoek een pokemon:
+					<input
+						type="search"
+						name="findpoke1"
+						id="findme"
+						autocomplete="off"
+					/>
+					<ul id="dropdown1" class="dropdown"></ul>
 				</form>
 				<section class="compare-img-container">
 					<img
@@ -45,75 +49,20 @@
 						alt=""
 					/>
 				</section>
-				<ul id="pokemon1">
-					<li class="health-container">
-						<abbr title="Health">HP</abbr>
-						<section>
-							<section id="healthPlayer1" class="health">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="attack-container">
-						<abbr title="Attack">ATK</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section id="attackPlayer1" class="attack">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="defense-container">
-						<abbr title="Defense">DEF</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section id="defensePlayer1" class="defense">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="special-attack-container">
-						<abbr title="Special Attack">SPA</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section
-								id="special-attackPlayer1"
-								class="special-attack"
-							>
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="special-defense-container">
-						<abbr title="Special Defense">SPD</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section
-								id="special-defensePlayer1"
-								class="special-defense"
-							>
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="speed-container">
-						<abbr title="Speed">SPE</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section id="speedPlayer1" class="speed">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-				</ul>
+				<ul id="pokemon1" class="pokemon-stats"></ul>
 			</section>
+
 			<section class="pokemon-display-card framed">
 				<h2 id="pokemonNamePlayer2"></h2>
-				<form action="">
-					<input type="search" name="findpoke2" id="findme" />
-					<select name="" id="">
-						<option value=""></option>
-					</select>
+				<form class="search" action="">
+					Zoek een pokemon:
+					<input
+						type="search"
+						name="findpoke2"
+						id="findme2"
+						autocomplete="off"
+					/>
+					<ul id="dropdown2" class="dropdown"></ul>
 				</form>
 				<section class="compare-img-container">
 					<img
@@ -129,68 +78,9 @@
 						alt=""
 					/>
 				</section>
-				<ul id="pokemon2">
-					<li class="health-container">
-						<abbr title="Health">HP</abbr>
-						<section>
-							<section id="healthPlayer2" class="health">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="attack-container">
-						<abbr title="Attack">ATK</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section id="attackPlayer2" class="attack">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="defense-container">
-						<abbr title="Defense">DEF</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section id="defensePlayer2" class="defense">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="special-attack-container">
-						<abbr title="Special Attack">SPA</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section
-								id="special-attackPlayer2"
-								class="special-attack"
-							>
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="special-defense-container">
-						<abbr title="Special Defense">SPD</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section
-								id="special-defensePlayer2"
-								class="special-defense"
-							>
-								&nbsp;
-							</section>
-						</section>
-					</li>
-					<li class="speed-container">
-						<abbr title="Speed">SPE</abbr>
-						<!--ipv empty space komen via js hier de stats in het zwart-->
-						<section>
-							<section id="speedPlayer2" class="speed">
-								&nbsp;
-							</section>
-						</section>
-					</li>
-				</ul>
+				<ul id="pokemon2" class="pokemon-stats"></ul>
 			</section>
+
 			<video autoplay muted loop id="backgroundvideo">
 				<source
 					src="./assets/img/comperatorbackground.mp4"
