@@ -33,6 +33,36 @@ header {
 	background-color: var(--color-header);
 }
 
+#logo {
+	max-width: fit-content;
+}
+
+.menu-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: auto;
+	gap: 50px;
+}
+
+.menu-btn {
+	padding: 20px;
+	background-color: transparent;
+	color: white;
+	border: 2px solid #333;
+	font-size: 14px;
+	font-family: Arial, sans-serif;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-btn:hover {
+	background-color: #555;
+}
+
+#usericon {
+	margin-left: auto;
+}
+
 header a,
 header img {
 	object-fit: contain;
