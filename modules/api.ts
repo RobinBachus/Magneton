@@ -32,6 +32,8 @@ interface GenIdLimits {
 
 export const apiLogger = new Logger("API", Color.fg.crimson);
 
+export type genID = keyof GenIdLimits;
+
 export const genIdLimits: GenIdLimits = {
 	gen1: { start: 1, end: 151 },
 	gen2: { start: 152, end: 251 },
@@ -81,7 +83,7 @@ export async function getPokemonRange(start: number, end: number) {
 	return pokemonList;
 }
 
-export async function getPokemonByGen(gen: keyof GenIdLimits) {
+export async function getPokemonByGen(gen: genID) {
 	const { start, end } = genIdLimits[gen];
 	return getPokemonRange(start, end);
 }
