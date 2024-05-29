@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="css/frames.css" />
 
 		<script src="js/main.js" defer></script>
+		<script src="js/signup.js" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -18,10 +19,8 @@
 		></script>
 
 		<script type="module" src="js/login.js" defer></script>
-		<link rel="stylesheet" href="css/temp_login.css" />
 	</head>
 	<body>
-		<%- include("partials/header-aside") %>
 		<main class="login-container">
 			<form
 				class="login-form action-signup framed"
@@ -29,6 +28,31 @@
 				method="post"
 			>
 				<h2>Welkom bij Gotcha!</h2>
+
+				<h3>Selecteer een avatar:</h3>
+				<section id="avatar-selection">
+					<button type="button" id="prev" value="prev">
+						&ltcir;
+					</button>
+					<img
+						src="/assets/img/pfp1.png"
+						height="100"
+						width="100"
+						alt="avatar"
+						id="avatar"
+						class="avatar pixelated"
+					/>
+					<input
+						type="hidden"
+						name="avatar"
+						id="avatar-url"
+						value="/assets/img/pfp1.png"
+					/>
+					<button type="button" id="next" value="next">
+						&gtcir;
+					</button>
+				</section>
+
 				<label
 					><i class="fa-solid fa-envelope"></i>
 					<input
@@ -63,9 +87,10 @@
 						required
 					/>
 				</label>
+
 				<section class="login-submit-container">
 					<input type="submit" value="Sign up" />
-					<a href="login" id="login-link">Login</a>
+					<a href="login" id="login-link"> Al een account? </a>
 				</section>
 			</form>
 		</main>

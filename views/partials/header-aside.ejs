@@ -5,7 +5,13 @@
 	<a href="/home">
 		<img id="logo" src="./assets/img/LogoLightModeNewer.png" alt="Logo" />
 	</a>
-	<img id="usericon" src="./assets/img/placeholder.jpg" alt="avatar" />
+	<form action="/logout" method="post" id="user-form">
+		<img id="usericon" class="pixelated" src="<%= user.avatar ??
+		"./assets/img/placeholder.jpg" %>" alt="avatar" />
+		<button type="submit" name="sign out">
+			<i class="fa-solid fa-sign-out"></i>
+		</button>
+	</form>
 </header>
 <aside>
 	<section id="side-nav" class="sidenav closed framed">
