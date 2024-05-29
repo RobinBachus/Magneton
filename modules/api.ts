@@ -1,5 +1,8 @@
 import { Pokemon } from "../@types/pokemon";
+import { Color } from "./common";
 import Logger from "./logger";
+
+import { PokemonClient } from "pokenode-ts";
 
 const API_URL = "https://pokeapi.co/api/v2/pokemon/";
 const BACKUP_URL =
@@ -9,6 +12,39 @@ const maxPokeId = 1025;
 const minForm = 10001;
 const maxForm = 10277;
 const shinyOdds = 20;
+
+interface GenIdLimit {
+	start: number;
+	end: number;
+}
+
+interface GenIdLimits {
+	gen1: GenIdLimit;
+	gen2: GenIdLimit;
+	gen3: GenIdLimit;
+	gen4: GenIdLimit;
+	gen5: GenIdLimit;
+	gen6: GenIdLimit;
+	gen7: GenIdLimit;
+	gen8: GenIdLimit;
+	gen9: GenIdLimit;
+}
+
+export const apiLogger = new Logger("API", Color.fg.crimson);
+
+export const genIdLimits: GenIdLimits = {
+	gen1: { start: 1, end: 151 },
+	gen2: { start: 152, end: 251 },
+	gen3: { start: 252, end: 386 },
+	gen4: { start: 387, end: 493 },
+	gen5: { start: 494, end: 649 },
+	gen6: { start: 650, end: 721 },
+	gen7: { start: 722, end: 809 },
+	gen8: { start: 810, end: 905 },
+	gen9: { start: 906, end: 1025 },
+};
+
+const client = new PokemonClient();
 
 export async function getRandomPokemon(form: boolean = false) {
 	const min = form ? minForm : 1;
@@ -32,6 +68,22 @@ export async function getPokemon(id: number | string) {
 	}
 
 	return null;
+}
+
+export async function getPokemonRange(start: number, end: number) {
+	const pokemonList: Pokemon[] = [];
+
+	for (let i = start; i < end + 1; i++) {
+		const url = `${API_URL}${i}`;
+		pokemonList.push(jsonToPokemon(await client.getPokemonById(i), url));
+	}
+
+	return pokemonList;
+}
+
+export async function getPokemonByGen(gen: keyof GenIdLimits) {
+	const { start, end } = genIdLimits[gen];
+	return getPokemonRange(start, end);
 }
 
 function jsonToPokemon(json: any, url: string): Pokemon {

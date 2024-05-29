@@ -40,7 +40,6 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-left: auto;
 	gap: 50px;
 }
 
@@ -633,6 +632,7 @@ input[type="submit"] {
 	font-size: small;
 }
 
+.login-form input[type="text"],
 .login-form input[type="email"],
 .login-form input[type="password"] {
 	margin-top: 0.5rem;
