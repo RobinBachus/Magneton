@@ -1,10 +1,16 @@
 <header>
-	<button id="open-nav" class="menu-btn" onclick="openNav()">
-		<img src="./assets/img/icon_ball.png" alt="" />
-	</button>
 	<a href="/home">
 		<img id="logo" src="./assets/img/LogoLightModeNewer.png" alt="Logo" />
 	</a>
+	<div class="menu-container">
+		<a class="menu-btn" href="pokedex">Pokémon</a>
+		<a class="menu-btn" href="quiz">Who's that Pokémon?</a>
+		<a class="menu-btn" href="/comparator">Vergelijker</a>
+	</div>
+	<!-- <button id="open-nav" class="menu-btn" onclick="openNav()">
+		<img src="./assets/img/icon_ball.png" alt="" />
+	</button> -->
+
 	<form action="/logout" method="post" id="user-form">
 		<img id="usericon" class="pixelated" src="<%= user.avatar ??
 		"./assets/img/placeholder.jpg" %>" alt="avatar" />
@@ -13,12 +19,13 @@
 		</button>
 	</form>
 </header>
+
 <aside>
 	<section id="side-nav" class="sidenav closed framed">
 		<button id="close-nav" class="menu-btn" onclick="closeNav()">
 			<i class="fa-solid fa-times"></i>
 		</button>
-		<h1 id="sidenav-title">Spelmodi:</h1>
+		<h1 id="sidenav-title">Spelmodi</h1>
 		<nav>
 			<a href="/">Landingspagina</a>
 			<a href="home">Home</a>
@@ -27,7 +34,7 @@
 			<a target="_blank" href="battler">Battler</a>
 			<a target="_blank" href="mysterybattler">Mystery Battler</a>
 			<a target="_blank" href="catcher">Catcher</a>
-			<a href="quiz">Who's that pokémon?</a>
+			<a href="quiz">Who's that pokémon</a>
 			<a href="comparator">Vergelijker</a>
 		</nav>
 	</section>
