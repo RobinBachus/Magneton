@@ -47,7 +47,7 @@ header {
 
 .menu-btn {
 	padding: 20px;
-	background-color: transparent;
+	background-color: var(--color-dark);
 	color: white;
 	border: 2px solid #333;
 	font-size: 14px;
@@ -57,6 +57,7 @@ header {
 
 .menu-btn:hover {
 	background-color: #555;
+	animation: upAndDown 0.5s ease infinite;
 }
 
 #usericon {
@@ -278,6 +279,7 @@ input[type="submit"] {
 
 #welcome-section {
 	margin-top: 1rem;
+	margin-left: 50px;
 }
 
 #home {
@@ -370,7 +372,7 @@ input[type="submit"] {
 }
 
 .game-mode:nth-child(1):hover::after {
-	content: "Ontdek de Pokédex, vang en vecht met honderden Pokémon!";
+	content: "Ontdek de Pokédex. Vang en vecht met honderden Pokémon!";
 }
 
 .game-mode:nth-child(2):hover::after {
