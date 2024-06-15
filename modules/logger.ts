@@ -7,10 +7,8 @@ export type TError = Error | string;
  * A class to handle logging and error handling.
  *
  * @extends EventEmitter - Adds event emitting functionality
- *
- * @abstract
  */
-export default abstract class Logger extends EventEmitter {
+export default class Logger extends EventEmitter {
 	private _process: string;
 	private _color: TColor;
 
@@ -26,8 +24,8 @@ export default abstract class Logger extends EventEmitter {
 		this._color = color;
 	}
 
-	log(message: string) {
-		Logger.log(message, this._process, this._color);
+	log(message: any) {
+		Logger.log(`${message}`, this._process, this._color);
 	}
 
 	error(error: TError) {
@@ -47,7 +45,7 @@ export default abstract class Logger extends EventEmitter {
 		processColor: TColor = Color.fg.gray
 	) {
 		const prefix = colorize(process, processColor);
-		console.log(`${prefix}:`, message);
+		console.log(`${prefix}: ${message}`);
 	}
 
 	static error(

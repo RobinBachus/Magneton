@@ -45,6 +45,7 @@ export interface DbSession {
 
 interface LoginData {
 	email: string;
+	username:string;
 	password: string;
 	avatar: string;
 }

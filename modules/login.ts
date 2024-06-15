@@ -33,7 +33,7 @@ export async function attemptLogin(loginData: LoginData): Promise<SecureUser> {
  * @throws Error if user could not be created
  */
 export async function attemptSignup(loginData: LoginData): Promise<SecureUser> {
-	const { email, password } = loginData;
+	const { username, email, password, avatar } = loginData;
 
 	const user = await IRouter.db.collections.users?.findOne({
 		email,
@@ -47,8 +47,8 @@ export async function attemptSignup(loginData: LoginData): Promise<SecureUser> {
 	const newUser: DbUser = {
 		email,
 		hashed_pass,
-		username: email,
-		avatar: loginData.avatar,
+		username,
+		avatar,
 		buddy: null,
 		caught: [],
 	};

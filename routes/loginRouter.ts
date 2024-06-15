@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express";
 import { LoginData } from "../@types/db";
 import { secureMiddleware } from "../middleware/secureMiddleware";
 import { attemptLogin, attemptSignup } from "../modules/login";
@@ -11,17 +12,17 @@ export default class LoginRouter extends IRouter {
 	}
 
 	setGetRoutes() {
-		this.router.get("/login", (req, res) => {
+		this.router.get("/login", this.isLoggedIn, (req, res) => {
 			res.render("login");
 		});
 
-		this.router.get("/signup", (req, res) => {
+		this.router.get("/signup", this.isLoggedIn, (req, res) => {
 			res.render("signup");
 		});
 	}
 
 	setPostRoutes(): void {
-		this.router.post("/login", async (req, res) => {
+		this.router.post("/login", this.isLoggedIn, async (req, res) => {
 			this.log(`Login attempt: ${req.body.email}`);
 
 			try {
@@ -33,7 +34,7 @@ export default class LoginRouter extends IRouter {
 			}
 		});
 
-		this.router.post("/signup", async (req, res) => {
+		this.router.post("/signup", this.isLoggedIn, async (req, res) => {
 			this.log(`Signup attempt: ${req.body.email}`);
 
 			try {
@@ -51,6 +52,11 @@ export default class LoginRouter extends IRouter {
 				res.redirect("/login");
 			});
 		});
+	}
+
+	private isLoggedIn(req: Request, res: Response, next: NextFunction) {
+		if (req.session.user) res.redirect("/home");
+		else next();
 	}
 
 	private getRedirectPath(path: string = "/home"): string {

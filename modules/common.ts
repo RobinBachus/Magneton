@@ -1,5 +1,6 @@
 export enum StatusCode {
 	success = 0,
+	failed = 1,
 	dbMissingCredentials = 1000,
 	dbConnectionError = 1001,
 }

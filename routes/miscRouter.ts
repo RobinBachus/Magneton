@@ -24,5 +24,9 @@ export default class MiscRouter extends IRouter {
 
 			res.render("error", { code, message });
 		});
+
+		this.router.use((req, res) => {
+			res.redirect("/error/404");
+		});
 	}
 }
