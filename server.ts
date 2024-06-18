@@ -32,7 +32,7 @@ async function main(): Promise<StatusCode> {
 
 	database = result!;
 
-	// cleanup = new CleanUp(database);
+	cleanup = new CleanUp(database);
 
 	IRouter.db = database;
 
