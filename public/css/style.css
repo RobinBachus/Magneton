@@ -138,6 +138,7 @@ input[type="submit"] {
 	color: #000;
 	border-radius: 10px;
 	border-width: 10px;
+	z-index: 1000;
 }
 
 #buddy > h1,

@@ -10,7 +10,6 @@ import LoginRouter from "./routes/loginRouter";
 import SecureRouter from "./routes/secureRouter";
 import MiscRouter from "./routes/miscRouter";
 import IRouter from "./routes/router";
-import { apiLogger, getPokemonByGen, getPokemonRange } from "./modules/api";
 
 dotenv.config();
 
@@ -33,7 +32,7 @@ async function main(): Promise<StatusCode> {
 
 	database = result!;
 
-	// cleanup = new CleanUp(database);
+	cleanup = new CleanUp(database);
 
 	IRouter.db = database;
 

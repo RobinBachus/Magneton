@@ -5,13 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Pokemon Lijst</title>
 
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/fonts.css" />
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/liststyle.css" />
-		<link rel="stylesheet" href="css/frames.css" />
+		<link rel="stylesheet" href="/css/reset.css" />
+		<link rel="stylesheet" href="/css/fonts.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/liststyle.css" />
+		<link rel="stylesheet" href="/css/frames.css" />
 
-		<script src="js/main.js" defer></script>
+		<script src="/js/main.js" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -24,20 +24,16 @@
 		<section id="buddy" class="framed no-hd">
 			<h1>My Buddy</h1>
 			<img
-				src="assets/img/magneton_icon.png"
+				src="/assets/img/magneton_icon.png"
 				alt="buddy"
 				class="pixelated"
 			/>
 			<p>Magneton</p>
 		</section>
 		<main>
-			<h1>Paldea</h1>
-			<!--hier komt de naam van de regio gebaseerd op de regio da wordt aangeduid -->
-			<p>Gen IX</p>
-			<!-- hier komt de generatie en de nummer van de generatie mag gewoon zijn wa de api geeft -->
+			<p>Generation <%= gen %></p>
 			<audio autoplay loop>
-				<!-- efkes gemute vergeet ni de 3 terug te plaatsen -->
-				<source src="./assets/audio/pokedexloop.mp" type="audio/mpeg" />
+				<source src="/assets/audio/pokedexloop.mp3" type="audio/mpeg" />
 				Your browser does not support the audio element.
 			</audio>
 			<section id="pokelist-container">
@@ -49,18 +45,18 @@
 					<h3>0952</h3>
 					<img
 						id="releasebutton"
-						src="./assets/img/pokemoncaught.png"
+						src="/assets/img/pokemoncaught.png"
 						alt="Caughtchecker"
 					/>
 					<!-- clickable om vrij te laten(misschien optioneel?) maar was wel nodig in de opdracht -->
 					<img
 						id="selection"
-						src="./assets/img/scovillain.png"
+						src="/assets/img/scovillain.png"
 						alt=""
 					/>
 					<!-- pokemon word aangeduid door in de lijst 1 aan te clicken ennwordt zo ook deze image -->
-					<img id="type1" src="./assets/img/grass.png" alt="" />
-					<img id="type2" src="./assets/img/fire.png" alt="" />
+					<img id="type1" src="/assets/img/grass.png" alt="" />
+					<img id="type2" src="/assets/img/fire.png" alt="" />
 					<button id="battle-button">Battle</button>
 					<Button id="catch-button">Catch</Button>
 					<!-- displayed types van de aangeduide pokemon , 1 img als er 1 type is-->
@@ -76,432 +72,23 @@
 
 					<!-- displayed de stats en de naam van de aangeduide pokemon -->
 				</section>
-				<section id="pokemon-images">
+				<section id="pokemon-images" style="overflow-y: scroll">
+					<% for( const p of gen_pokemon ) { %>
 					<article class="pokecontainer selected">
 						<img
 							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
+							src="<%= p.icon %>"
+							alt="<%= p.name %>"
+							height="128"
+							width="128"
 						/>
 					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/scovillainicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/litwickicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/tsareenaicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/charizardicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/roaringmoonicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="./assets/img/snomicon.png"
-							alt="PLACEHOLDER"
-						/>
-					</article>
+					<% } %>
 				</section>
 			</section>
 			<video autoplay muted loop id="backgroundvideo">
 				<source
-					src="./assets/img/comperatorbackground.mp4"
+					src="/assets/img/comperatorbackground.mp4"
 					type="video/mp4"
 				/>
 				Your browser does not support HTML5 video.
