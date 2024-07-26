@@ -44,7 +44,6 @@ header {
 }
 
 .menu-btn {
-	padding: 20px;
 	background-color: var(--color-dark);
 	color: white;
 	border: 2px solid #333;
@@ -408,15 +407,15 @@ input[type="submit"] {
 }
 
 .game-mode:nth-child(1):hover::after {
-	content: "Ontdek de Pokédex. Vang en vecht met honderden Pokémon!";
+	content: "Explore the many Pokedexes and discover hundreds of Pokémon old and new ready to be battled and caught!";
 }
 
 .game-mode:nth-child(2):hover::after {
-	content: "Raad de Pokémon in deze uitdagende quiz!";
+	content: "Guess Pokémon by silhoutte in this challenging quiz!";
 }
 
 .game-mode:nth-child(3):hover::after {
-	content: "Vergelijk Pokémon! Wie is de sterkste?";
+	content: "Compare 2 Pokémon! Who is the strongest?";
 }
 
 .game-mode:hover {

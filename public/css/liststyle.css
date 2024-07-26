@@ -1,4 +1,5 @@
 #selectedPokemon {
+	height: 25%;
 	background-color: rgb(46, 59, 59);
 	border-style: solid;
 	border-color: rgb(19, 24, 24);
@@ -13,6 +14,8 @@
 	border-style: solid;
 	border-color: rgb(19, 24, 24);
 	border-radius: 5%;
+	overflow-y: scroll;
+	max-height: 85vh;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -41,6 +44,7 @@
 #pokemon-images img:hover {
 	animation: upAndDown 0.5s ease infinite;
 }
+
 #selection {
 	background-image: url("../assets/img/grassbg.png");
 	background-repeat: no-repeat;
@@ -54,7 +58,7 @@
 	color: aliceblue;
 	border-radius: 60%;
 	position: relative;
-	top: 27vh;
+	top: 24vh;
 	font-size: x-large;
 }
 #buddy-button:active {
@@ -72,7 +76,6 @@
 #battle-button {
 	background-color: rgb(254, 96, 84);
 	font-size: x-large;
-
 	border-radius: 6%;
 	position: relative;
 	top: 2vh;
@@ -101,7 +104,8 @@
 	max-height: 128px;
 }
 .pokemon {
-	filter: brightness(0%);
+	cursor: pointer;
+	/* filter: brightness(0%); */
 }
 .stat-grid {
 	margin-right: 37vw;
