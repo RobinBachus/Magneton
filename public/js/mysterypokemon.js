@@ -5,7 +5,12 @@ const shinyOdds = 20;
 const maxPokeId = 1025;
 
 main();
-
+function capitalize(name) {
+	return name.charAt(0).toUpperCase() + name.slice(1);
+}
+function getNameBeforeHyphen(name) {
+	return name.split("-")[0]; // Split by hyphen and take the first part
+}
 async function main() {
 	const pokemons = [];
 
@@ -39,20 +44,29 @@ async function main() {
 		}
 		const mysteryNameElement = document.getElementById(`enemyname`);
 		if (mysteryNameElement) {
-			mysteryNameElement.innerText = mysteryPokemon.name;
+			const formattedName = capitalize(
+				getNameBeforeHyphen(mysteryPokemon.name)
+			);
+			mysteryNameElement.innerText = formattedName;
 		}
 
 		// Get the image element using document.getElementById
 		const announcementName = document.getElementById("announcement");
 		if (announcementName) {
-			announcementName.innerText = `A wild ${mysteryPokemon.name} Appeared!`;
+			const formattedNameAnnouncement = capitalize(
+				getNameBeforeHyphen(mysteryPokemon.name)
+			);
+			announcementName.innerText = `A wild ${formattedNameAnnouncement} Appeared!`;
 		}
 		const mysteryImage = document.getElementById(`enemyfighter`);
 		if (mysteryImage) {
 			// Check if pokemon is shiny and set the image source accordingly
 			if (mysteryPokemon.shinyCheck) {
+				const formattedNameShiny = capitalize(
+					getNameBeforeHyphen(mysteryPokemon.name)
+				);
 				mysteryImage.src = mysteryPokemon["sprites"]["front_shiny"];
-				mysteryNameElement.innerText = `${mysteryPokemon.name} ✨`;
+				mysteryNameElement.innerText = `${formattedNameShiny} ✨`;
 			} else {
 				mysteryImage.src = mysteryPokemon["sprites"]["front_default"];
 			}
@@ -113,3 +127,33 @@ async function getRandomPokemon(min = 0, max = maxPokeId) {
 		console.error("Error fetching Pokemon data:", error);
 	}
 }
+const runSound = new Audio("../assets/audio/Battle flee.ogg");
+const fightSound = new Audio("../assets/audio/Select .ogg");
+const itemsSound = new Audio("../assets/audio/pokeball menu.ogg");
+const hoverSound = new Audio("../assets/audio/Hover se.ogg");
+const runButton = document.getElementById("run");
+const fightButton = document.getElementById("fight");
+const itemsButton = document.getElementById("items");
+
+runButton.addEventListener("click", () => {
+	runSound.play();
+});
+
+fightButton.addEventListener("click", () => {
+	fightSound.play();
+});
+
+itemsButton.addEventListener("click", () => {
+	itemsSound.play();
+});
+runButton.addEventListener("mouseover", () => {
+	hoverSound.play();
+});
+
+fightButton.addEventListener("mouseover", () => {
+	hoverSound.play();
+});
+
+itemsButton.addEventListener("mouseover", () => {
+	hoverSound.play();
+});
