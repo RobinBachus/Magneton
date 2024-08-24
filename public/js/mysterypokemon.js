@@ -1,7 +1,7 @@
 const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
 const minMysteryId = 10001;
 const maxMysteryId = 10277;
-const shinyOdds = 20;
+const shinyOdds = 4;
 const maxPokeId = 1025;
 
 main();
@@ -32,7 +32,7 @@ async function main() {
 		// Ensure 'pokemon' is defined and accessible
 		const pokemon = pokemons[index - 1];
 		const mysteryPokemon = pokemonForm;
-
+		const Sparkle = new Audio("../assets/audio/Sparkle.mp3");
 		// Get the nameElement using document.getElementById
 		const nameElement = document.getElementById(
 			`pokemonNamePlayer${index}`
@@ -67,6 +67,7 @@ async function main() {
 				);
 				mysteryImage.src = mysteryPokemon["sprites"]["front_shiny"];
 				mysteryNameElement.innerText = `${formattedNameShiny} ✨`;
+				Sparkle.play();
 			} else {
 				mysteryImage.src = mysteryPokemon["sprites"]["front_default"];
 			}
