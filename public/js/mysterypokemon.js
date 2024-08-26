@@ -1,3 +1,5 @@
+/** @typedef {import('./types').Pokemon} Pokemon */
+
 const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
 const minMysteryId = 10001;
 const maxMysteryId = 10277;
@@ -5,24 +7,22 @@ const shinyOdds = 4;
 const maxPokeId = 1025;
 
 main();
-function capitalize(name) {
-	return name.charAt(0).toUpperCase() + name.slice(1);
-}
-function getNameBeforeHyphen(name) {
-	return name.split("-")[0]; // Split by hyphen and take the first part
-}
 async function main() {
+	/** @type Pokemon[] */
 	const pokemons = [];
 
 	// Get first random Pokemon and roll for shiny status
 	const pokemon1 = await getRandomPokemon();
 	// Get second random Pokemon and roll for shiny status
 	const pokemon2 = await getRandomPokemon();
-	pokemon2.shinyCheck = await shinyRoller();
 
 	// Get random pokemon and roll for shiny status
 	const pokemonForm = await getRandomPokemon(minMysteryId, maxMysteryId);
-	pokemonForm.shinyCheck = await shinyRoller();
+
+	if (!pokemon1 || !pokemon2 || !pokemonForm) {
+		console.error("Error fetching Pokemon data");
+		return;
+	}
 
 	// Push the Pokemon objects into the array
 	pokemons.push(pokemon1);
@@ -37,11 +37,9 @@ async function main() {
 		const nameElement = document.getElementById(
 			`pokemonNamePlayer${index}`
 		);
-		if (nameElement) {
-			nameElement.innerText = pokemon.name;
-		} else {
-			console.error(`Element pokemonNamePlayer${index} not found.`);
-		}
+
+		if (nameElement) nameElement.innerText = pokemon.name;
+
 		const mysteryNameElement = document.getElementById(`enemyname`);
 		if (mysteryNameElement) {
 			const formattedName = capitalize(
@@ -61,43 +59,37 @@ async function main() {
 		const mysteryImage = document.getElementById(`enemyfighter`);
 		if (mysteryImage) {
 			// Check if pokemon is shiny and set the image source accordingly
-			if (mysteryPokemon.shinyCheck) {
+			if (mysteryPokemon.shiny) {
 				const formattedNameShiny = capitalize(
 					getNameBeforeHyphen(mysteryPokemon.name)
 				);
-				mysteryImage.src = mysteryPokemon["sprites"]["front_shiny"];
+				mysteryImage.src = mysteryPokemon.sprite;
 				mysteryNameElement.innerText = `${formattedNameShiny} ✨`;
 				Sparkle.play();
 			} else {
-				mysteryImage.src = mysteryPokemon["sprites"]["front_default"];
+				mysteryImage.src = mysteryPokemon.sprite;
 			}
-		} else {
-			console.error(`Element activePlayer${index} not found.`);
 		}
 
 		// Log Pokemon details
 		console.log(pokemon.name, pokemon.id);
 
-		let statArray = [];
+		let statArray = [
+			`healthPlayer${index}`,
+			`attackPlayer${index}`,
+			`defensePlayer${index}`,
+			`special-attackPlayer${index}`,
+			`special-defensePlayer${index}`,
+			`speedPlayer${index}`,
+		];
 
-		// Loop through each stat of the Pokemon
-		for (let i = 0; i < pokemon.stats.length; i++) {
-			statArray = [
-				`healthPlayer${index}`,
-				`attackPlayer${index}`,
-				`defensePlayer${index}`,
-				`special-attackPlayer${index}`,
-				`special-defensePlayer${index}`,
-				`speedPlayer${index}`,
-			];
-		}
-
-		for (let i = 0; i < pokemons[0].stats.length; i++) {
+		for (let i = 0; i < statArray.length; i++) {
 			const stat = pokemons[index - 1].stats[i];
 			// [+!(index - 1)] is a fancy way of getting the other index
-			const otherStat = pokemons[+!(index - 1)].stats[i].base_stat;
+			const otherStat = pokemons[+!(index - 1)].stats[i];
 
 			const statElement = document.getElementById(statArray[i]);
+			if (!statElement) continue;
 			statElement.style.width = stat.base_stat + "px";
 			statElement.innerText = stat.base_stat;
 
@@ -113,21 +105,31 @@ async function main() {
 	}
 }
 
-async function shinyRoller() {
-	return Math.floor(Math.random() * shinyOdds) + 1 === 4;
+function capitalize(name) {
+	return name.charAt(0).toUpperCase() + name.slice(1);
+}
+function getNameBeforeHyphen(name) {
+	return name.split("-")[0]; // Split by hyphen and take the first part
 }
 
 async function getRandomPokemon(min = 0, max = maxPokeId) {
 	try {
-		const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
-		const url = urlAPI + randomId;
-		const response = await fetch(url);
+		const response = await fetch("/api/getRandomPokemon", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ min, max }),
+		});
+
+		/** @type Pokemon */
 		const pokemon = await response.json();
 		return pokemon;
 	} catch (error) {
 		console.error("Error fetching Pokemon data:", error);
 	}
 }
+
 const runSound = new Audio("../assets/audio/Battle flee.ogg");
 const fightSound = new Audio("../assets/audio/Select .ogg");
 const itemsSound = new Audio("../assets/audio/pokeball menu.ogg");

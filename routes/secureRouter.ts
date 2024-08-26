@@ -1,6 +1,11 @@
 import IRouter from "./router";
 import { secureMiddleware } from "../middleware/secureMiddleware";
-import { genID as GenID, genIdLimits, getPokemonByGen } from "../modules/api";
+import {
+	genID as GenID,
+	genIdLimits,
+	getPokemonByGen,
+	getRandomPokemon,
+} from "../modules/api";
 
 export default class SecureRouter extends IRouter {
 	constructor() {
@@ -68,8 +73,14 @@ export default class SecureRouter extends IRouter {
 			res.render("battler");
 		});
 
-		this.router.get("/mysterybattler", secureMiddleware, (req, res) => {
-			res.render("mysterybattler");
-		});
+		this.router.get(
+			"/mysterybattler",
+			secureMiddleware,
+			async (req, res) => {
+				res.render("mysterybattler", {
+					pokemon: await getRandomPokemon(true),
+				});
+			}
+		);
 	}
 }
