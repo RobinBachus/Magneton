@@ -11,7 +11,7 @@ const BACKUP_URL =
 const maxPokeId = 1025;
 const minForm = 10001;
 const maxForm = 10277;
-const shinyOdds = 20;
+const shinyOdds = 5;
 
 interface GenIdLimit {
 	start: number;
@@ -52,8 +52,11 @@ export async function getRandomPokemon(form: boolean = false) {
 	const min = form ? minForm : 1;
 	const max = form ? maxForm : maxPokeId;
 
-	const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
+	return getRandomPokemonInRange(min, max);
+}
 
+export async function getRandomPokemonInRange(min: number, max: number) {
+	const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
 	return getPokemon(randomId);
 }
 
@@ -100,7 +103,7 @@ function jsonToPokemon(json: any, url: string): Pokemon {
 			specialDefense: json.stats[4].base_stat,
 			speed: json.stats[5].base_stat,
 		},
-		shiny: Math.floor(Math.random() * shinyOdds) === 4,
+		shiny: Math.floor(Math.random() * shinyOdds) === 1,
 		url,
 		icon: "", // Is set in the return statement
 		sprite: "",
