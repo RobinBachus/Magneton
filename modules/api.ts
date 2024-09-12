@@ -66,7 +66,7 @@ export async function getPokemon(id: number | string) {
 
 		return jsonToPokemon(pokemonData, url);
 	} catch (error) {
-		Logger.error(`Failed to get Pokemon by ID: ${error}`, "getPokemonById");
+		apiLogger.error(`Failed to get Pokemon by ID: ${error}`);
 	}
 
 	return null;

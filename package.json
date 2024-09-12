@@ -11,6 +11,7 @@
 		"axios": "^1.7.2",
 		"axios-cache-interceptor": "^1.5.3",
 		"bcrypt": "^5.1.1",
+		"cloc": "^2.0.0-cloc",
 		"connect-mongodb-session": "^5.0.0",
 		"dotenv": "^16.4.5",
 		"ejs": "^3.1.10",
@@ -27,7 +28,8 @@
 		"@types/node": "^20.12.7"
 	},
 	"scripts": {
-		"start": "nodemon server.ts"
+		"start": "nodemon server.ts",
+		"cloc": "cloc . --exclude-dir=node_modules --exclude-ext=json"
 	},
 	"repository": {
 		"type": "git",
