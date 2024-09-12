@@ -1,7 +1,10 @@
-const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
+/** @typedef {import('./types').Pokemon} Pokemon */
+
+// ================ Constants ================
+
 const minMysteryId = 10001;
 const maxMysteryId = 10277;
-const shinyOdds = 20;
+const shinyOdds = 4;
 const maxPokeId = 1025;
 
 // ================ Audio files ================
@@ -33,14 +36,19 @@ const mysteryImage = document.getElementById(`enemyfighter`);
 
 main();
 
+/**
+ * Main function to fetch Pokemon data and update the DOM
+ * @returns {Promise<void>}
+ **/
 async function main() {
-	const pokemons = [];
-
-	// Get first random Pokemon and roll for shiny status
-	const pokemon1 = await getRandomPokemon();
-	// Get second random Pokemon and roll for shiny status
-	const pokemon2 = await getRandomPokemon();
-	pokemon2.shinyCheck = await shinyRoller();
+	/**
+	 * Has the 2 pokemon
+	 * @type Pokemon[]
+	 */
+	const pokemons = [
+		(await getRandomPokemon()) ?? null,
+		(await getRandomPokemon()) ?? null,
+	];
 
 	// Check if any of the Pokemon are null
 	if (pokemons.includes(null)) {
@@ -86,6 +94,7 @@ async function main() {
 			const otherStat = pokemons[Math.abs(index - 1)].stats[i];
 
 			const statElement = document.getElementById(statArray[i]);
+			if (!statElement) continue;
 			statElement.style.width = stat.base_stat + "px";
 			statElement.innerText = stat.base_stat;
 
@@ -132,9 +141,15 @@ function getPlayerNameElement(index) {
 
 async function getRandomPokemon(min = 0, max = maxPokeId) {
 	try {
-		const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
-		const url = urlAPI + randomId;
-		const response = await fetch(url);
+		const response = await fetch("/api/getRandomPokemon", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ min, max }),
+		});
+
+		/** @type Pokemon */
 		const pokemon = await response.json();
 		return pokemon;
 	} catch (error) {

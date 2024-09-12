@@ -1,3 +1,4 @@
+import { getRandomPokemon, getRandomPokemonInRange } from "../modules/api";
 import IRouter from "./router";
 
 export default class MiscRouter extends IRouter {
@@ -22,11 +23,31 @@ export default class MiscRouter extends IRouter {
 				message = "De pagina die je zocht kon niet worden gevonden";
 			else message = req.query.message || "Er is een fout opgetreden";
 
-			res.render("error", { code, message });
+			res.status(parseInt(code)).render("error", { code, message });
 		});
 
-		this.router.use((req, res) => {
-			res.redirect("/error/404");
+		this.router.use((req, res, next) => {
+			if (req.method === "GET") res.redirect("/error/404");
+			else next();
+		});
+	}
+
+	setPostRoutes() {
+		this.router.post("/api/getRandomPokemon", async (req, res) => {
+			let pokemon;
+			const { max, min }: { max?: number; min?: number } = req.body;
+
+			if (max && min) pokemon = await getRandomPokemonInRange(min, max);
+			else pokemon = await getRandomPokemon();
+
+			res.json(pokemon);
+		});
+
+		this.router.use((req, res, next) => {
+			res.status(404).render("error", {
+				code: "404",
+				message: "This resource does not exist",
+			});
 		});
 	}
 }
