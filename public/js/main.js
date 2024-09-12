@@ -1,38 +1,14 @@
 // ---- Main ----
 let failed = [];
-failed.push(setupSideNav() ? null : "Side Nav");
 failed.push(setupBuddy() ? null : "Buddy");
 failed.push(setupDarkMode() ? null : "Dark Mode");
 failed.push(setup404() ? null : "404 Page");
 failed.push(setupCookieBanner() ? null : "Cookie Banner");
+failed.push(setupAudioSettings() ? null : "Audio Settings");
 
 failed = failed.filter((x) => x);
 if (failed.length) {
 	console.error("Failed to setup:", failed.join(", "));
-}
-
-// ---- Side Nav ----
-function setupSideNav() {
-	const sideNav = document.getElementById("side-nav");
-
-	if (!sideNav) return false;
-
-	const sAdd = (className) => sideNav.classList.add(className);
-	const sRemove = (className) => sideNav.classList.remove(className);
-
-	openNav = () => {
-		sRemove("closed");
-		sAdd("open");
-	};
-
-	closeNav = () => {
-		sRemove("open");
-		sAdd("closed");
-	};
-
-	const openButton = document.getElementById("open-nav");
-	const closeButton = document.getElementById("close-nav");
-	return true;
 }
 
 // ---- Buddy ----
@@ -122,5 +98,54 @@ async function setupCookieBanner() {
 		cookieBanner.showModal();
 	}, 1000);
 
+	return true;
+}
+
+// ---- Audio Settings ----
+
+function setupAudioSettings() {
+	/** @type HTMLButtonElement */
+	const muteMusic = document.getElementById("mute-music");
+	/** @type HTMLElement */
+	const musicSlashIcon = document.getElementById("music-muted-slash");
+
+	/** @type HTMLButtonElement */
+	const muteSfx = document.getElementById("mute-sfx");
+	/** @type HTMLElement */
+	const sfxIcon = muteSfx.querySelector("i");
+
+	if (!muteMusic || !muteSfx) return false;
+
+	let muted = document.cookie.includes("music-mute=true");
+	musicSlashIcon.style.display = muted ? "block" : "none";
+	muteMusic.classList.toggle("muted", muted);
+
+	muted = document.cookie.includes("sfx-mute=true");
+	sfxIcon.className = muted ? "fas fa-volume-mute" : "fas fa-volume-up";
+	muteSfx.classList.toggle("muted", muted);
+
+	muteMusic.onclick = () => {
+		const muted = muteMusic.classList.toggle("muted");
+		musicSlashIcon.style.display = muted ? "block" : "none";
+		document.cookie = `music-mute=${muted}`;
+
+		if (muted) {
+			/** @type HTMLCollectionOf<HTMLAudioElement> */
+			const music = document.getElementsByClassName("music");
+			for (let song of music) song.pause();
+		}
+	};
+
+	muteSfx.onclick = () => {
+		const muted = muteSfx.classList.toggle("muted");
+		sfxIcon.className = muted ? "fas fa-volume-mute" : "fas fa-volume-up";
+		document.cookie = `sfx-mute=${muted}`;
+
+		if (muted) {
+			/** @type HTMLCollectionOf<HTMLAudioElement> */
+			const sfx = document.getElementsByClassName("sfx");
+			for (let sound of sfx) sound.pause();
+		}
+	};
 	return true;
 }

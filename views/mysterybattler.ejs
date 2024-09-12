@@ -13,6 +13,14 @@
 		<script src="js/main.js" defer></script>
 		<script src="js/mysterypokemon.js" defer></script>
 
+		<!-- Prefetch images -->
+		<link rel="prefetch" href="./assets/img/fight.png" />
+		<link rel="prefetch" href="./assets/img/bag.png" />
+		<link rel="prefetch" href="./assets/img/run.png" />
+		<link rel="prefetch" href="./assets/img/fighthover.png" />
+		<link rel="prefetch" href="./assets/img/baghover.png" />
+		<link rel="prefetch" href="./assets/img/runhover.png" />
+
 		<!-- fa icons -->
 		<script
 			src="https://kit.fontawesome.com/91fd30522d.js"
@@ -21,10 +29,7 @@
 	</head>
 	<body>
 		<%- include("partials/header-aside") %>
-		<audio autoplay loop>
-			<source src="./assets/audio/wildmystery.mp3" type="audio/mpeg" />
-			Your browser does not support the audio element.
-		</audio>
+
 		<main id="battler" class="bg-image">
 			<!-- <section class="bg-image"> -->
 			<h2 class="battletext framed" id="announcement"></h2>

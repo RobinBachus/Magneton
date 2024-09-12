@@ -257,7 +257,7 @@ input[type="submit"] {
 	border: 2px solid #000;
 }
 
-#user-form button {
+#header-settings button {
 	color: var(--color-header);
 	background-color: transparent;
 	height: 2rem;
@@ -272,7 +272,7 @@ input[type="submit"] {
 	transition: background-color 0.2s, color 0.2s;
 }
 
-#user-form button:hover {
+#header-settings button:hover {
 	background-color: var(--color-header);
 	color: var(--color-light);
 }
@@ -285,6 +285,51 @@ input[type="submit"] {
 	background-color: var(--color-dark);
 	color: var(--color-light);
 }
+
+#header-settings {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#audio-mute {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	background: var(--color-light);
+	color: #000;
+	padding: 5px;
+	border-radius: 10px;
+	border: 2px solid #000;
+	margin-right: 10px;
+}
+
+#audio-mute > button {
+	margin: 0 2px;
+}
+
+#audio-mute > button.muted {
+	color: var(--color-light);
+	border-color: var(--color-header);
+	background-color: var(--color-header);
+}
+
+#audio-mute > button.muted:hover {
+	background-color: color-mix(in srgb, var(--color-header) 30%, transparent);
+	color: var(--color-header);
+}
+
+#audio-mute > button:not(.muted) {
+	color: var(--color-light);
+	border-color: var(--color-dark);
+	background-color: var(--color-dark);
+}
+
+#audio-mute > button:not(.muted):hover {
+	background-color: color-mix(in srgb, var(--color-dark) 30%, transparent);
+	color: var(--color-dark);
+}
+
 /* Home page */
 .welcome-frame {
 	background-color: var(--color-light);

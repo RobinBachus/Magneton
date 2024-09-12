@@ -4,6 +4,33 @@ const maxMysteryId = 10277;
 const shinyOdds = 20;
 const maxPokeId = 1025;
 
+// ================ Audio files ================
+
+const mysteryBGM = new Audio("../assets/audio/wildmystery.mp3");
+
+const Sparkle = new Audio("../assets/audio/Sparkle.mp3");
+const runSound = new Audio("../assets/audio/Battle flee.ogg");
+const fightSound = new Audio("../assets/audio/Select .ogg");
+const itemsSound = new Audio("../assets/audio/pokeball menu.ogg");
+const hoverSound = new Audio("../assets/audio/Hover se.ogg");
+
+// ================ HTML elements ================
+
+/** @type HTMLButtonElement */
+const runButton = document.getElementById("run");
+/** @type HTMLButtonElement */
+const fightButton = document.getElementById("fight");
+/** @type HTMLButtonElement */
+const itemsButton = document.getElementById("items");
+
+const mysteryNameElement = document.getElementById(`enemyname`);
+const announcementName = document.getElementById("announcement");
+
+/** @type HTMLImageElement */
+const mysteryImage = document.getElementById(`enemyfighter`);
+
+// ================ Main ================
+
 main();
 
 async function main() {
@@ -15,72 +42,48 @@ async function main() {
 	const pokemon2 = await getRandomPokemon();
 	pokemon2.shinyCheck = await shinyRoller();
 
-	// Get random pokemon and roll for shiny status
-	const pokemonForm = await getRandomPokemon(minMysteryId, maxMysteryId);
-	pokemonForm.shinyCheck = await shinyRoller();
+	// Check if any of the Pokemon are null
+	if (pokemons.includes(null)) {
+		console.error("Error fetching Pokemon data");
+		return;
+	}
 
-	// Push the Pokemon objects into the array
-	pokemons.push(pokemon1);
-	pokemons.push(pokemon2);
+	if (mysteryNameElement) {
+		// Play the mystery BGM
+		await playAudio(mysteryBGM, true, true);
+		// Update the mystery Pokemon
+		await updateMysteryPokemon();
+		// No need to do stats for the mystery battler
+		return;
+	}
+
 	// Loop through each Pokemon in the array
-	for (let index = 1; index <= pokemons.length; index++) {
+	for (let index = 0; index <= pokemons.length; index++) {
+		const numericIndex = index + 1;
+
 		// Ensure 'pokemon' is defined and accessible
-		const pokemon = pokemons[index - 1];
-		const mysteryPokemon = pokemonForm;
-
+		const pokemon = pokemons[index];
 		// Get the nameElement using document.getElementById
-		const nameElement = document.getElementById(
-			`pokemonNamePlayer${index}`
-		);
-		if (nameElement) {
-			nameElement.innerText = pokemon.name;
-		} else {
-			console.error(`Element pokemonNamePlayer${index} not found.`);
-		}
-		const mysteryNameElement = document.getElementById(`enemyname`);
-		if (mysteryNameElement) {
-			mysteryNameElement.innerText = mysteryPokemon.name;
-		}
+		const nameElement = getPlayerNameElement(numericIndex);
 
-		// Get the image element using document.getElementById
-		const announcementName = document.getElementById("announcement");
-		if (announcementName) {
-			announcementName.innerText = `A wild ${mysteryPokemon.name} Appeared!`;
-		}
-		const mysteryImage = document.getElementById(`enemyfighter`);
-		if (mysteryImage) {
-			// Check if pokemon is shiny and set the image source accordingly
-			if (mysteryPokemon.shinyCheck) {
-				mysteryImage.src = mysteryPokemon["sprites"]["front_shiny"];
-				mysteryNameElement.innerText = `${mysteryPokemon.name} ✨`;
-			} else {
-				mysteryImage.src = mysteryPokemon["sprites"]["front_default"];
-			}
-		} else {
-			console.error(`Element activePlayer${index} not found.`);
-		}
+		if (nameElement) nameElement.innerText = pokemon.name;
 
 		// Log Pokemon details
 		console.log(pokemon.name, pokemon.id);
 
-		let statArray = [];
+		let statArray = [
+			`healthPlayer${numericIndex}`,
+			`attackPlayer${numericIndex}`,
+			`defensePlayer${numericIndex}`,
+			`special-attackPlayer${numericIndex}`,
+			`special-defensePlayer${numericIndex}`,
+			`speedPlayer${numericIndex}`,
+		];
 
-		// Loop through each stat of the Pokemon
-		for (let i = 0; i < pokemon.stats.length; i++) {
-			statArray = [
-				`healthPlayer${index}`,
-				`attackPlayer${index}`,
-				`defensePlayer${index}`,
-				`special-attackPlayer${index}`,
-				`special-defensePlayer${index}`,
-				`speedPlayer${index}`,
-			];
-		}
-
-		for (let i = 0; i < pokemons[0].stats.length; i++) {
-			const stat = pokemons[index - 1].stats[i];
-			// [+!(index - 1)] is a fancy way of getting the other index
-			const otherStat = pokemons[+!(index - 1)].stats[i].base_stat;
+		for (let i = 0; i < statArray.length; i++) {
+			const stat = pokemons[index].stats[i];
+			// Abs removes the negative sign (ie. abs(-1) -> 1)
+			const otherStat = pokemons[Math.abs(index - 1)].stats[i];
 
 			const statElement = document.getElementById(statArray[i]);
 			statElement.style.width = stat.base_stat + "px";
@@ -98,8 +101,33 @@ async function main() {
 	}
 }
 
-async function shinyRoller() {
-	return Math.floor(Math.random() * shinyOdds) + 1 === 4;
+async function updateMysteryPokemon() {
+	const mysteryPokemon = await getRandomPokemon(minMysteryId, maxMysteryId);
+	const name = capitalize(getNameBeforeHyphen(mysteryPokemon.name));
+
+	mysteryNameElement.innerText = name;
+	announcementName.innerText = `A wild ${name} Appeared!`;
+
+	mysteryImage.src = mysteryPokemon.sprite;
+
+	if (!mysteryPokemon.shiny) return;
+
+	// Add sparkle effect if the Pokemon is shiny
+	mysteryNameElement.innerText = `${name} ✨`;
+	playAudio(Sparkle);
+}
+
+// ================ Helper functions ================
+
+function capitalize(name) {
+	return name.charAt(0).toUpperCase() + name.slice(1);
+}
+function getNameBeforeHyphen(name) {
+	return name.split("-")[0]; // Split by hyphen and take the first part
+}
+
+function getPlayerNameElement(index) {
+	return document.getElementById(`pokemonNamePlayer${index}`);
 }
 
 async function getRandomPokemon(min = 0, max = maxPokeId) {
@@ -113,3 +141,69 @@ async function getRandomPokemon(min = 0, max = maxPokeId) {
 		console.error("Error fetching Pokemon data:", error);
 	}
 }
+
+/**
+ * Plays an audio file
+ * @param {HTMLAudioElement} audio The audio file to play
+ * @param {boolean} isLoop Whether the audio should loop (default: false)
+ * @param {boolean} isMusic Whether the audio is music (default: false)
+ * @param {Document | HTMLElement | string} musicSelector The (id of an) element to click to start the music if autoplay failed (default: document)
+ * @returns {Promise<void>}
+ */
+async function playAudio(
+	audio,
+	isLoop = false,
+	isMusic = false,
+	musicSelector = document
+) {
+	const muteMusic = document.cookie.includes("music-mute=true");
+	const muteSfx = document.cookie.includes("sfx-mute=true");
+
+	audio.loop = isLoop;
+
+	// Check if the audio element already exists in the DOM
+	let exists = false;
+	document.querySelectorAll("audio").forEach((audioElement) => {
+		if (audioElement.src === audio.src) exists = true;
+	});
+
+	// If the audio element doesn't exist, append it to the body so it can be muted and controlled by other scripts
+	if (!exists) {
+		const elem = document.body.appendChild(audio);
+		elem.hidden = true;
+		elem.classList.add(isMusic ? "music" : "sfx");
+	}
+
+	if (isMusic && muteMusic) {
+		musicSelector.addEventListener("click", () =>
+			playAudio(audio, isLoop, isMusic)
+		);
+		return;
+	}
+	if (!isMusic && muteSfx) return;
+
+	try {
+		await audio.play();
+	} catch (error) {
+		if (error instanceof DOMException) {
+			if (!isMusic) return;
+
+			// if the error is due to autoplay restrictions, play the audio on user interaction with the selector
+			musicSelector.addEventListener(
+				"click",
+				() => playAudio(audio, isLoop, isMusic),
+				{ once: true }
+			);
+		} else throw error;
+	}
+}
+
+// ================ Event listeners ================
+
+runButton.addEventListener("click", () => playAudio(runSound));
+fightButton.addEventListener("click", () => playAudio(fightSound));
+itemsButton.addEventListener("click", () => playAudio(itemsSound));
+
+runButton.addEventListener("mouseover", () => playAudio(hoverSound));
+fightButton.addEventListener("mouseover", () => playAudio(hoverSound));
+itemsButton.addEventListener("mouseover", () => playAudio(hoverSound));

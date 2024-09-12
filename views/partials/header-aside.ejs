@@ -10,14 +10,27 @@
 	<!-- <button id="open-nav" class="menu-btn" onclick="openNav()">
 		<img src="./assets/img/icon_ball.png" alt="" />
 	</button> -->
-
-	<form action="/logout" method="post" id="user-form">
-		<img id="usericon" class="pixelated" src="<%= user.avatar ??
-		"./assets/img/placeholder.jpg" %>" alt="avatar" />
-		<button type="submit" name="sign out">
-			<i class="fa-solid fa-sign-out"></i>
-		</button>
-	</form>
+	<div id="header-settings">
+		<div id="audio-mute">
+			<button id="mute-music" class="fa-stack">
+				<i class="fa fa-music"></i>
+				<i
+					id="music-muted-slash"
+					class="fa fa-slash fa-stack-1x fa-xl"
+				></i>
+			</button>
+			<button id="mute-sfx">
+				<i class="fa-solid fa-volume-mute"></i>
+			</button>
+		</div>
+		<form action="/logout" method="post" id="user-form">
+			<img id="usericon" class="pixelated" src="<%= user.avatar ??
+			"./assets/img/placeholder.jpg" %>" alt="avatar" />
+			<button type="submit" name="sign out">
+				<i class="fa-solid fa-sign-out"></i>
+			</button>
+		</form>
+	</div>
 </header>
 
 <aside>
