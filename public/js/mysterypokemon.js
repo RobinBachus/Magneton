@@ -1,7 +1,6 @@
 /** @typedef {import('./types').Pokemon} Pokemon */
 
 // ================ Constants ================
-
 const minMysteryId = 10001;
 const maxMysteryId = 10277;
 const shinyOdds = 4;

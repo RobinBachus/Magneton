@@ -100,6 +100,30 @@ async function setupCookieBanner() {
 
 	return true;
 }
+// ---- Loading screen ----
+document.addEventListener("DOMContentLoaded", function () {
+	const loadingScreen = document.getElementById("loading-screen");
+
+	// Function to show the loading screen
+	function showLoadingScreen() {
+		loadingScreen.classList.remove("hidden");
+	}
+
+	// Select only the 10 specific links inside the article elements
+	const articleLinks = document.querySelectorAll("#pokedex-list article a");
+
+	articleLinks.forEach((link) => {
+		link.addEventListener("click", function (event) {
+			// Show the loading screen when one of the 10 links is clicked
+			showLoadingScreen();
+		});
+	});
+
+	// Hide loading screen when the page finishes loading
+	window.addEventListener("load", function () {
+		loadingScreen.classList.add("hidden");
+	});
+});
 
 // ---- Audio Settings ----
 
