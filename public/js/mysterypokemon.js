@@ -32,6 +32,11 @@ const announcementName = document.getElementById("announcement");
 /** @type HTMLImageElement */
 const mysteryImage = document.getElementById(`enemyfighter`);
 
+/** @type HTMLButtonElement */
+const muteMusicButton = document.getElementById("mute-music");
+/** @type HTMLButtonElement */
+const muteSfxButton = document.getElementById("mute-sfx");
+
 // ================ Main ================
 
 main();
@@ -58,7 +63,7 @@ async function main() {
 
 	if (mysteryNameElement) {
 		// Play the mystery BGM
-		await playAudio(mysteryBGM, true, true);
+		await playAudio(mysteryBGM, true, true, true);
 		// Update the mystery Pokemon
 		await updateMysteryPokemon();
 		// No need to do stats for the mystery battler
@@ -123,7 +128,8 @@ async function updateMysteryPokemon() {
 
 	// Add sparkle effect if the Pokemon is shiny
 	mysteryNameElement.innerText = `${name} ✨`;
-	playAudio(Sparkle);
+	// Play the sparkle sound effect once the user interacts with the page
+	playAudio(Sparkle, false, false, true);
 }
 
 // ================ Helper functions ================
@@ -162,14 +168,16 @@ async function getRandomPokemon(min = 0, max = maxPokeId) {
  * @param {HTMLAudioElement} audio The audio file to play
  * @param {boolean} isLoop Whether the audio should loop (default: false)
  * @param {boolean} isMusic Whether the audio is music (default: false)
- * @param {Document | HTMLElement | string} musicSelector The (id of an) element to click to start the music if autoplay failed (default: document)
+ * @param {boolean} waitForUserInteraction Whether to wait for user interaction to play the audio (default: false)
+ * @param {HTMLElement | string} selector The (id of the) element to click to play the audio if playback failed on call (default: document)
  * @returns {Promise<void>}
  */
 async function playAudio(
 	audio,
 	isLoop = false,
 	isMusic = false,
-	musicSelector = document
+	waitForUserInteraction = false,
+	selector = document
 ) {
 	const muteMusic = document.cookie.includes("music-mute=true");
 	const muteSfx = document.cookie.includes("sfx-mute=true");
@@ -190,21 +198,25 @@ async function playAudio(
 	}
 
 	if (isMusic && muteMusic) {
-		musicSelector.addEventListener("click", () =>
-			playAudio(audio, isLoop, isMusic)
-		);
+		muteMusicButton.addEventListener("click", () => {
+			playAudio(audio, isLoop, isMusic);
+			muteMusicButton.removeEventListener("click", () => {});
+		});
+
 		return;
 	}
+
 	if (!isMusic && muteSfx) return;
 
 	try {
+		if (!isMusic) audio.currentTime = 0; // Reset the audio if it's an effect
 		await audio.play();
 	} catch (error) {
 		if (error instanceof DOMException) {
-			if (!isMusic) return;
+			if (!waitForUserInteraction) return;
 
 			// if the error is due to autoplay restrictions, play the audio on user interaction with the selector
-			musicSelector.addEventListener(
+			selector.addEventListener(
 				"click",
 				() => playAudio(audio, isLoop, isMusic),
 				{ once: true }
