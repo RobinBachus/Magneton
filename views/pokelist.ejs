@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="/css/frames.css" />
 
 		<script src="/js/main.js" defer></script>
+		<script src="/js/pokelist.js" type="module" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -20,31 +21,7 @@
 		></script>
 	</head>
 	<body>
-		<header>
-			<a href="/home">
-				<img
-					id="logo"
-					src="/assets/img/LogoLightModeNewer.png"
-					alt="Logo"
-				/>
-			</a>
-			<div class="menu-container">
-				<a class="menu-btn" href="/pokedex">Pokémon</a>
-				<a class="menu-btn" href="/quiz">Who's that Pokémon?</a>
-				<a class="menu-btn" href="/comparator">Comperator</a>
-			</div>
-			<!-- <button id="open-nav" class="menu-btn" onclick="openNav()">
-				<img src="./assets/img/icon_ball.png" alt="" />
-			</button> -->
-
-			<form action="/logout" method="post" id="user-form">
-				<img id="usericon" class="pixelated" src="<%= user.avatar ??
-				"./assets/img/placeholder.jpg" %>" alt="avatar" />
-				<button type="submit" name="sign out">
-					<i class="fa-solid fa-sign-out"></i>
-				</button>
-			</form>
-		</header>
+		<%- include("partials/header-aside") %>
 		<section id="buddy" class="framed no-hd">
 			<h1>My Buddy</h1>
 			<img
@@ -56,10 +33,6 @@
 		</section>
 		<main>
 			<p>Generation <%= gen %></p>
-			<audio autoplay loop>
-				<source src="/assets/audio/pokedexloop.mp3" type="audio/mpeg" />
-				Your browser does not support the audio element.
-			</audio>
 			<section id="pokelist-container">
 				<section id="selectedPokemon">
 					<button id="buddy-button">❤</button>
@@ -78,7 +51,7 @@
 						src="/assets/img/scovillain.png"
 						alt=""
 					/>
-					<!-- pokemon word aangeduid door in de lijst 1 aan te clicken ennwordt zo ook deze image -->
+					<!-- pokemon word aangeduid door in de lijst 1 aan te clicken en wordt zo ook deze image -->
 					<img id="type1" src="/assets/img/grass.png" alt="" />
 					<img id="type2" src="/assets/img/fire.png" alt="" />
 					<button id="battle-button">Battle</button>

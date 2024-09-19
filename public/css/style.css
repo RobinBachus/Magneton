@@ -17,7 +17,7 @@ body {
 		"aside main buddy"
 		"aside footer footer";
 	grid-template-columns: 0 1fr 0;
-	grid-template-rows: 5rem 1fr 5rem;
+	grid-template-rows: min-content 1fr 5rem;
 	height: 100vh;
 	background-color: var(--color-bg);
 	color: var(--color-light);
@@ -65,6 +65,7 @@ header a,
 header img {
 	object-fit: contain;
 	max-width: fit-content;
+	max-height: 3rem;
 	height: 100%;
 }
 
@@ -256,7 +257,7 @@ input[type="submit"] {
 	border: 2px solid #000;
 }
 
-#user-form button {
+#header-settings button {
 	color: var(--color-header);
 	background-color: transparent;
 	height: 2rem;
@@ -271,7 +272,7 @@ input[type="submit"] {
 	transition: background-color 0.2s, color 0.2s;
 }
 
-#user-form button:hover {
+#header-settings button:hover {
 	background-color: var(--color-header);
 	color: var(--color-light);
 }
@@ -284,6 +285,51 @@ input[type="submit"] {
 	background-color: var(--color-dark);
 	color: var(--color-light);
 }
+
+#header-settings {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#audio-mute {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	background: var(--color-light);
+	color: #000;
+	padding: 5px;
+	border-radius: 10px;
+	border: 2px solid #000;
+	margin-right: 10px;
+}
+
+#audio-mute > button {
+	margin: 0 2px;
+}
+
+#audio-mute > button.muted {
+	color: var(--color-light);
+	border-color: var(--color-header);
+	background-color: var(--color-header);
+}
+
+#audio-mute > button.muted:hover {
+	background-color: color-mix(in srgb, var(--color-header) 30%, transparent);
+	color: var(--color-header);
+}
+
+#audio-mute > button:not(.muted) {
+	color: var(--color-light);
+	border-color: var(--color-dark);
+	background-color: var(--color-dark);
+}
+
+#audio-mute > button:not(.muted):hover {
+	background-color: color-mix(in srgb, var(--color-dark) 30%, transparent);
+	color: var(--color-dark);
+}
+
 /* Home page */
 .welcome-frame {
 	background-color: var(--color-light);
@@ -934,27 +980,21 @@ button {
 	}
 }
 
-@media only screen and (max-width: 800px) {
-	#pokedex-list {
-		grid-template-columns: 1fr 1fr;
-	}
-}
-
 /*Blackening filter for who's that pokemon:  -webkit-filter: brightness(0);*/
 @media only screen and (max-width: 1080px) {
 	header {
-		max-width: 500px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: var(--color-header);
+		flex-direction: column;
 	}
 
-	header a,
-	header img {
-		object-fit: contain;
-		max-width: fit-content;
+	a:has(#logo),
+	#logo {
+		max-height: 5rem;
 	}
+
+	#buddy {
+		top: 1rem;
+	}
+
 	#backgroundvideo {
 		width: 100%;
 		height: 100%;
@@ -965,5 +1005,52 @@ button {
 		top: 0;
 		bottom: 0;
 		z-index: -1;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	#pokedex-list {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.menu-container {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.menu-btn {
+		width: 100%;
+	}
+
+	#mystery-zone {
+		max-width: 250px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	#pokedex-list {
+		grid-template-columns: 1fr;
+	}
+
+	#pokedex-list article {
+		width: 100% !important;
+		grid-column-start: 1;
+	}
+
+	#pokedex-list article a {
+		width: 100% !important;
+		max-width: 100% !important;
+		height: fit-content;
+	}
+
+	#pokedex-list article img:not(.foggy-background) {
+		width: 100%;
+		height: 279px;
+		object-fit: cover;
+	}
+
+	#mystery-zone {
+		padding: 1rem;
+		max-width: 100%;
 	}
 }

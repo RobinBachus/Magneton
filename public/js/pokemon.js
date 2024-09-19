@@ -3,13 +3,13 @@ const maxPokeId = 1025;
 let pokemons = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-	const findme = document.getElementById("findme");
+	const findMe = document.getElementById("findme");
 	const dropdown1 = document.getElementById("dropdown1");
-	const findme2 = document.getElementById("findme2");
+	const findMe2 = document.getElementById("findme2");
 	const dropdown2 = document.getElementById("dropdown2");
 
-	findme.addEventListener("input", (e) => handleInput(e, dropdown1, 1));
-	findme2.addEventListener("input", (e) => handleInput(e, dropdown2, 2));
+	findMe.addEventListener("input", (e) => handleInput(e, dropdown1, 1));
+	findMe2.addEventListener("input", (e) => handleInput(e, dropdown2, 2));
 
 	dropdown1.addEventListener("click", (e) => handleDropdownClick(e, 1));
 	dropdown2.addEventListener("click", (e) => handleDropdownClick(e, 2));
@@ -119,4 +119,3 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 });
-// pokemonlist

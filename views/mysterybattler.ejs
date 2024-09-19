@@ -11,7 +11,12 @@
 		<link rel="stylesheet" href="css/frames.css" />
 		<link rel="stylesheet" href="css\mysterybattler.css" />
 		<script src="js/main.js" defer></script>
-		<script src="js/mysterypokemon.js" defer></script>
+		<script src="js/mysterypokemon.js" type="module" defer></script>
+
+		<!-- Prefetch images -->
+		<link rel="preload" as="image" href="./assets/img/fighthover.png" />
+		<link rel="preload" as="image" href="./assets/img/baghover.png" />
+		<link rel="preload" as="image" href="./assets/img/runhover.png" />
 
 		<!-- fa icons -->
 		<script
@@ -21,10 +26,7 @@
 	</head>
 	<body>
 		<%- include("partials/header-aside") %>
-		<audio autoplay loop>
-			<source src="./assets/audio/wildmystery.mp3" type="audio/mpeg" />
-			Your browser does not support the audio element.
-		</audio>
+
 		<main id="battler" class="bg-image">
 			<!-- <section class="bg-image"> -->
 
