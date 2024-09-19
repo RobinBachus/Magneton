@@ -10,6 +10,7 @@ export interface Pokemon {
 	sprite: string;
 	backSprite: string;
 	types: PokemonType[];
+	species: string;
 }
 
 export interface Stats {
@@ -44,4 +45,13 @@ export enum PokemonType {
 	dark,
 	steel,
 	fairy,
+}
+
+export interface PokemonResultPage {
+	results: Pokemon[];
+	limit: number;
+	start: number;
+	next?: number | null;
+	previous?: number | null;
+	count: number;
 }

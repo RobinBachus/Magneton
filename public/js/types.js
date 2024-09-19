@@ -20,6 +20,7 @@
  * @typedef {object} Pokemon
  * @property {number} id The pokemon's id
  * @property {string} name The pokemon's name
+ * @property {string} species The pokemon's species
  * @property {Stats} stats The pokemon's stats
  * @property {boolean} shiny Whether the pokemon is shiny
  * @property {string} url The url of the pokemon
@@ -39,3 +40,16 @@
  * @property {number} specialDefense The pokemon's special defense points
  * @property {number} speed The pokemon's speed points
  */
+
+/**
+ * A page of Pokemon
+ * @typedef {Object} Page
+ * @property {Pokemon[]} results The Pokemon on the page
+ * @property {number} limit The number of Pokemon to fetch
+ * @property {number} offset The number of Pokemon to skip
+ * @property {string?} next The URL to the next page (if it exists)
+ * @property {string?} previous The URL to the previous page (if it exists)
+ * @property {number} count The total number of Pokemon
+ */
+
+export const types = {}

@@ -1,10 +1,17 @@
-/** @typedef {import('./types').Pokemon} Pokemon */
+// ================ Imports ================
+import * as types from "./types.js";
+import {
+	playAudio,
+	getRandomPokemon,
+	getFormattedPokemonName,
+} from "./common.js";
+
+// ================ Type Definitions ================
+/** @typedef {types.Pokemon} Pokemon */
 
 // ================ Constants ================
 const minMysteryId = 10001;
 const maxMysteryId = 10277;
-const shinyOdds = 4;
-const maxPokeId = 1025;
 
 // ================ Audio files ================
 
@@ -30,11 +37,6 @@ const announcementName = document.getElementById("announcement");
 
 /** @type HTMLImageElement */
 const mysteryImage = document.getElementById(`enemyfighter`);
-
-/** @type HTMLButtonElement */
-const muteMusicButton = document.getElementById("mute-music");
-/** @type HTMLButtonElement */
-const muteSfxButton = document.getElementById("mute-sfx");
 
 // ================ Main ================
 
@@ -116,7 +118,7 @@ async function main() {
 
 async function updateMysteryPokemon() {
 	const mysteryPokemon = await getRandomPokemon(minMysteryId, maxMysteryId);
-	const name = capitalize(getNameBeforeHyphen(mysteryPokemon.name));
+	const name = getFormattedPokemonName(mysteryPokemon);
 
 	mysteryNameElement.innerText = name;
 	announcementName.innerText = `A wild ${name} Appeared!`;
@@ -131,97 +133,10 @@ async function updateMysteryPokemon() {
 	playAudio(Sparkle, false, false, true);
 }
 
-// ================ Helper functions ================
-
-function capitalize(name) {
-	return name.charAt(0).toUpperCase() + name.slice(1);
-}
-function getNameBeforeHyphen(name) {
-	return name.split("-")[0]; // Split by hyphen and take the first part
-}
+// ================ Helper functions (check common.js) ================
 
 function getPlayerNameElement(index) {
 	return document.getElementById(`pokemonNamePlayer${index}`);
-}
-
-async function getRandomPokemon(min = 0, max = maxPokeId) {
-	try {
-		const response = await fetch("/api/getRandomPokemon", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ min, max }),
-		});
-
-		/** @type Pokemon */
-		const pokemon = await response.json();
-		return pokemon;
-	} catch (error) {
-		console.error("Error fetching Pokemon data:", error);
-	}
-}
-
-/**
- * Plays an audio file
- * @param {HTMLAudioElement} audio The audio file to play
- * @param {boolean} isLoop Whether the audio should loop (default: false)
- * @param {boolean} isMusic Whether the audio is music (default: false)
- * @param {boolean} waitForUserInteraction Whether to wait for user interaction to play the audio (default: false)
- * @param {HTMLElement | string} selector The (id of the) element to click to play the audio if playback failed on call (default: document)
- * @returns {Promise<void>}
- */
-async function playAudio(
-	audio,
-	isLoop = false,
-	isMusic = false,
-	waitForUserInteraction = false,
-	selector = document
-) {
-	const muteMusic = document.cookie.includes("music-mute=true");
-	const muteSfx = document.cookie.includes("sfx-mute=true");
-
-	audio.loop = isLoop;
-
-	// Check if the audio element already exists in the DOM
-	let exists = false;
-	document.querySelectorAll("audio").forEach((audioElement) => {
-		if (audioElement.src === audio.src) exists = true;
-	});
-
-	// If the audio element doesn't exist, append it to the body so it can be muted and controlled by other scripts
-	if (!exists) {
-		const elem = document.body.appendChild(audio);
-		elem.hidden = true;
-		elem.classList.add(isMusic ? "music" : "sfx");
-	}
-
-	if (isMusic && muteMusic) {
-		muteMusicButton.addEventListener("click", () => {
-			playAudio(audio, isLoop, isMusic);
-			muteMusicButton.removeEventListener("click", () => {});
-		});
-
-		return;
-	}
-
-	if (!isMusic && muteSfx) return;
-
-	try {
-		if (!isMusic) audio.currentTime = 0; // Reset the audio if it's an effect
-		await audio.play();
-	} catch (error) {
-		if (error instanceof DOMException) {
-			if (!waitForUserInteraction) return;
-
-			// if the error is due to autoplay restrictions, play the audio on user interaction with the selector
-			selector.addEventListener(
-				"click",
-				() => playAudio(audio, isLoop, isMusic),
-				{ once: true }
-			);
-		} else throw error;
-	}
 }
 
 // ================ Event listeners ================

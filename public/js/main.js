@@ -100,7 +100,9 @@ async function setupCookieBanner() {
 
 	return true;
 }
+
 // ---- Loading screen ----
+
 document.addEventListener("DOMContentLoaded", function () {
 	const loadingScreen = document.getElementById("loading-screen");
 
@@ -121,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Hide loading screen when the page finishes loading
 	window.addEventListener("load", function () {
-		loadingScreen.classList.add("hidden");
+		if (loadingScreen) loadingScreen.classList.add("hidden");
 	});
 });
 
@@ -153,10 +155,10 @@ function setupAudioSettings() {
 		musicSlashIcon.style.display = muted ? "block" : "none";
 		document.cookie = `music-mute=${muted}`;
 
-		if (muted) {
-			/** @type HTMLCollectionOf<HTMLAudioElement> */
-			const music = document.getElementsByClassName("music");
-			for (let song of music) song.pause();
+		/** @type HTMLCollectionOf<HTMLAudioElement> */
+		const music = document.getElementsByClassName("music");
+		for (let song of music) {
+			song.muted = muted;
 		}
 	};
 
