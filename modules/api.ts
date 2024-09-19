@@ -1,8 +1,9 @@
-import { Pokemon } from "../@types/pokemon";
+import { AxiosError } from "axios";
+import { Pokemon, PokemonType } from "../@types/pokemon";
 import { Color } from "./common";
 import Logger from "./logger";
 
-import { PokemonClient } from "pokenode-ts";
+import { PokemonClient, Pokemon as apiPokemon } from "pokenode-ts";
 
 const API_URL = "https://pokeapi.co/api/v2/pokemon/";
 const BACKUP_URL =
@@ -30,7 +31,7 @@ interface GenIdLimits {
 	gen9: GenIdLimit;
 }
 
-export const apiLogger = new Logger("API", Color.fg.crimson);
+export const apiLogger = new Logger("API", Color.fg.magenta);
 
 export type genID = keyof GenIdLimits;
 
@@ -80,7 +81,17 @@ export async function getPokemonRange(start: number, end: number) {
 
 	for (let i = start; i < end + 1; i++) {
 		const url = `${API_URL}${i}`;
-		pokemonList.push(jsonToPokemon(await client.getPokemonById(i), url));
+		try {
+			const response = await client.getPokemonById(i);
+			pokemonList.push(jsonToPokemon(response, url));
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				apiLogger.log(`Failed to get Pokemon by ID: ${i} - ${error}`);
+				continue;
+			}
+
+			throw error;
+		}
 	}
 
 	return pokemonList;
@@ -91,7 +102,7 @@ export async function getPokemonByGen(gen: genID) {
 	return getPokemonRange(start, end);
 }
 
-function jsonToPokemon(json: any, url: string): Pokemon {
+function jsonToPokemon(json: apiPokemon, url: string): Pokemon {
 	const pokemon: Pokemon = {
 		id: json.id,
 		name: json.name,
@@ -103,12 +114,15 @@ function jsonToPokemon(json: any, url: string): Pokemon {
 			specialDefense: json.stats[4].base_stat,
 			speed: json.stats[5].base_stat,
 		},
+		species: json.species.name,
 		shiny: Math.floor(Math.random() * shinyOdds) === 1,
 		url,
 		icon: "", // Is set in the return statement
 		sprite: "",
 		backSprite: "",
-		types: json.types.map((type: any) => type.type.name),
+		types: json.types.map(
+			(type) => type.type.name as unknown as PokemonType
+		),
 	};
 
 	return setImages(pokemon, json);
