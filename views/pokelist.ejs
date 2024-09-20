@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="/css/style.css" />
 		<link rel="stylesheet" href="/css/liststyle.css" />
 		<link rel="stylesheet" href="/css/frames.css" />
+		<link rel="stylesheet" href="/css/loading.css" />
 
 		<script src="/js/main.js" defer></script>
 		<script src="/js/pokelist.js" type="module" defer></script>
@@ -32,55 +33,89 @@
 			<p>Magneton</p>
 		</section>
 		<main>
-			<p>Generation <%= gen %></p>
+			<!-- This field will hold the limits of the generation used in the js -->
+			<input type="hidden" id="gen-limits" value="<%= genLimits %>" />
+			<h1 id="title">Generation <%= gen %></h1>
 			<section id="pokelist-container">
-				<section id="selectedPokemon">
+				<section id="selected-pokemon">
+					<div id="pokemon-info">
+						<h2 id="pokemon-name"><%= pokemon.name %></h2>
+						<h3 id="pokemon-id">
+							<%= String(pokemon.id).padStart(4, "0") %>
+						</h3>
+					</div>
 					<button id="buddy-button">❤</button>
-					<!-- button zal aanduiden of pokemon de buddy is als je hem selecteert -->
-
-					<h2>Scovillain</h2>
-					<h3>0952</h3>
 					<img
-						id="releasebutton"
+						id="release-button"
 						src="/assets/img/pokemoncaught.png"
-						alt="Caughtchecker"
+						alt="pokeball"
 					/>
-					<!-- clickable om vrij te laten(misschien optioneel?) maar was wel nodig in de opdracht -->
 					<img
-						id="selection"
-						src="/assets/img/scovillain.png"
-						alt=""
+						id="pokemon-image"
+						src="<%= pokemon.sprite %>"
+						alt="<%= pokemon.name %>"
+						class="pixelated bg-<%= pokemon.types[0] %>"
+						width="500"
+						height="500"
 					/>
-					<!-- pokemon word aangeduid door in de lijst 1 aan te clicken en wordt zo ook deze image -->
-					<img id="type1" src="/assets/img/grass.png" alt="" />
-					<img id="type2" src="/assets/img/fire.png" alt="" />
+					<img
+						class="type"
+						src="/assets/img/<%= pokemon.types[0] %>.png"
+						alt="<%= pokemon.types[0] %>"
+					/>
+					<img
+						class="type"
+						src="/assets/img/<%= pokemon.types[1] %>.png"
+						alt="<%=
+					pokemon.types[1] %>"
+					/>
 					<button id="battle-button">Battle</button>
 					<Button id="catch-button">Catch</Button>
-					<!-- displayed types van de aangeduide pokemon , 1 img als er 1 type is-->
 					<section class="stat-grid">
-						<p>HP</p>
-						<p>ATK</p>
-						<p>DEF</p>
-						<p>SPA</p>
-						<p>SPD</p>
-						<p>SPE</p>
+						<div class="stat">
+							<p>HP</p>
+							<p class="stat-value" id="hp">
+								<%= pokemon.stats.hp %>
+							</p>
+						</div>
+						<div class="stat">
+							<p>ATK</p>
+							<p class="stat-value" id="atk">
+								<%= pokemon.stats.attack %>
+							</p>
+						</div>
+						<div class="stat">
+							<p>DEF</p>
+							<p class="stat-value" id="def">
+								<%= pokemon.stats.defense %>
+							</p>
+						</div>
+						<div class="stat">
+							<p>SPA</p>
+							<p class="stat-value" id="spa">
+								<%= pokemon.stats.specialAttack %>
+							</p>
+						</div>
+						<div class="stat">
+							<p>SPD</p>
+							<p class="stat-value" id="spd">
+								<%= pokemon.stats.specialDefense %>
+							</p>
+						</div>
+						<div class="stat">
+							<p>SPE</p>
+							<p class="stat-value" id="spe">
+								<%= pokemon.stats.speed %>
+							</p>
+						</div>
 					</section>
-					<p id="dateCaught">Caught on 30/04/2024</p>
-
-					<!-- displayed de stats en de naam van de aangeduide pokemon -->
+					<p id="date-caught">Caught on 30/04/2024</p>
 				</section>
-				<section id="pokemon-images" style="overflow-y: scroll">
-					<% for( const p of gen_pokemon ) { %>
-					<article class="pokecontainer selected">
-						<img
-							class="pokemon"
-							src="<%= p.icon %>"
-							alt="<%= p.name %>"
-							height="128"
-							width="128"
-						/>
-					</article>
-					<% } %>
+				<section id="pokemon-images">
+					<section id="loading-screen" class="contained">
+						<div class="spinner"></div>
+						<p>Loading, please wait...</p>
+					</section>
 				</section>
 			</section>
 			<video autoplay muted loop id="backgroundvideo">

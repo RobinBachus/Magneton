@@ -11,6 +11,15 @@
 	align-items: center;
 	z-index: 9999;
 }
+
+/* For using the loading screen inside a container */
+#loading-screen.contained {
+	position: sticky;
+	top: 0;
+	left: 0;
+	margin-top: -100vh;
+}
+
 #loading-screen p {
 	color: #232527;
 	padding-left: 50px;

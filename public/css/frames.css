@@ -10,7 +10,12 @@
 	border-width: 7px;
 }
 
-.selected:hover {
+.selected {
 	background: url("../assets/img/cursor.png") no-repeat center center;
 	background-size: contain;
+	image-rendering: pixelated;
+}
+
+.selected img {
+	image-rendering: auto;
 }
