@@ -93,7 +93,7 @@ function pokemonToArticle(pokemon, selected) {
  * @param {Pokemon} pokemon The Pokemon to select
  * @param {HTMLElement} article The article element of the Pokemon
  */
-async function selectPokemon(pokemon, article) {
+function selectPokemon(pokemon, article) {
 	selectedId.textContent = pokemon.id;
 	selectedName.textContent = pokemon.name;
 	selectedPrimaryType.src = `/assets/img/${pokemon.types[0]}.png`;
