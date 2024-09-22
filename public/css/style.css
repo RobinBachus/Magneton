@@ -82,6 +82,7 @@ footer {
 	justify-content: center;
 	align-items: center;
 	background-color: #da1f1f;
+	z-index: 999;
 }
 
 aside {
