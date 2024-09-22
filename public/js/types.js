@@ -46,10 +46,17 @@
  * @typedef {Object} Page
  * @property {Pokemon[]} results The Pokemon on the page
  * @property {number} limit The number of Pokemon to fetch
- * @property {number} offset The number of Pokemon to skip
+ * @property {number} start The first Pokemon on the page
  * @property {string?} next The URL to the next page (if it exists)
  * @property {string?} previous The URL to the previous page (if it exists)
  * @property {number} count The total number of Pokemon
  */
 
-export const types = {}
+/**
+ * Stores the start and end of a generation
+ * @typedef {Object} Generation
+ * @property {number} start The start of the generation
+ * @property {number} end The end of the generation
+ */
+
+export const types = {};

@@ -1,5 +1,3 @@
-import { types } from "util";
-
 export interface Pokemon {
 	id: number;
 	name: string;
