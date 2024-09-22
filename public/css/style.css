@@ -474,11 +474,6 @@ input[type="submit"] {
 
 /* pokedex lijst */
 
-#pokelist-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-}
-
 #pokedex-list {
 	display: grid;
 	justify-items: center;
@@ -801,8 +796,7 @@ input:-webkit-autofill:active {
 	width: 175px !important;
 }
 
-.catch-menu,
-button {
+.catch-menu button {
 	background-color: #f8f3f8;
 	color: #000;
 	grid-area: menu;

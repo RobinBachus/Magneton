@@ -3,9 +3,12 @@ import { secureMiddleware } from "../middleware/secureMiddleware";
 import {
 	genID as GenID,
 	genIdLimits,
+	getPokemon,
 	getPokemonByGen,
 	getRandomPokemon,
 } from "../modules/api";
+import { Pokemon } from "../@types/pokemon";
+import { json } from "stream/consumers";
 
 export default class SecureRouter extends IRouter {
 	constructor() {
@@ -56,12 +59,17 @@ export default class SecureRouter extends IRouter {
 				if (!gen || !id || isNaN(+id) || !gen.match(/gen[1-9]/))
 					return res.redirect("/error/404");
 
-				const gen_pokemon = await getPokemonByGen(gen);
-				const pokemon = gen_pokemon.find((p) => p.id === +id);
+				const gen_pokemon: Pokemon[] = []; // await getPokemonByGen(gen);
+				const pokemon = await getPokemon(id); //gen_pokemon.find((p) => p.id === +id);
 
 				if (!pokemon) return res.redirect("/error/404");
 
-				res.render("pokelist", { gen_pokemon, pokemon, gen: gen[3] });
+				res.render("pokelist", {
+					gen_pokemon,
+					pokemon,
+					gen: gen[3],
+					genLimits: JSON.stringify(genIdLimits[gen]),
+				});
 			}
 		);
 
