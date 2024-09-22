@@ -79,7 +79,6 @@ body {
 }
 
 .pokemon-container {
-	/* position: relative; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -90,26 +89,17 @@ body {
 }
 
 #buddyfighter {
-	/* position: absolute; */
-	/* top: -190px;
-	right: 440px; */
 	height: 100%;
 	width: auto;
 	animation: introbuddy 7s 1, playerthrow 0.9s 1;
 }
 #enemyfighter {
-	/* position: absolute; */
-	/* left: 440px;
-	top: -130px; */
 	height: 100%;
 	width: auto;
 	animation: introenemy 7s 1;
 	z-index: -1;
 }
 #buddygrass {
-	/* position: relative;
-	right: 4500px;
-	top: 100px; */
 	width: 500px;
 	z-index: 0;
 }
@@ -119,9 +109,6 @@ body {
 }
 
 #enemygrass {
-	/* position: relative;
-	left: 5000px;
-	top: 300px; */
 	width: 500px;
 	opacity: 0.9;
 }
@@ -245,40 +232,6 @@ body {
 	grid-row: 2/4;
 	height: 100%;
 	z-index: 0;
-}
-
-/* this makes the corners of the element pixelated */
-.pixel-corners {
-	clip-path: polygon(
-		0px calc(100% - 12px),
-		3px calc(100% - 12px),
-		3px calc(100% - 6px),
-		6px calc(100% - 6px),
-		6px calc(100% - 3px),
-		12px calc(100% - 3px),
-		12px 100%,
-		calc(100% - 12px) 100%,
-		calc(100% - 12px) calc(100% - 3px),
-		calc(100% - 6px) calc(100% - 3px),
-		calc(100% - 6px) calc(100% - 6px),
-		calc(100% - 3px) calc(100% - 6px),
-		calc(100% - 3px) calc(100% - 12px),
-		100% calc(100% - 12px),
-		100% 12px,
-		calc(100% - 3px) 12px,
-		calc(100% - 3px) 6px,
-		calc(100% - 6px) 6px,
-		calc(100% - 6px) 3px,
-		calc(100% - 12px) 3px,
-		calc(100% - 12px) 0px,
-		12px 0px,
-		12px 3px,
-		6px 3px,
-		6px 6px,
-		3px 6px,
-		3px 12px,
-		0px 12px
-	);
 }
 
 @keyframes playerthrow {
