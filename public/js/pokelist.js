@@ -28,6 +28,11 @@ const selectedName = document.getElementById("pokemon-name");
 const selectedTypes = document.getElementsByClassName("type");
 const selectedPrimaryType = selectedTypes[0];
 const selectedSecondaryType = selectedTypes[1];
+
+/** @type HTMLElement */
+const selectedImageContainer = document.getElementById(
+	"pokemon-image-container"
+);
 /** @type HTMLImageElement */
 const selectedImage = document.getElementById("pokemon-image");
 /** @type HTMLCollectionOf<HTMLElement> */
@@ -101,8 +106,8 @@ function selectPokemon(pokemon, article) {
 	selectedSecondaryType.src = `/assets/img/${pokemon.types[1]}.png`;
 	selectedSecondaryType.alt = pokemon.types[1] ?? "";
 	selectedImage.src = pokemon.sprite;
-	selectedImage.classList.value = `pixelated bg-${pokemon.types[0]}`;
 	selectedImage.alt = pokemon.name;
+	selectedImageContainer.classList.value = `pixelated bg-${pokemon.types[0]}`;
 
 	const stats = Object.values(pokemon.stats);
 	for (let i = 0; i < stats.length; i++) {

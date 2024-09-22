@@ -50,14 +50,19 @@
 						src="/assets/img/pokemoncaught.png"
 						alt="pokeball"
 					/>
-					<img
-						id="pokemon-image"
-						src="<%= pokemon.sprite %>"
-						alt="<%= pokemon.name %>"
-						class="pixelated bg-<%= pokemon.types[0] %>"
-						width="500"
-						height="500"
-					/>
+					<div
+						id="pokemon-image-container"
+						class="bg-<%= pokemon.types[0] %>"
+					>
+						<img
+							id="pokemon-image"
+							src="<%= pokemon.sprite %>"
+							alt="<%= pokemon.name %>"
+							class="pixelated"
+							width="500"
+							height="500"
+						/>
+					</div>
 					<img
 						class="type"
 						src="/assets/img/<%= pokemon.types[0] %>.png"

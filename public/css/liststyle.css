@@ -72,18 +72,27 @@
 	grid-column: 1/3;
 }
 
-#pokemon-image {
+#pokemon-image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: bottom;
+	width: 100%;
+	height: fit-content;
+	grid-column: 1/3;
+	grid-row: 2/4;
+	padding: 1rem;
+}
+
+#pokemon-image {
 	width: 100%;
 	height: auto;
 	max-height: 30vh;
 	object-fit: contain;
 
-	grid-column: 1/3;
-	grid-row: 2/4;
-	padding: 1rem;
+	filter: drop-shadow(0 0 5px white) drop-shadow(0 0 5px white);
 }
 
 #buddy-button {
