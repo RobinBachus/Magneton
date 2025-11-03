@@ -18,7 +18,45 @@
 		></script>
 	</head>
 	<body>
-		<%- include("partials/header-aside") %>
+		<header>
+			<a href="/home">
+				<img
+					id="logo"
+					src="/assets/img/LogoLightModeNewer.png"
+					alt="Logo"
+				/>
+			</a>
+			<div class="menu-container">
+				<a class="menu-btn" href="/pokedex">Pokémon</a>
+				<a class="menu-btn" href="/quiz">Who's that Pokémon?</a>
+				<a class="menu-btn" href="/comparator">Comperator</a>
+			</div>
+			<!-- <button id="open-nav" class="menu-btn" onclick="openNav()">
+		<img src="./assets/img/icon_ball.png" alt="" />
+	</button> -->
+			<div id="header-settings">
+				<div id="audio-mute">
+					<button id="mute-music" class="mute-button fa-stack">
+						<i class="fa fa-music"></i>
+						<i
+							id="music-muted-slash"
+							class="fa fa-slash fa-stack-1x fa-xl"
+						></i>
+					</button>
+					<button id="mute-sfx" class="mute-button">
+						<i class="fa-solid fa-volume-mute"></i>
+					</button>
+				</div>
+				<form action="/logout" method="post" id="user-form">
+					<img id="usericon" class="pixelated" src="<%= user.avatar ??
+					"/assets/img/placeholder.jpg" %>" alt="avatar" />
+					<button type="submit" name="sign out">
+						<i class="fa-solid fa-sign-out"></i>
+					</button>
+				</form>
+			</div>
+		</header>
+
 		<section id="buddy" class="framed expanded">
 			<h1>My Buddy</h1>
 			<img
@@ -59,6 +97,6 @@
 			</video>
 		</main>
 
-		<%- include("partials/footer") %>
+		<footer><p>&copy; Team Magneton</p></footer>
 	</body>
 </html>
