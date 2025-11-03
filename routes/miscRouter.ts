@@ -1,5 +1,8 @@
 import { PokemonResultPage } from "../@types/pokemon";
 import {
+	genID,
+	genIdLimits,
+	getPokemon,
 	getPokemonRange,
 	getRandomPokemon,
 	getRandomPokemonInRange,
@@ -13,22 +16,34 @@ export default class MiscRouter extends IRouter {
 
 	setGetRoutes() {
 		this.router.get("/", (req, res) => {
-			res.render("landing");
+			res.sendFile("index.html", { root: "public" });
 		});
 
 		this.router.get("/favicon", (req, res) => {
-			res.render("favicon");
+			res.sendFile("favicon.ico", { root: "public" });
 		});
 
 		this.router.get("/error/:code", (req, res) => {
 			const code = req.params.code;
 
-			let message;
-			if (code === "404")
-				message = "De pagina die je zocht kon niet worden gevonden";
-			else message = req.query.message || "Er is een fout opgetreden";
+			res.status(parseInt(code)).sendFile("error.html", {
+				root: "public",
+			});
+		});
 
-			res.status(parseInt(code)).render("error", { code, message });
+		this.router.get("/api/getGenLimits/:gen", (req, res) => {
+			const gen = req.params.gen as genID;
+
+			res.send(genIdLimits[gen]);
+		});
+
+		this.router.get("/api/getPokemon/:id", async (req, res) => {
+			const id = parseInt(req.params.id);
+
+			console.log(`Looking for pokemon ${id}`);
+			if (!id || isNaN(id)) res.redirect("/error/400");
+
+			res.send(await getPokemon(id));
 		});
 
 		this.router.get("/api/getPokemonPage", async (req, res) => {
@@ -92,7 +107,7 @@ export default class MiscRouter extends IRouter {
 		});
 
 		this.router.use((req, res) => {
-			res.status(404).render("error", {
+			res.status(404).json({
 				code: "404",
 				message: "This resource does not exist",
 			});

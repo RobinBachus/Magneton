@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Mystery Encounter!</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fonts.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/frames.css" />
+		<link rel="stylesheet" href="css/mysterybattler.css" />
+		<script src="/js/main.js" type="module" defer></script>
+		<script src="js/mysterypokemon.js" type="module" defer></script>
+
+		<!-- Prefetch images -->
+		<link rel="preload" as="image" href="./assets/img/fighthover.png" />
+		<link rel="preload" as="image" href="./assets/img/baghover.png" />
+		<link rel="preload" as="image" href="./assets/img/runhover.png" />
+
+		<!-- fa icons -->
+		<script
+			src="https://kit.fontawesome.com/91fd30522d.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<header>
+			<a href="/home">
+				<img
+					id="logo"
+					src="/assets/img/LogoLightModeNewer.png"
+					alt="Logo"
+				/>
+			</a>
+			<div class="menu-container">
+				<a class="menu-btn" href="/pokedex">Pokémon</a>
+				<a class="menu-btn" href="/quiz">Who's that Pokémon?</a>
+				<a class="menu-btn" href="/comparator">Comperator</a>
+			</div>
+			<!-- <button id="open-nav" class="menu-btn" onclick="openNav()">
+		<img src="./assets/img/icon_ball.png" alt="" />
+	</button> -->
+			<div id="header-settings">
+				<div id="audio-mute">
+					<button id="mute-music" class="mute-button fa-stack">
+						<i class="fa fa-music"></i>
+						<i
+							id="music-muted-slash"
+							class="fa fa-slash fa-stack-1x fa-xl"
+						></i>
+					</button>
+					<button id="mute-sfx" class="mute-button">
+						<i class="fa-solid fa-volume-mute"></i>
+					</button>
+				</div>
+				<form action="/logout" method="post" id="user-form">
+					<img
+						id="usericon"
+						class="pixelated"
+						src="/assets/img/pfp1.png"
+						alt="avatar"
+					/>
+					<button type="submit" name="sign out">
+						<i class="fa-solid fa-sign-out"></i>
+					</button>
+				</form>
+			</div>
+		</header>
+
+		<main id="battler" class="bg-image">
+			<h2 class="battletext framed" id="announcement"></h2>
+
+			<article class="pokemon" id="enemy-container">
+				<img
+					src="./assets/img/battleshadow.png"
+					alt="Catchspawn"
+					id="enemygrass"
+					class="hidden"
+				/>
+				<img
+					src=""
+					alt=""
+					class="on-spawn pixelated"
+					id="enemyfighter"
+				/>
+			</article>
+			<article class="pokemon" id="buddy-container">
+				<img
+					src="./assets/img/battleshadow.png"
+					alt="Catchspawn"
+					class="hidden"
+					id="buddygrass"
+				/>
+				<img
+					src="./assets/img/PALKIA3.png"
+					alt="Magneton"
+					class="on-spawn pixelated"
+					id="buddyfighter"
+				/>
+			</article>
+
+			<section id="buddy-info" class="pixelated-border info-container">
+				<h2 id="buddy-name" class="pokemon-name">PALKIA</h2>
+				<p id="buddy-lvl" class="pokemon-lvl">Lvl: 5</p>
+				<div class="pokemon-hp">
+					<p>HP:</p>
+					<div class="hp-bar">
+						<div id="buddy-hp-fill"></div>
+					</div>
+				</div>
+			</section>
+
+			<section id="enemy-info" class="pixelated-border info-container">
+				<h2 id="enemy-name" class="pokemon-name">Enemy</h2>
+				<p id="enemy-lvl" class="pokemon-lvl">Lvl: 5</p>
+				<div class="pokemon-hp">
+					<p>HP:</p>
+					<div class="hp-bar">
+						<div id="enemy-hp-fill"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="battle-options buttons pixelated" id="options">
+				<button id="fight">
+					<img src="./assets/img/fight.png" alt="f" />
+				</button>
+				<button id="items">
+					<img src="./assets/img/bag.png" alt="b" />
+				</button>
+				<button id="run">
+					<img src="./assets/img/run.png" alt="r" />
+				</button>
+			</section>
+			<!-- </section> -->
+		</main>
+		<footer><p>&copy; Team Magneton</p></footer>
+	</body>
+</html>

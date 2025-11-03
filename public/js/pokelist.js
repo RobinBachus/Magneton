@@ -12,14 +12,20 @@ import { playAudio, fetchPokemonPage } from "./common.js";
 
 const bgm = new Audio("/assets/audio/pokedexloop.mp3");
 
+// ================ URL Params ================
+
+const path = window.location.pathname.split("/");
+const genFull = path[2];
+const pokemonId = parseInt(path[3]);
+
 // ================ HTML elements ================
 
+/** @type HTMLElement */
+const title = document.getElementById("title");
 /** @type HTMLElement */
 const pokeList = document.getElementById("pokemon-images");
 /** @type HTMLElement */
 const loadingScreen = document.getElementById("loading-screen");
-/** @type HTMLInputElement */
-const generation = document.getElementById("gen-limits");
 /** @type HTMLElement */
 const selectedId = document.getElementById("pokemon-id");
 /** @type HTMLElement */
@@ -45,8 +51,14 @@ main();
 async function main() {
 	playAudio(bgm, true, true, true);
 
+	title.textContent = `Generation ${genFull[3]}`;
+
+	const searchedPokemon = await fetch(`/api/getPokemon/${pokemonId}`);
+	setPokemon(await searchedPokemon.json());
+
+	const genLimits = await fetch(`/api/getGenLimits/${genFull}`);
 	/** @type Generation */
-	const gen = JSON.parse(generation.value);
+	const gen = await genLimits.json();
 
 	pokeList.classList.add("loading");
 	loadingScreen.classList.remove("hidden");
@@ -99,11 +111,26 @@ function pokemonToArticle(pokemon, selected) {
  * @param {HTMLElement} article The article element of the Pokemon
  */
 function selectPokemon(pokemon, article) {
+	setPokemon(pokemon);
+
+	const selected = document.querySelector(".selected");
+	if (selected) selected.classList.remove("selected");
+
+	article.classList.add("selected");
+}
+
+/**
+ * Sets the current Pokemon
+ * @param {Pokemon} pokemon The current Pokemon
+ */
+function setPokemon(pokemon) {
 	selectedId.textContent = pokemon.id;
 	selectedName.textContent = pokemon.name;
 	selectedPrimaryType.src = `/assets/img/${pokemon.types[0]}.png`;
 	selectedPrimaryType.alt = pokemon.types[0];
-	selectedSecondaryType.src = `/assets/img/${pokemon.types[1]}.png`;
+	if (pokemon.types.length > 1)
+		selectedSecondaryType.src = `/assets/img/${pokemon.types[1]}.png`;
+	else selectedSecondaryType.src = "";
 	selectedSecondaryType.alt = pokemon.types[1] ?? "";
 	selectedImage.src = pokemon.sprite;
 	selectedImage.alt = pokemon.name;
@@ -113,11 +140,6 @@ function selectPokemon(pokemon, article) {
 	for (let i = 0; i < stats.length; i++) {
 		selectedStats[i].textContent = stats[i];
 	}
-
-	const selected = document.querySelector(".selected");
-	if (selected) selected.classList.remove("selected");
-
-	article.classList.add("selected");
 }
 
 export {};

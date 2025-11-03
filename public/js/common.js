@@ -4,10 +4,61 @@
 
 /** @typedef {import('./types.js').Pokemon} Pokemon */
 /** @typedef {import('./types.js').Page} Page */
+/** @typedef {import('./types.js').LocalUser} User */
 
 // ============== Constants ==============
 
 export const maxPokeId = 1025;
+
+export const status = Object.freeze({
+	SUCCESS: Symbol("success"),
+	SKIPPED: Symbol("skipped"),
+	FAILED: Symbol("failed"),
+});
+
+export const HTTPStatusText = {
+	200: "OK",
+	201: "Created",
+	202: "Accepted",
+	203: "Non-Authoritative Information",
+	204: "No Content",
+	205: "Reset Content",
+	206: "Partial Content",
+	300: "Multiple Choices",
+	301: "Moved Permanently",
+	302: "Found",
+	303: "See Other",
+	304: "Not Modified",
+	305: "Use Proxy",
+	306: "Unused",
+	307: "Temporary Redirect",
+	400: "Bad Request",
+	401: "Unauthorized",
+	402: "Payment Required",
+	403: "Forbidden",
+	404: "Not Found",
+	405: "Method Not Allowed",
+	406: "Not Acceptable",
+	407: "Proxy Authentication Required",
+	408: "Request Timeout",
+	409: "Conflict",
+	410: "Gone",
+	411: "Length Required",
+	412: "Precondition Required",
+	413: "Request Entry Too Large",
+	414: "Request-URI Too Long",
+	415: "Unsupported Media Type",
+	416: "Requested Range Not Satisfiable",
+	417: "Expectation Failed",
+	418: "I'm a teapot",
+	429: "Too Many Requests",
+	500: "Internal Server Error",
+	501: "Not Implemented",
+	502: "Bad Gateway",
+	503: "Service Unavailable",
+	504: "Gateway Timeout",
+	505: "HTTP Version Not Supported",
+};
 
 // ============== Elements ==============
 
@@ -89,15 +140,7 @@ export async function playAudio(
  */
 export async function getRandomPokemon(min = 0, max = maxPokeId) {
 	try {
-		const response = await fetch("/api/getRandomPokemon", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ min, max }),
-		});
-
-		const pokemon = await response.json();
+		const pokemon = await post("/api/getRandomPokemon", { min, max });
 		return pokemon;
 	} catch (error) {
 		console.error("Error fetching Pokemon data:", error);
@@ -152,4 +195,30 @@ export function capitalizeAllWords(str) {
 	return words
 		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(" ");
+}
+
+/**
+ * Gets the logged in user
+ * @returns {Promise<User>} The response from the server
+ */
+export async function getUser() {
+	return await (await fetch("/api/user")).json();
+}
+
+/**
+ * Sends a POST request to the specified URL with the given body.
+ * @param {string} url The URL to send the request to
+ * @param {any} body The body of the request
+ * @returns {Promise<any>} The response from the server
+ */
+export async function post(url, body = {}) {
+	const response = await fetch(url, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(body),
+	});
+
+	return await response.json();
 }

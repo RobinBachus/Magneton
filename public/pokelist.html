@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="/css/frames.css" />
 		<link rel="stylesheet" href="/css/loading.css" />
 
-		<script src="/js/main.js" defer></script>
+		<script src="/js/main.js" type="module" defer></script>
 		<script src="/js/pokelist.js" type="module" defer></script>
 
 		<!-- fa icons -->
@@ -22,7 +22,46 @@
 		></script>
 	</head>
 	<body>
-		<%- include("partials/header-aside") %>
+		<header>
+			<a href="/home">
+				<img
+					id="logo"
+					src="/assets/img/LogoLightModeNewer.png"
+					alt="Logo"
+				/>
+			</a>
+			<div class="menu-container">
+				<a class="menu-btn" href="/pokedex">Pokémon</a>
+				<a class="menu-btn" href="/quiz">Who's that Pokémon?</a>
+				<a class="menu-btn" href="/comparator">Comperator</a>
+			</div>
+			<div id="header-settings">
+				<div id="audio-mute">
+					<button id="mute-music" class="mute-button fa-stack">
+						<i class="fa fa-music"></i>
+						<i
+							id="music-muted-slash"
+							class="fa fa-slash fa-stack-1x fa-xl"
+						></i>
+					</button>
+					<button id="mute-sfx" class="mute-button">
+						<i class="fa-solid fa-volume-mute"></i>
+					</button>
+				</div>
+				<form action="/logout" method="post" id="user-form">
+					<img
+						id="usericon"
+						class="pixelated"
+						src="/assets/img/pfp1.png"
+						alt="avatar"
+					/>
+					<button type="submit" name="sign out">
+						<i class="fa-solid fa-sign-out"></i>
+					</button>
+				</form>
+			</div>
+		</header>
+
 		<section id="buddy" class="framed no-hd">
 			<h1>My Buddy</h1>
 			<img
@@ -33,16 +72,12 @@
 			<p>Magneton</p>
 		</section>
 		<main>
-			<!-- This field will hold the limits of the generation used in the js -->
-			<input type="hidden" id="gen-limits" value="<%= genLimits %>" />
-			<h1 id="title">Generation <%= gen %></h1>
+			<h1 id="title"></h1>
 			<section id="pokelist-container">
 				<section id="selected-pokemon">
 					<div id="pokemon-info">
-						<h2 id="pokemon-name"><%= pokemon.name %></h2>
-						<h3 id="pokemon-id">
-							<%= String(pokemon.id).padStart(4, "0") %>
-						</h3>
+						<h2 id="pokemon-name"></h2>
+						<h3 id="pokemon-id"></h3>
 					</div>
 					<button id="buddy-button">❤</button>
 					<img
@@ -50,68 +85,44 @@
 						src="/assets/img/pokemoncaught.png"
 						alt="pokeball"
 					/>
-					<div
-						id="pokemon-image-container"
-						class="bg-<%= pokemon.types[0] %>"
-					>
+					<div id="pokemon-image-container" class="">
 						<img
 							id="pokemon-image"
-							src="<%= pokemon.sprite %>"
-							alt="<%= pokemon.name %>"
+							src="/assets/img/steelbg.png"
+							alt=""
 							class="pixelated"
 							width="500"
 							height="500"
 						/>
 					</div>
-					<img
-						class="type"
-						src="/assets/img/<%= pokemon.types[0] %>.png"
-						alt="<%= pokemon.types[0] %>"
-					/>
-					<img
-						class="type"
-						src="/assets/img/<%= pokemon.types[1] %>.png"
-						alt="<%=
-					pokemon.types[1] %>"
-					/>
+					<img class="type" src="/assets/img/steel.png" alt="" />
+					<img class="type" src="/assets/img/steel.png" alt="" />
 					<button id="battle-button">Battle</button>
-					<Button id="catch-button">Catch</Button>
+					<button id="catch-button">Catch</button>
 					<section class="stat-grid">
 						<div class="stat">
 							<p>HP</p>
-							<p class="stat-value" id="hp">
-								<%= pokemon.stats.hp %>
-							</p>
+							<p class="stat-value" id="hp"></p>
 						</div>
 						<div class="stat">
 							<p>ATK</p>
-							<p class="stat-value" id="atk">
-								<%= pokemon.stats.attack %>
-							</p>
+							<p class="stat-value" id="atk"></p>
 						</div>
 						<div class="stat">
 							<p>DEF</p>
-							<p class="stat-value" id="def">
-								<%= pokemon.stats.defense %>
-							</p>
+							<p class="stat-value" id="def"></p>
 						</div>
 						<div class="stat">
 							<p>SPA</p>
-							<p class="stat-value" id="spa">
-								<%= pokemon.stats.specialAttack %>
-							</p>
+							<p class="stat-value" id="spa"></p>
 						</div>
 						<div class="stat">
 							<p>SPD</p>
-							<p class="stat-value" id="spd">
-								<%= pokemon.stats.specialDefense %>
-							</p>
+							<p class="stat-value" id="spd"></p>
 						</div>
 						<div class="stat">
 							<p>SPE</p>
-							<p class="stat-value" id="spe">
-								<%= pokemon.stats.speed %>
-							</p>
+							<p class="stat-value" id="spe"></p>
 						</div>
 					</section>
 					<p id="date-caught">Caught on 30/04/2024</p>
@@ -131,6 +142,6 @@
 				Your browser does not support HTML5 video.
 			</video>
 		</main>
-		<%- include("partials/footer") %>
+		<footer><p>&copy; Team Magneton</p></footer>
 	</body>
 </html>
