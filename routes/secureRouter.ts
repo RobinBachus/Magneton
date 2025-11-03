@@ -1,14 +1,6 @@
 import IRouter from "./router";
 import { secureMiddleware } from "../middleware/secureMiddleware";
-import {
-	genID as GenID,
-	genIdLimits,
-	getPokemon,
-	getPokemonByGen,
-	getRandomPokemon,
-} from "../modules/api";
-import { Pokemon } from "../@types/pokemon";
-import { json } from "stream/consumers";
+import { genID, genIdLimits, getPokemon } from "../modules/api";
 
 export default class SecureRouter extends IRouter {
 	constructor() {
@@ -17,19 +9,19 @@ export default class SecureRouter extends IRouter {
 
 	setGetRoutes() {
 		this.router.get("/home", secureMiddleware, (req, res) => {
-			res.render("index");
+			res.sendFile("home.html", { root: "public" });
 		});
 
 		this.router.get("/pokedex", secureMiddleware, (req, res) => {
-			res.render("pokedexlist");
+			res.sendFile("pokedexlist.html", { root: "public" });
 		});
 
 		this.router.get("/catcher", secureMiddleware, (req, res) => {
-			res.render("catcher");
+			res.sendFile("catcher.html", { root: "public" });
 		});
 
 		this.router.get("/comparator", secureMiddleware, (req, res) => {
-			res.render("comparator");
+			res.sendFile("comparator.html", { root: "public" });
 		});
 
 		this.router.get("/pokelist", secureMiddleware, (req, res) => {
@@ -40,7 +32,7 @@ export default class SecureRouter extends IRouter {
 			"/pokelist/:gen/",
 			secureMiddleware,
 			async (req, res) => {
-				const gen = req.params.gen as GenID;
+				const gen = req.params.gen as genID;
 
 				if (!gen || !gen.match(/gen[1-9]/))
 					return res.render("/error/404");
@@ -53,42 +45,43 @@ export default class SecureRouter extends IRouter {
 			"/pokelist/:gen/:id",
 			secureMiddleware,
 			async (req, res) => {
-				const gen = req.params.gen as GenID;
+				const gen = req.params.gen as genID;
 				const id = req.params.id;
 
 				if (!gen || !id || isNaN(+id) || !gen.match(/gen[1-9]/))
-					return res.redirect("/error/404");
+					return res.redirect("/error/400");
 
-				const gen_pokemon: Pokemon[] = []; // await getPokemonByGen(gen);
 				const pokemon = await getPokemon(id); //gen_pokemon.find((p) => p.id === +id);
 
-				if (!pokemon) return res.redirect("/error/404");
+				if (!pokemon)
+					return res.redirect(
+						"/error/404?msg=this Pokemon does not seem to exist"
+					);
 
-				res.render("pokelist", {
-					gen_pokemon,
-					pokemon,
-					gen: gen[3],
-					genLimits: JSON.stringify(genIdLimits[gen]),
+				res.sendFile("pokelist.html", {
+					root: "public",
 				});
 			}
 		);
 
 		this.router.get("/quiz", secureMiddleware, (req, res) => {
-			res.render("quiz");
+			res.sendFile("quiz.html", { root: "public" });
 		});
 
 		this.router.get("/battler", secureMiddleware, (req, res) => {
-			res.render("battler");
+			res.sendFile("battler.html", { root: "public" });
 		});
 
 		this.router.get(
 			"/mysterybattler",
 			secureMiddleware,
 			async (req, res) => {
-				res.render("mysterybattler", {
-					pokemon: await getRandomPokemon(true),
-				});
+				res.sendFile("mysterybattler.html", { root: "public" });
 			}
 		);
+
+		this.router.get("/api/user", secureMiddleware, (req, res) => {
+			res.json(res.locals.user);
+		});
 	}
 }

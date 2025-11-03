@@ -3,13 +3,16 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Thuis</title>
+		<title>Comperator</title>
+
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/frames.css" />
+		<link rel="stylesheet" href="./css/comparestyle.css" />
 
-		<script src="js/main.js" defer></script>
+		<script src="/js/main.js" type="module" defer></script>
+		<script src="js/pokemon.js" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -48,8 +51,12 @@
 					</button>
 				</div>
 				<form action="/logout" method="post" id="user-form">
-					<img id="usericon" class="pixelated" src="<%= user.avatar ??
-					"/assets/img/placeholder.jpg" %>" alt="avatar" />
+					<img
+						id="usericon"
+						class="pixelated"
+						src="/assets/img/pfp1.png"
+						alt="avatar"
+					/>
 					<button type="submit" name="sign out">
 						<i class="fa-solid fa-sign-out"></i>
 					</button>
@@ -57,37 +64,65 @@
 			</div>
 		</header>
 
-		<section id="buddy" class="framed expanded">
-			<h1>My Buddy</h1>
-			<img
-				src="assets/img/magneton_icon.png"
-				alt="buddy"
-				class="pixelated"
-			/>
-			<p>Magneton</p>
-		</section>
-		<main id="home" class="home-bg-image">
-			<section id="welcome-section">
-				<div class="welcome-frame framed">
-					<div class="welcome-text">
-						<h1>Welcome to Gotcha!</h1>
-						<p>
-							Welcome Trainer! Enter the fantastic world of
-							Pokémon, where adventure and challanges await around
-							every corner. Choose a gamemode to start!
-						</p>
-					</div>
-				</div>
-				<div class="game-modes">
-					<a class="game-mode framed" href="pokedex">Pokémon</a>
-					<a class="game-mode framed" href="quiz"
-						>Who's that Pokémon?</a
-					>
-					<a class="game-mode framed" href="/comparator"
-						>Comperator</a
-					>
-				</div>
+		<main id="comparator">
+			<section class="pokemon-display-card framed">
+				<h2 id="pokemonNamePlayer1"></h2>
+				<form class="search" action="">
+					Search a Pokémon:
+					<input
+						type="search"
+						name="findpoke1"
+						id="findme"
+						autocomplete="off"
+					/>
+					<ul id="dropdown1" class="dropdown"></ul>
+				</form>
+				<section class="compare-img-container">
+					<img
+						id="pokeball1"
+						src="./assets/img/BALL1IDLE.png"
+						class="comparing-pokeball-img"
+						alt="testbal"
+					/>
+					<img
+						id="activePlayer1"
+						class="compared-pokemon-img"
+						src=""
+						alt=""
+					/>
+				</section>
+				<ul id="pokemon1" class="pokemon-stats"></ul>
 			</section>
+
+			<section class="pokemon-display-card framed">
+				<h2 id="pokemonNamePlayer2"></h2>
+				<form class="search" action="">
+					Search a Pokémon:
+					<input
+						type="search"
+						name="findpoke2"
+						id="findme2"
+						autocomplete="off"
+					/>
+					<ul id="dropdown2" class="dropdown"></ul>
+				</form>
+				<section class="compare-img-container">
+					<img
+						id="pokeball2"
+						src="./assets/img/BALL1IDLE.png"
+						class="comparing-pokeball-img"
+						alt="testbal"
+					/>
+					<img
+						id="activePlayer2"
+						class="compared-pokemon-img"
+						src=""
+						alt=""
+					/>
+				</section>
+				<ul id="pokemon2" class="pokemon-stats"></ul>
+			</section>
+
 			<video autoplay muted loop id="backgroundvideo">
 				<source
 					src="./assets/img/comperatorbackground.mp4"
@@ -96,7 +131,6 @@
 				Your browser does not support HTML5 video.
 			</video>
 		</main>
-
 		<footer><p>&copy; Team Magneton</p></footer>
 	</body>
 </html>

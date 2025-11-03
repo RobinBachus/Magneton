@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Error <%= code %></title>
+		<title>Error</title>
 
 		<link rel="stylesheet" href="/css/reset.css" />
 		<link rel="stylesheet" href="/css/fonts.css" />
 		<link rel="stylesheet" href="/css/style.css" />
 		<link rel="stylesheet" href="/css/frames.css" />
 
-		<script src="/js/main.js" defer></script>
+		<script src="/js/main.js" type="module" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -21,9 +21,9 @@
 	<body>
 		<main id="error-container">
 			<section id="error-message" class="framed">
-				<h1>Error <%= code %>!</h1>
-				<code><%= message %></code>
-				<a id="back" href="#"> Go <b>back</b> to the previous page </a>
+				<h1 id="error-title">Error!</h1>
+				<code id="error-msg">Something went wrong!</code>
+				<a id="back" href="/home"> Go back home </a>
 			</section>
 		</main>
 		<footer><p>&copy; Team Magneton</p></footer>

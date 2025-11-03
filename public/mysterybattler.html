@@ -2,16 +2,21 @@
 <html lang="nl">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Catch that Pokémon!</title>
+		<title>Mystery Encounter!</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/frames.css" />
-		<link rel="stylesheet" href="css\mysterybattler.css" />
-		<script src="js/main.js" defer></script>
-		<script src="js/pokemon.js" defer></script>
+		<link rel="stylesheet" href="css/mysterybattler.css" />
+		<script src="/js/main.js" type="module" defer></script>
+		<script src="js/mysterypokemon.js" type="module" defer></script>
+
+		<!-- Prefetch images -->
+		<link rel="preload" as="image" href="./assets/img/fighthover.png" />
+		<link rel="preload" as="image" href="./assets/img/baghover.png" />
+		<link rel="preload" as="image" href="./assets/img/runhover.png" />
 
 		<!-- fa icons -->
 		<script
@@ -50,8 +55,12 @@
 					</button>
 				</div>
 				<form action="/logout" method="post" id="user-form">
-					<img id="usericon" class="pixelated" src="<%= user.avatar ??
-					"/assets/img/placeholder.jpg" %>" alt="avatar" />
+					<img
+						id="usericon"
+						class="pixelated"
+						src="/assets/img/pfp1.png"
+						alt="avatar"
+					/>
 					<button type="submit" name="sign out">
 						<i class="fa-solid fa-sign-out"></i>
 					</button>
@@ -59,15 +68,9 @@
 			</div>
 		</header>
 
-		<audio autoplay loop>
-			<source src="./assets/audio/catchloop.mp3" type="audio/mpeg" />
-			Your browser does not support the audio element.
-		</audio>
 		<main id="battler" class="bg-image">
-			<!-- <section class="bg-image"> -->
 			<h2 class="battletext framed" id="announcement"></h2>
 
-			<!-- <section class="pokemon-container"> -->
 			<article class="pokemon" id="enemy-container">
 				<img
 					src="./assets/img/battleshadow.png"
@@ -75,7 +78,12 @@
 					id="enemygrass"
 					class="hidden"
 				/>
-				<img src="" alt="" class="on-spawn" id="enemyfighter" />
+				<img
+					src=""
+					alt=""
+					class="on-spawn pixelated"
+					id="enemyfighter"
+				/>
 			</article>
 			<article class="pokemon" id="buddy-container">
 				<img
@@ -85,38 +93,38 @@
 					id="buddygrass"
 				/>
 				<img
-					src="./assets/img/PLAYER1-1.png"
+					src="./assets/img/PALKIA3.png"
 					alt="Magneton"
-					class="on-spawn"
+					class="on-spawn pixelated"
 					id="buddyfighter"
 				/>
 			</article>
-			<!-- </section> -->
 
-			<section id="buddy-info-container">
-				<section id="buddy-info" class="info-box">
-					<img
-						src="./assets/img/trainerboxbuddy.png"
-						alt="infobox1"
-						class="infobox"
-						id="infobuddy"
-					/>
-					<h2 class="infobox-text" id="buddyname">{USER}</h2>
-				</section>
+			<section id="buddy-info" class="pixelated-border info-container">
+				<h2 id="buddy-name" class="pokemon-name">PALKIA</h2>
+				<p id="buddy-lvl" class="pokemon-lvl">Lvl: 5</p>
+				<div class="pokemon-hp">
+					<p>HP:</p>
+					<div class="hp-bar">
+						<div id="buddy-hp-fill"></div>
+					</div>
+				</div>
 			</section>
 
-			<section id="enemy-info" class="info-box">
-				<img
-					src="./assets/img/hpboxenemy.png"
-					alt="infobox"
-					class="infobox"
-					id="infoenemy"
-				/>
-				<h2 class="infobox-text" id="enemyname"></h2>
+			<section id="enemy-info" class="pixelated-border info-container">
+				<h2 id="enemy-name" class="pokemon-name">Enemy</h2>
+				<p id="enemy-lvl" class="pokemon-lvl">Lvl: 5</p>
+				<div class="pokemon-hp">
+					<p>HP:</p>
+					<div class="hp-bar">
+						<div id="enemy-hp-fill"></div>
+					</div>
+				</div>
 			</section>
-			<section class="battle-options buttons" id="options">
-				<button id="catch">
-					<img src="./assets/img/catch.png" alt="c" />
+
+			<section class="battle-options buttons pixelated" id="options">
+				<button id="fight">
+					<img src="./assets/img/fight.png" alt="f" />
 				</button>
 				<button id="items">
 					<img src="./assets/img/bag.png" alt="b" />

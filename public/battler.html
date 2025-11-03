@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/frames.css" />
 		<link rel="stylesheet" href="css\battler.css" />
-		<script src="js/main.js" defer></script>
+		<script src="/js/main.js" type="module" defer></script>
 
 		<!-- fa icons -->
 		<script
@@ -49,8 +49,12 @@
 					</button>
 				</div>
 				<form action="/logout" method="post" id="user-form">
-					<img id="usericon" class="pixelated" src="<%= user.avatar ??
-					"/assets/img/placeholder.jpg" %>" alt="avatar" />
+					<img
+						id="usericon"
+						class="pixelated"
+						src="/assets/img/pfp1.png"
+						alt="avatar"
+					/>
 					<button type="submit" name="sign out">
 						<i class="fa-solid fa-sign-out"></i>
 					</button>

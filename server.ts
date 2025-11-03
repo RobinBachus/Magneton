@@ -1,5 +1,4 @@
 import express from "express";
-import ejs, { render } from "ejs";
 import dotenv from "dotenv";
 import Database from "./modules/database";
 import CleanUp from "./modules/cleanup";
@@ -19,7 +18,6 @@ let database: Database;
 async function main(): Promise<StatusCode> {
 	const app = express();
 
-	app.set("view engine", "ejs");
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
 	app.use(express.static("public"));
