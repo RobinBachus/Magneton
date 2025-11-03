@@ -32,7 +32,7 @@ const fightButton = document.getElementById("fight");
 /** @type HTMLButtonElement */
 const itemsButton = document.getElementById("items");
 
-const mysteryNameElement = document.getElementById(`enemyname`);
+const mysteryNameElement = document.getElementById(`enemy-name`);
 const announcementName = document.getElementById("announcement");
 
 /** @type HTMLImageElement */

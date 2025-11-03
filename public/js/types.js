@@ -10,9 +10,12 @@
 /**
  * A user stored in local storage
  *
- * @typedef {object} IUser
+ * @typedef {object} LocalUser
  * @property {string} email The users email address
- * @property {string} password The users password stored as an encrypted string
+ * @property {string} username The users username
+ * @property {string} avatar The url of the users avatar
+ * @property {CaughtPokemon|null} buddy The user's buddy pokemon
+ * @property {object[]} caught The user's caught pokemon
  */
 
 /**

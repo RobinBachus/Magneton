@@ -13,11 +13,11 @@ export default class LoginRouter extends IRouter {
 
 	setGetRoutes() {
 		this.router.get("/login", this.isLoggedIn, (req, res) => {
-			res.render("login");
+			res.sendFile("login.html", { root: "public" });
 		});
 
 		this.router.get("/signup", this.isLoggedIn, (req, res) => {
-			res.render("signup");
+			res.sendFile("signup.html", { root: "public" });
 		});
 	}
 

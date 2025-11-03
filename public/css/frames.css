@@ -19,3 +19,13 @@
 .selected img {
 	image-rendering: auto;
 }
+
+.pixelated-border {
+	border-image-slice: 52 47 53 41 fill;
+	border-image-width: 2rem;
+	border-image-outset: 21px;
+	border-image-repeat: round round;
+	border-image-source: url("../assets/img/pixel-frame.png");
+	border-style: solid;
+	border-radius: 0.9rem;
+}

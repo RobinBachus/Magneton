@@ -1,27 +1,59 @@
-// ---- Main ----
-let failed = [];
-failed.push(setupBuddy() ? null : "Buddy");
-failed.push(setupDarkMode() ? null : "Dark Mode");
-failed.push(setup404() ? null : "404 Page");
-failed.push(setupCookieBanner() ? null : "Cookie Banner");
-failed.push(setupAudioSettings() ? null : "Audio Settings");
+import { getUser, HTTPStatusText, status } from "./common.js";
 
-failed = failed.filter((x) => x);
-if (failed.length) {
-	console.error("Failed to setup:", failed.join(", "));
-}
+const { SUCCESS, FAILED, SKIPPED } = status;
+
+/**
+ * Run setup functions for various features
+ */
+let setupStatus = [
+	{
+		name: "Buddy",
+		status: setupBuddy(),
+	},
+	{
+		name: "Dark Mode",
+		status: setupDarkMode(),
+	},
+	{
+		name: "Error Page",
+		status: setupErrorPage(),
+	},
+	{
+		name: "Cookie Banner",
+		status: setupCookieBanner(),
+	},
+	{
+		name: "Audio Settings",
+		status: setupAudioSettings(),
+	},
+	{
+		name: "Avatar",
+		status: await setupAvatar(),
+	},
+];
+
+const failed = setupStatus
+	.filter((obj) => obj.status == FAILED)
+	.map((obj) => obj.name);
+
+const skipped = setupStatus
+	.filter((obj) => obj.status == SKIPPED)
+	.map((obj) => obj.name);
+
+if (skipped.length) console.warn("Skipped setup for:", skipped);
+if (failed.length) console.error("Failed to setup:", failed);
 
 // ---- Buddy ----
 function setupBuddy() {
 	const buddy = document.getElementById("buddy");
 
-	if (!buddy) return false;
+	if (!buddy) return SKIPPED;
 
 	buddy.onclick = () => {
 		buddy.classList.toggle("expanded");
 		buddy.classList.toggle("no-hd");
 	};
-	return true;
+	return SUCCESS;
 }
 
 // ---- Dark Mode ----
@@ -29,7 +61,7 @@ function setupDarkMode() {
 	const btn = document.getElementById("LightButton");
 	const img = document.getElementById("logo");
 
-	if (!btn || !img) return false;
+	if (!btn || !img) return SKIPPED;
 
 	const imageList = [
 		"./assets/img/LogoLightModeNewer.png",
@@ -42,23 +74,32 @@ function setupDarkMode() {
 		i = ++i % 2;
 		img.src = imageList[i];
 	};
-	return true;
+	return SUCCESS;
 }
 
-// ---- 404 Page ----
-function setup404() {
-	/** @type HTMLAnchorElement */
-	const returnLink = document.getElementById("back");
-	if (!returnLink) return false;
+// ---- Error Page ----
+function setupErrorPage() {
+	const errorTitle = document.getElementById("error-title");
+	const errorMsg = document.getElementById("error-msg");
 
-	returnLink.href = document.referrer;
-	return true;
+	if (!errorTitle || !errorMsg) return SKIPPED;
+
+	const errorCode = parseInt(window.location.pathname.replace("/error/", ""));
+
+	document.title = `Error ${errorCode}`;
+	errorTitle.textContent = `Error ${errorCode}`;
+
+	const searchParams = new URLSearchParams(window.location.search);
+	const message = searchParams.get("msg");
+	errorMsg.textContent = message || HTTPStatusText[errorCode];
+
+	return SUCCESS;
 }
 
 // ---- Cookie banner ----
 
-async function setupCookieBanner() {
-	if (document.cookie.includes("cookie-consent=accept")) return true;
+function setupCookieBanner() {
+	if (document.cookie.includes("cookie-consent=accept")) return SUCCESS;
 
 	const cookieBanner = document.createElement("dialog");
 	cookieBanner.id = "cookie-banner";
@@ -98,7 +139,7 @@ async function setupCookieBanner() {
 		cookieBanner.showModal();
 	}, 1000);
 
-	return true;
+	return SUCCESS;
 }
 
 // ---- Loading screen ----
@@ -132,15 +173,15 @@ async function setupCookieBanner() {
 function setupAudioSettings() {
 	/** @type HTMLButtonElement */
 	const muteMusic = document.getElementById("mute-music");
-	/** @type HTMLElement */
-	const musicSlashIcon = document.getElementById("music-muted-slash");
-
 	/** @type HTMLButtonElement */
 	const muteSfx = document.getElementById("mute-sfx");
+
+	if (!muteMusic || !muteSfx) return SKIPPED;
+
+	/** @type HTMLElement */
+	const musicSlashIcon = document.getElementById("music-muted-slash");
 	/** @type HTMLElement */
 	const sfxIcon = muteSfx.querySelector("i");
-
-	if (!muteMusic || !muteSfx) return false;
 
 	let muted = document.cookie.includes("music-mute=true");
 	musicSlashIcon.style.display = muted ? "block" : "none";
@@ -173,5 +214,22 @@ function setupAudioSettings() {
 			for (let sound of sfx) sound.pause();
 		}
 	};
-	return true;
+	return SUCCESS;
 }
+
+async function setupAvatar() {
+	/** @type HTMLImageElement */
+	const elemAvatar = document.getElementById("usericon");
+
+	if (!elemAvatar) return SKIPPED;
+
+	try {
+		const user = await getUser();
+		elemAvatar.src = user.avatar;
+		return SUCCESS;
+	} catch (e) {
+		return FAILED;
+	}
+}
+
+export {};

@@ -4,6 +4,7 @@ body {
 
 #battler {
 	padding: 0;
+	color: black;
 }
 
 .bg-image {
@@ -11,6 +12,7 @@ body {
 	grid-template-areas:
 		"head enemy-info"
 		"buddy enemy"
+		". buttons"
 		"buddy-info buttons";
 
 	grid-template-columns: 1fr 1fr;
@@ -21,7 +23,6 @@ body {
 	height: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
-	padding: 0;
 }
 
 .buttons {
@@ -32,10 +33,6 @@ body {
 	height: 60px;
 	border: none;
 	background-color: transparent;
-}
-
-.bg-image h2 {
-	color: black;
 }
 
 .battletext {
@@ -82,7 +79,6 @@ body {
 }
 
 .pokemon-container {
-	/* position: relative; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -93,26 +89,17 @@ body {
 }
 
 #buddyfighter {
-	/* position: absolute; */
-	/* top: -190px;
-	right: 440px; */
 	height: 100%;
 	width: auto;
 	animation: introbuddy 7s 1, playerthrow 0.9s 1;
 }
 #enemyfighter {
-	/* position: absolute; */
-	/* left: 440px;
-	top: -130px; */
 	height: 100%;
 	width: auto;
 	animation: introenemy 7s 1;
 	z-index: -1;
 }
 #buddygrass {
-	/* position: relative;
-	right: 4500px;
-	top: 100px; */
 	width: 500px;
 	z-index: 0;
 }
@@ -122,37 +109,8 @@ body {
 }
 
 #enemygrass {
-	/* position: relative;
-	left: 5000px;
-	top: 300px; */
 	width: 500px;
 	opacity: 0.9;
-}
-#infobuddy {
-	/* position: absolute;
-	right: 600px;
-	bottom: -208px; */
-	width: 450px;
-}
-#infoenemy {
-	/* position: absolute;
-	left: 594px;
-	top: -208px; */
-	width: 450px;
-}
-#buddyname {
-	/* position: absolute;
-	left: -490px;
-	top: 225px; */
-	margin-bottom: 4vh;
-	margin-left: -37vw;
-}
-#enemyname {
-	/* position: absolute;
-	left: 680px;
-	top: -185px; */
-	margin-bottom: 7vh;
-	margin-right: 1px;
 }
 
 #buddy-container {
@@ -166,41 +124,90 @@ body {
 	z-index: 0;
 }
 
-#buddy-info {
+.info-container {
+	height: 100%;
+	max-height: 7rem;
+	min-height: fit-content;
+	width: 40rem;
+	margin: 1rem;
+
+	filter: drop-shadow(10px 15px 2px rgba(49, 49, 43, 0.5));
+	background: beige;
 	z-index: 1;
-	height: fit-content;
-	width: 100%;
+
+	display: grid;
+	grid-template-areas:
+		"pokemon-name pokemon-lvl"
+		"pokemon-hp pokemon-hp";
+
+	grid-template-columns: 3fr 1fr;
+	grid-template-rows: 1fr 1fr;
+
+	padding: 1rem;
 }
 
-#buddy-info-container {
+#buddy-info {
 	grid-area: buddy-info;
-	height: 100%;
-	display: flex;
-	z-index: 1;
-	align-items: flex-end;
+	align-items: center;
 }
 
 #enemy-info {
 	grid-area: enemy-info;
-	justify-items: end;
-	align-items: end;
-}
-
-.info-box {
-	display: grid;
-	grid-template-rows: 1fr;
-	grid-template-columns: 1fr;
+	justify-self: end;
 	align-items: center;
-	text-align: center;
 }
 
-.info-box > * {
-	grid-row: 1;
-	grid-column: 1;
+.pokemon-name {
+	grid-area: pokemon-name;
 }
 
-.info-box > h2 {
-	padding: 0 5rem;
+.pokemon-lvl {
+	grid-area: pokemon-lvl;
+}
+
+.pokemon-hp {
+	grid-area: pokemon-hp;
+	width: fit-content;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background: rgb(46, 48, 51);
+	border: 1px solid black;
+	border-radius: 0.7rem;
+
+	padding: 2px 1rem;
+}
+
+.pokemon-hp p {
+	margin: 0;
+	width: fit-content;
+	font-size: larger;
+	font-weight: bolder;
+	color: white;
+}
+
+.hp-bar {
+	max-width: 100%;
+	width: 15rem;
+	height: 1rem;
+	border: 2px solid white;
+	border-radius: 1rem;
+	overflow: hidden;
+	background-color: white;
+}
+
+#buddy-hp-fill {
+	background-color: rgb(13, 234, 87);
+	height: 100%;
+	width: 100%;
+}
+
+#enemy-hp-fill {
+	background-color: orange;
+	height: 100%;
+	width: 50%;
 }
 
 .pokemon img,
